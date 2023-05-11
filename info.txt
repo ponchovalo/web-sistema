@@ -1,0 +1,22 @@
+Registro {
+	id: string,
+	fecha: string,
+	ref: Refaccion,
+	impresora: Impresora,
+	contadores: Contadores
+
+}
+Refaccion {
+	id: string,
+	nombre: string,
+	modelo: string,
+	modeloImp: string,
+	tipo: string, (refaccion o consumible)
+	cantidad: number
+}
+Contadores {
+	101: number,
+	102: number,
+	109: number,
+	124: number
+}
