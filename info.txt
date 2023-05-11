@@ -1,10 +1,9 @@
 Registro {
 	id: string,
 	fecha: string,
-	ref: Refaccion,
+	refaccion: Refaccion,
 	impresora: Impresora,
 	contadores: Contadores
-
 }
 Refaccion {
 	id: string,
@@ -14,9 +13,19 @@ Refaccion {
 	tipo: string, (refaccion o consumible)
 	cantidad: number
 }
+Impresora {
+  id: string,
+  nombre: string,
+  modelo: string,
+  mac: string,
+  ip: string,
+  edificio: string,
+  ubicacion: string
+}
 Contadores {
 	101: number,
 	102: number,
 	109: number,
 	124: number
 }
+
