@@ -1,4 +1,4 @@
-Registro {
+RegRefacc {
 	id: string,
 	fecha: string,
 	refaccion: Refaccion,
@@ -32,6 +32,14 @@ Contadores {
 	102: number,
 	109: number,
 	124: number
+}
+
+RegContador {
+  id:string,
+  fecha: string,
+  nombreRepo: string,
+  Impresora: Impresora,
+  contadores: Contadores
 }
 
 Reportes.
