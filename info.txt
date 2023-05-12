@@ -7,11 +7,11 @@ RegRefacc {
 }
 Refaccion {
 	id: string,
-	nombre: string,
-	modelo: string,
+	descripcion: string,
+	noParte: string,
 	modeloImp: string,
 	tipo: string, (refaccion o consumible)
-  tiempoVida: number,
+  vidaUtil: number,
 	cantidad: number
 }
 Impresora {
