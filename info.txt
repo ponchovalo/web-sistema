@@ -1,0 +1,57 @@
+RegRefacc {
+	id: string,
+  catidad: number,
+	fecha: string,
+	refaccion: Refaccion,
+	impresora: Impresora,
+	contadores: Contadores
+}
+Refaccion {
+	id: string,
+	descripcion: string,
+	noParte: string,
+	modeloImp: string,
+	tipo: string, (refaccion o consumible)
+  vidaUtil: number,
+	cantidad: number
+}
+Impresora {
+  id: string,
+  nombre: string,
+  modelo: string,
+  mac: string,
+  ip: string,
+  edificio: string,
+  ubicacion: string
+}
+
+No en base solo interfaz. Esta info se guarda en Registro y se
+reutiliza en reporte de contadores mensual.
+Contadores {
+  id: string,
+	101: number,
+	102: number,
+	109: number,
+	124: number
+}
+
+RegContador {
+  id:string,
+  fecha: string,
+  nombreRepo: string,
+  Impresora: Impresora,
+  contadores: Contadores
+}
+
+Reportes.
+Refacciones
+Refacciones utlizadas al mes, por fecha, por modelo, tiempo de vida real de refaccion en tiempo y en contador.
+
+Consumibles.
+Consumibles utlizadas al mes, por fecha, por modelo, tiempo de vida real de refaccion en tiempo y en contador.
+
+Contadores
+Rendimiento de impresoras por tiempo. Cuando imprimen al mes, o entre reporte y reporte, por modelo, por impresora.
+
+
+
