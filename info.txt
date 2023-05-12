@@ -1,5 +1,6 @@
 RegRefacc {
 	id: string,
+  catidad: number,
 	fecha: string,
 	refaccion: Refaccion,
 	impresora: Impresora,
