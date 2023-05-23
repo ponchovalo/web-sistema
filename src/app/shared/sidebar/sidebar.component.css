@@ -1,0 +1,23 @@
+a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  a:hover, a:active{
+    color: #dbcde6;
+  }
+  
+  .navigation-menu{
+    list-style: none;
+    padding: 0%;
+    margin: 0;
+  }
+  
+  .navegacion-list-lebel{
+    display: inline-block;
+    padding-left: 6px;
+  }
+  
+  .alingIcon{
+    vertical-align: bottom;
+  }
