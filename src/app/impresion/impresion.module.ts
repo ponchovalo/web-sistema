@@ -6,6 +6,7 @@ import { InventarioImpresionComponent } from './pages/inventario-impresion/inven
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { EdicionImpresoraComponent } from './components/edicion-impresora/edicion-impresora.component';
+import { AlmacenImpresionComponent } from './pages/almacen-impresion/almacen-impresion.component';
 
 
 
@@ -13,7 +14,8 @@ import { EdicionImpresoraComponent } from './components/edicion-impresora/edicio
   declarations: [
     HomeImpresionComponent,
     InventarioImpresionComponent,
-    EdicionImpresoraComponent
+    EdicionImpresoraComponent,
+    AlmacenImpresionComponent
   ],
   imports: [
     CommonModule,

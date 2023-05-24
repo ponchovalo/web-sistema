@@ -4,16 +4,9 @@
 
 .row{
     height: 40px;
-    background-color: rgb(27, 33, 32);
+    background-color: black;
     gap: 20px;
 }
-
-nav a {
-    text-decoration: none;
-    font-size: 14px;
-    color: #4dbed4;
-}
-
 nav{
     width: 90%;
 }
@@ -28,10 +21,10 @@ nav ul{
 nav ul li{
     list-style: none;
     background-color:  rgb(27, 33, 32);
-    padding-inline: 10px;
     border-radius: 5px;
     border: 1px solid #4dbed4;
     margin-bottom: 5px;
+    color:#4dbed4
 }
 
 nav ul li:hover{
@@ -49,8 +42,10 @@ nav ul li:hover{
     display: flex;
     font-size: small;
     color: white
+}
 
-
+.button-menu{
+    color: #4dbed4;
 }
 
 

@@ -11,15 +11,22 @@ import { EdicionImpresoraComponent } from '../../components/edicion-impresora/ed
 })
 export class InventarioImpresionComponent implements OnInit {
 
-  displayedColumns = ['nombre', 'modelo', 'serie', 'ip', 'mac', 'edificio', 'ubicacion'];
+  displayedColumns = ['nombre', 'modelo', 'serie', 'ip', 'mac', 'edificio', 'ubicacion', 'accion'];
   dataSource: Impresora[] = [];
 
   constructor(private impresionService: ImpresionService, private dialog: MatDialog){}
 
   ngOnInit(): void {
 
-    this.dataSource = this.impresionService.obtenerImpresoras();
+    //this.dataSource = 
+    this.listarImpresoras();
 
+  }
+
+  listarImpresoras(){
+    this.impresionService.getImpresoras().subscribe(
+      impresoras => { this.dataSource = impresoras}
+    );
   }
 
   openDialog(){

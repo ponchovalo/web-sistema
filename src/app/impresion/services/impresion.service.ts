@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Impresora } from '../interfaces/impresora.interface';
+import { environment } from 'src/environments/environments';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImpresionService {
+
+  urlBase = environment.baseUrl;
+  impresoras?: Impresora[] = [];
 
   listaImpresoras: Impresora[] = [
     {
@@ -26,12 +32,29 @@ export class ImpresionService {
       mac: '00bb.c17a.5a62',
       edificio: 'DORMITORIO C',
       ubicacion: 'TIENDA C'
+    },
+    {
+      id: "6455131a8faace3dc6bee915",
+      nombre: 'TIENDA C',
+      modelo: 'MF525DW',
+      serie: '2BH03818',
+      ip: '10.222.17.233',
+      mac: '00bb.c17a.5a62',
+      edificio: 'DORMITORIO C',
+      ubicacion: 'TIENDA C'
     }
   ]
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   obtenerImpresoras(){
-    return this.listaImpresoras.slice();
+    this.http.get(this.urlBase + 'api/impresora').subscribe(response => { 
+      console.log(response)
+    });
+    //return this.listaImpresoras.slice();
   }
+
+  getImpresoras(): Observable<Impresora[]>{
+    return this.http.get<Impresora[]>(`${this.urlBase}api/impresora`);
+  }   
 
 }

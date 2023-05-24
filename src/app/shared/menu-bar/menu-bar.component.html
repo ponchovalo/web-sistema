@@ -13,19 +13,26 @@
     </mat-toolbar-row>
 
     <mat-toolbar-row class="row">
-        <a style="background-color: rgb(27, 33, 32);" (click)="onMenuToggle()">
-            <mat-icon style="color: #4dbed4;"  >menu</mat-icon>
-        </a>
+        <button class="button-menu"mat-icon-button (click)="onMenuToggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
 
         <nav>
             <ul>
-                <li><a href="">IMPRESION</a></li>
-                <li><a href="">WYSE</a></li>
-                <li><a href="">TELEVISITAS</a></li>
-                <li><a href="">JAMMER</a></li>
+                <li>
+                    <button class="button-menu" mat-stroked-button>IMPRESION</button>
+                </li>
+                <li>
+                    <button class="button-menu" mat-stroked-button>WYSE</button>
+                </li>
+                <li>
+                    <button class="button-menu" mat-stroked-button>TELEVISITAS</button>
+                </li>
+                <li>
+                    <button class="button-menu" mat-stroked-button>JAMMER</button>
+                </li>
             </ul>
         </nav>
 
     </mat-toolbar-row>
-
 </mat-toolbar>
