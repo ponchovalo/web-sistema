@@ -1,14 +1,14 @@
+<app-menu-bar (menuToggle)="menu.toggle()" ></app-menu-bar>
 
 <mat-drawer-container class="example-container" style="height: 80%;">
-    <mat-drawer #drawer mode="side" style="width: 300px;" opened>
+    <mat-drawer #menu mode="side" style="width: 300px;" opened>
         <app-sidebar style="height: 100%;"></app-sidebar>
     </mat-drawer>
-    
+
     <mat-drawer-content>
         <router-outlet>
         </router-outlet>
-      <button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button>
     </mat-drawer-content>
-  </mat-drawer-container>
+</mat-drawer-container>
 
 

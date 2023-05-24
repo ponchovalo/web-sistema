@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu-bar',
@@ -7,7 +7,10 @@ import { Component } from '@angular/core';
   ]
 })
 export class MenuBarComponent {
+  @Output() menuToggle = new EventEmitter<void>();
 
-  logo= true;
+  onMenuToggle(){
+    this.menuToggle.emit();
+  }
 
 }

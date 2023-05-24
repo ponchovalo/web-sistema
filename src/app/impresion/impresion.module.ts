@@ -5,13 +5,15 @@ import { ImpresionRoutingModule } from './impresion-routing-module';
 import { InventarioImpresionComponent } from './pages/inventario-impresion/inventario-impresion.component';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
+import { EdicionImpresoraComponent } from './components/edicion-impresora/edicion-impresora.component';
 
 
 
 @NgModule({
   declarations: [
     HomeImpresionComponent,
-    InventarioImpresionComponent
+    InventarioImpresionComponent,
+    EdicionImpresoraComponent
   ],
   imports: [
     CommonModule,

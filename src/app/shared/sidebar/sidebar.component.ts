@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +8,11 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent {
 
+
+
+
   constructor(private router: Router){}
+
 
   enlazar(){
     this.router.navigate(["impresion/inventario"])

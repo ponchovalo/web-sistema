@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { MaterialModule } from '../material/material.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ImpresionRoutingModule } from '../impresion/impresion-routing-module';
 
 
 
@@ -17,8 +18,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   ],
   imports: [
     CommonModule,
-    MaterialModule
-    
+    MaterialModule,
+    ImpresionRoutingModule,
+
+
   ]
 })
 export class SharedModule { }

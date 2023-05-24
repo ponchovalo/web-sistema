@@ -31,3 +31,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </mat-table>
+
+<button mat-fab id="boton-agregar" (click)="openDialog()">
+  <mat-icon>add</mat-icon>
+</button>
