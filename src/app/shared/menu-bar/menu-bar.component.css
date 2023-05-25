@@ -1,51 +1,60 @@
-.example-spacer{
-    flex: 1 1 auto;
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(95, 103, 103);
 }
-
-.row{
-    height: 40px;
-    background-color: black;
-    gap: 20px;
-}
-nav{
+ .row{
     width: 90%;
-}
-
-nav ul{
+    height: 50px;
     display: flex;
-    justify-content: end;
-    align-items: center;
-    gap: 5px;
+    flex-direction: row; 
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 5px;
 }
-
-nav ul li{
-    list-style: none;
-    background-color:  rgb(27, 33, 32);
-    border-radius: 5px;
-    border: 1px solid #4dbed4;
-    margin-bottom: 5px;
-    color:#4dbed4
-}
-
-nav ul li:hover{
-    background-color: #4dbed4;
-    color: rgb(27, 33, 32);
-}
-
-.logo{
+.row_nav{
+    width: 90%;
+    height: 50px;
     display: flex;
-    justify-content: end;
+    flex-direction: row; 
     align-items: center;
-    padding-top: 5px;
+    justify-content: flex-end;
+    gap: 10px;
 }
+
+.spacer{
+    flex: 1 1 auto;
+} 
+
 .nameUser{
     display: flex;
     font-size: small;
     color: white
 }
-
-.button-menu{
-    color: #4dbed4;
+nav {
+    display: flex;
+    gap: 10px;
 }
+nav button{
+    border: 1px solid #4dbed4;
+}
+.button-menu {
+    background-color: rgb(95, 103, 103);
+}
+
+nav button:hover{
+    background-color: #4dbed4;
+    color: azure;
+    border: 1px solid #4dbed4;
+}
+.button-menu:hover{
+    background-color: #4dbed4;
+    color: azure;
+    border: 1px solid #4dbed4;
+}
+
+
 
 

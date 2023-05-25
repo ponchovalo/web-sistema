@@ -16,6 +16,10 @@ const routes: Routes = [
         {
           path: 'almacen',
           component: AlmacenImpresionComponent
+        },
+        {
+          path: '**',
+          redirectTo: 'inventario'
         }
         
       ]

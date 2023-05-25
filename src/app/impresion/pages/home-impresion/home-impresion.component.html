@@ -1,14 +1,17 @@
-<app-menu-bar (menuToggle)="menu.toggle()" ></app-menu-bar>
 
-<mat-drawer-container class="example-container" style="height: 80%;">
-    <mat-drawer #menu mode="side" style="width: 300px;" opened>
-        <app-sidebar style="height: 100%;"></app-sidebar>
-    </mat-drawer>
+    <app-menu-bar (menuToggle)="menu.toggle()" ></app-menu-bar>
 
-    <mat-drawer-content>
-        <router-outlet>
-        </router-outlet>
-    </mat-drawer-content>
-</mat-drawer-container>
+    <mat-drawer-container class="container">
+        <mat-drawer class="sidenav" #menu mode="side" opened>
+            <app-sidebar style="height: 100%;"></app-sidebar>
+        </mat-drawer>
+
+        <mat-drawer-content>
+            <router-outlet>
+            </router-outlet>
+        </mat-drawer-content>
+    </mat-drawer-container>
+  
+    
 
 

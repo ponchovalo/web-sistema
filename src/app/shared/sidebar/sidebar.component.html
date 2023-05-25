@@ -1,18 +1,6 @@
-<mat-nav-list>
-    <a mat-list-item  routerLink="/impresion/inventario" >
-      <mat-icon class="alingIcon">print</mat-icon>
-      <span class="navegacion-list-lebel" >Inventario Impresoras</span>
+<mat-nav-list class="sidenav">
+    <a *ngFor="let item of listItems" mat-list-item  [routerLink]="item.enlace"  >
+      <mat-icon class="alingIcon">{{item.icono}}</mat-icon>
+      <span class="navegacion-list-lebel" >{{item.titulo}}</span>
     </a>
-    <a mat-list-item routerLink="/impresion/almacen">
-        <mat-icon class="alingIcon">inventory</mat-icon>
-        <span class="navegacion-list-lebel">Almacen Refacciones</span>
-    </a>
-    <a mat-list-item routerLink="/">
-        <mat-icon class="alingIcon">app_registration</mat-icon>
-        <span class="navegacion-list-lebel">Control de Toner</span>
-    </a>
-    <a mat-list-item>
-        <mat-icon class="alingIcon">calendar_month</mat-icon>
-        <span class="navegacion-list-lebel">Reporte Mensual</span>
-    </a>
-  </mat-nav-list>
+</mat-nav-list>
