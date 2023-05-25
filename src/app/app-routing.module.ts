@@ -5,8 +5,11 @@ const routes: Routes = [
   {
     path: 'impresion',
     loadChildren: () => import('./impresion/impresion.module').then(m => m.ImpresionModule)
+  },
+  {
+    path: 'wyse',
+    loadChildren: () => import('./wyse/wyse.module').then(m => m.WyseModule)
   }
-  
 ];
 
 @NgModule({

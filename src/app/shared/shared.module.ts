@@ -4,6 +4,7 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { MaterialModule } from '../material/material.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ImpresionRoutingModule } from '../impresion/impresion-routing-module';
+import { WyseRoutingModule } from '../wyse/wyse-routing.module';
 
 
 
@@ -20,6 +21,7 @@ import { ImpresionRoutingModule } from '../impresion/impresion-routing-module';
     CommonModule,
     MaterialModule,
     ImpresionRoutingModule,
+    WyseRoutingModule
 
 
   ]
