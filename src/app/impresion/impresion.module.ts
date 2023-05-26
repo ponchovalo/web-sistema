@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { EdicionImpresoraComponent } from './components/edicion-impresora/edicion-impresora.component';
 import { AlmacenImpresionComponent } from './pages/almacen-impresion/almacen-impresion.component';
+import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 
 
 

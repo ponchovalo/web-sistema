@@ -8,34 +8,53 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  @Input('seccion') seccion = ''; 
+  @Input() seccion?:string;
+
 
   listItems = [
     {
+      seccion: 'Impresion',
       enlace: '/impresion/inventario',
       icono: 'print',
       titulo: 'Inventario Impresoras'
     },
     {
+      seccion: 'Impresion',
       enlace: '/impresion/almacen',
       icono: 'inventory',
       titulo: 'Almacen Refacciones'
     },
     {
+      seccion: 'Impresion',
       enlace: '/impresion/inventario',
       icono: 'app_registration',
       titulo: 'Control de Toner'
     },
     {
+      seccion: 'Impresion',  
       enlace: '/impresion/almacen',
       icono: 'calendar_month',
       titulo: 'Reporte Mensual'
+    },
+    {
+      seccion: 'Wyse',
+      enlace: '/wyse/inventario',
+      icono: 'computer',
+      titulo: 'Inventario Wyse'
+    },
+    {
+      seccion: 'Wyse',
+      enlace: '/wyse/almacen',
+      icono: 'verified_user',
+      titulo: 'Permisos Carpetas'
     }
   ]
   constructor(private router: Router){}
 
   ngOnInit(): void {
-    console.log(this.seccion);
+
+    let filtroItems = this.listItems.filter(item => item.seccion == this.seccion)
+    this.listItems = filtroItems;
   }
 
   

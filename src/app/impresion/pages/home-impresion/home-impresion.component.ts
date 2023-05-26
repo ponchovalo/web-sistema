@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-home-impresion',
@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-impresion.component.css']
 })
 export class HomeImpresionComponent {
+
+  seccion: string = 'Impresion'
+
   
 
 }
