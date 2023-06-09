@@ -47,14 +47,22 @@ export class SidebarComponent implements OnInit {
       enlace: '/wyse/almacen',
       icono: 'verified_user',
       titulo: 'Permisos Carpetas'
+    },
+    {
+      seccion: 'Jammer',
+      enlace: '/jammer/inventario',
+      icono: 'computer',
+      titulo: 'Inventario Jammer'
     }
   ]
   constructor(private router: Router){}
 
   ngOnInit(): void {
 
-    let filtroItems = this.listItems.filter(item => item.seccion == this.seccion)
+    let filtroItems = this.listItems.filter(item => item.seccion === this.seccion)
     this.listItems = filtroItems;
+
+    console.log(this.seccion)
   }
 
   

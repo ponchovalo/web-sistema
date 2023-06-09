@@ -1,0 +1,11 @@
+
+<ul>
+    <li *ngFor="let item of jammers"> 
+        <span> {{item.jammer}} - {{item.ip}} 
+            <span *ngIf="item.encendido">OK</span>
+            <span *ngIf="!item.encendido">DESCONECTADO</span>
+        </span>
+    </li>
+</ul>
+
+

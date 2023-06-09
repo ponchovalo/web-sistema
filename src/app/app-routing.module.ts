@@ -9,7 +9,16 @@ const routes: Routes = [
   {
     path: 'wyse',
     loadChildren: () => import('./wyse/wyse.module').then(m => m.WyseModule)
+  },
+  {
+    path: 'jammer',
+    loadChildren: () => import('./jammer/jammer.module').then(m => m.JammerModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'wyse'
   }
+
 ];
 
 @NgModule({
