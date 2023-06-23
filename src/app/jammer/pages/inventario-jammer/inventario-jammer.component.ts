@@ -25,4 +25,8 @@ export class InventarioJammerComponent implements OnInit {
     })
   }
 
+  iraip(){
+    console.log('ip')
+  }
+
 }
