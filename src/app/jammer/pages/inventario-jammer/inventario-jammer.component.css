@@ -19,8 +19,13 @@ h2 {
 .button-container {
     display: flex;
     justify-content: center;
-    width: 80px;
+    width: 350px;
 }
+
+.button-container input{
+    border-radius: 20px;
+}
+
 
 button {
     background-color: #ffffff;
