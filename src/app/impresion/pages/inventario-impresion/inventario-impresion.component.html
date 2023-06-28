@@ -1,47 +1,70 @@
 
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Inventario de Impresoras</mat-card-title>
-    </mat-card-header>
-    <mat-table [dataSource]="dataSource">
-        <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-        </ng-container>
-        <ng-container matColumnDef="modelo">
-            <th mat-header-cell *matHeaderCellDef> Modelo </th>
-            <td mat-cell *matCellDef="let element"> {{element.modelo}} </td>
-        </ng-container>
-        <ng-container matColumnDef="serie">
-            <th mat-header-cell *matHeaderCellDef> Serie </th>
-            <td mat-cell *matCellDef="let element"> {{element.serie}} </td>
-        </ng-container>
-        <ng-container matColumnDef="ip">
-            <th mat-header-cell *matHeaderCellDef> IP </th>
-            <td mat-cell *matCellDef="let element"> {{element.ip}} </td>
-        </ng-container>
-        <ng-container matColumnDef="mac">
-            <th mat-header-cell *matHeaderCellDef> MAC </th>
-            <td mat-cell *matCellDef="let element"> {{element.mac}} </td>
-        </ng-container>
-        <ng-container matColumnDef="edificio">
-            <th mat-header-cell *matHeaderCellDef> Edificio </th>
-            <td mat-cell *matCellDef="let element"> {{element.edificio}} </td>
-        </ng-container>
-        <ng-container matColumnDef="ubicacion">
-            <th mat-header-cell *matHeaderCellDef> Ubicacion </th>
-            <td mat-cell *matCellDef="let element"> {{element.ubicacion}} </td>
-        </ng-container>
-        <ng-container matColumnDef="accion">
-            <th mat-header-cell *matHeaderCellDef> Accion </th>
-            <td mat-cell *matCellDef="let element"> <mat-icon fontIcon="edit"></mat-icon> </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </mat-table>
-</mat-card>
-<button mat-fab id="boton-agregar" (click)="openDialog()">
-    <mat-icon>add</mat-icon>
-</button>
+<div class="contenedor">
+  <div class="header">
+    <div class="title">
+      <h2>Inventario de Impresoras</h2>
+    </div>
 
-    
+    <div class="elemento">
+      <div class="button-container">
+        <input type="text" placeholder="Buscar">
+        <button class="buscar" mat-mini-fab>
+            <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <table class="contenidotabla">
+      <thead>
+          <tr>
+              <th *ngFor="let title of titleColumns">{{title}}</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>INFORMATICA</td>
+              <td>4545I</td>
+              <td>12345678</td>
+              <td>10.222.17.240</td>
+              <td>34ea.e7ba.e83c</td>
+              <td>EDIFICIO DE GOBIERNO</td>
+              <td>DPTO. INFORMATICA</td>
+          </tr>
+          <tr>
+              <td>INFORMATICA</td>
+              <td>4545I</td>
+              <td>12345678</td>
+              <td>10.222.17.240</td>
+              <td>34ea.e7ba.e83c</td>
+              <td>EDIFICIO DE GOBIERNO</td>
+              <td>DPTO. INFORMATICA</td>
+          </tr>
+          <tr>
+              <td>INFORMATICA</td>
+              <td>4545I</td>
+              <td>12345678</td>
+              <td>10.222.17.240</td>
+              <td>34ea.e7ba.e83c</td>
+              <td>EDIFICIO DE GOBIERNO</td>
+              <td>DPTO. INFORMATICA</td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+    <button mat-fab id="boton-agregar" (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+
+</div>
+
+
+

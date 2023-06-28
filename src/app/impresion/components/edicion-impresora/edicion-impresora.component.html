@@ -1,10 +1,26 @@
 <mat-card>
-    <mat-card-header>
+    <mat-card-header style="background-color: #4dbed4; color: white;">
         <mat-card-title>Agregar Impresora</mat-card-title>
     </mat-card-header>
     <form action="">
         <mat-card-content>
-            
+          <form action="">
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="Nombre">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Modelo</mat-label>
+              <input matInput placeholder="Modelo">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Serie</mat-label>
+              <input matInput placeholder="Serie">
+            </mat-form-field>
+
+          </form>
+
+
         </mat-card-content>
         <mat-card-actions>
             <button mat-button>GUARDAR</button>

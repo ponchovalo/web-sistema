@@ -9,6 +9,8 @@ import { MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -25,7 +27,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatListModule,
     MatButtonModule,
     MatDialogModule,
-    MatDividerModule
+    MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     MatToolbarModule,
@@ -36,7 +40,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatListModule,
     MatButtonModule,
     MatDialogModule,
-    MatDividerModule
+    MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class MaterialModule { }

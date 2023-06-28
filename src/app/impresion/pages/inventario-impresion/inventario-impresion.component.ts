@@ -11,6 +11,8 @@ import { EdicionImpresoraComponent } from '../../components/edicion-impresora/ed
 })
 export class InventarioImpresionComponent implements OnInit {
 
+  titleColumns: string[] = ["NOMBRE", "MODELO", "SERIE", "IP", "MAC", "EDIFICIO", "UBICACION", "ACCIONES"]
+
   displayedColumns = ['nombre', 'modelo', 'serie', 'ip', 'mac', 'edificio', 'ubicacion', 'accion'];
   dataSource: Impresora[] = [];
 
@@ -18,7 +20,7 @@ export class InventarioImpresionComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //this.dataSource = 
+    //this.dataSource =
     this.listarImpresoras();
 
   }
