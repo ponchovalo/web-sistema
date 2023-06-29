@@ -6,7 +6,6 @@
   align-items: center;
   height: 95%;
   width: 100%;
-  border: 1px solid red;
 }
 
 .header{
@@ -65,7 +64,6 @@
 .content{
   width: 90%;
   height: 75%;
-  border: solid 1px red;
 }
 
 .contenidotabla {

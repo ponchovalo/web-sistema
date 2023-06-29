@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-edicion-impresora',
   templateUrl: './edicion-impresora.component.html',
-  styles: [
-  ]
+  styleUrls: [ './edicion-impresora.component.css' ]
 })
 export class EdicionImpresoraComponent {
 

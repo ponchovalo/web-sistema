@@ -8,6 +8,7 @@ import { MaterialModule } from '../material/material.module';
 import { EdicionImpresoraComponent } from './components/edicion-impresora/edicion-impresora.component';
 import { AlmacenImpresionComponent } from './pages/almacen-impresion/almacen-impresion.component';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -22,7 +23,8 @@ import { SidebarComponent } from '../shared/sidebar/sidebar.component';
     CommonModule,
     SharedModule,
     ImpresionRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ]
 })
 export class ImpresionModule { }
