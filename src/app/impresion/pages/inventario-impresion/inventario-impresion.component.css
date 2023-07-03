@@ -71,7 +71,7 @@
   justify-content: center;
   border-collapse: collapse;
   margin: 10px 0;
-  font-size: 1em;
+  font-size: 11px;
   font-family: sans-serif;
   min-width: 450px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -105,4 +105,17 @@ tbody tr:last-of-type {
   bottom: 45px;
   right: 70px;
   background-color: #4dbed4;
+}
+
+.botonAccion{
+  font-variation-settings: 
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+.botonAccion:hover{
+  cursor: pointer;
+  fill: 0;
 }

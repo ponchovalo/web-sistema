@@ -24,41 +24,35 @@
           </tr>
       </thead>
       <tbody>
-          <tr>
-              <td>INFORMATICA</td>
-              <td>4545I</td>
-              <td>12345678</td>
-              <td>10.222.17.240</td>
-              <td>34ea.e7ba.e83c</td>
-              <td>EDIFICIO DE GOBIERNO</td>
-              <td>DPTO. INFORMATICA</td>
-          </tr>
-          <tr>
-              <td>INFORMATICA</td>
-              <td>4545I</td>
-              <td>12345678</td>
-              <td>10.222.17.240</td>
-              <td>34ea.e7ba.e83c</td>
-              <td>EDIFICIO DE GOBIERNO</td>
-              <td>DPTO. INFORMATICA</td>
-          </tr>
-          <tr>
-              <td>INFORMATICA</td>
-              <td>4545I</td>
-              <td>12345678</td>
-              <td>10.222.17.240</td>
-              <td>34ea.e7ba.e83c</td>
-              <td>EDIFICIO DE GOBIERNO</td>
-              <td>DPTO. INFORMATICA</td>
+          <tr *ngFor="let impresora of dataSource">
+              <td>{{impresora.impresora.nombre}}</td>
+              <td>{{impresora.impresora.modelo}}</td>
+              <td>{{impresora.impresora.serie}}</td>
+              <td>{{impresora.impresora.ip}}</td>
+              <td>{{impresora.impresora.edificio}}</td>
+              <td>{{impresora.impresora.ubicacion}}</td>
+              <td *ngIf="impresora.statusImpresoraPing">
+                <div style="display: flex; justify-content: center; align-items: center;">
+                  <mat-icon fontIcon="check_circle" style="font-size: 14px; color: green;"></mat-icon>
+                </div>
+              </td>
+              <td *ngIf="!impresora.statusImpresoraPing">
+                <div style="display: flex; justify-content: center; align-items: center;">
+                  <mat-icon fontIcon="cancel" style="font-size: 14px; color: red;"></mat-icon>
+                </div>
+              </td>
+              <td *ngIf="impresora.statusImpresoraPing">{{ impresora.fecha | date: 'mediumTime' }}</td>
+              <td *ngIf="!impresora.statusImpresoraPing">---</td>
+
+              <td class="containerCell">
+                    <mat-icon class="botonAccion" (click)="openDialogDetalle(impresora.impresora)">info</mat-icon>
+                    <mat-icon class="botonAccion">add_circle</mat-icon>
+              </td>
           </tr>
       </tbody>
     </table>
 
-
-
-
-
-    <button mat-fab id="boton-agregar" (click)="openDialog()">
+    <button mat-fab id="boton-agregar" (click)="openDialogAgregar()">
       <mat-icon>add</mat-icon>
     </button>
   </div>

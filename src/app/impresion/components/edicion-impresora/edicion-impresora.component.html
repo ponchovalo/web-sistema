@@ -2,7 +2,7 @@
     <mat-card-header style="background-color: #4dbed4; color: white;">
         <mat-card-title>Agregar Impresora</mat-card-title>
     </mat-card-header>
-    <form #f="ngForm" (ngSubmit="guardarLibro(f)")>
+    <form #f="ngForm" (ngSubmit)="guardarImpresora(f)">
         <mat-card-content>
           <div class="contenedor">
             <div class="campo">
@@ -38,7 +38,7 @@
         <mat-card-actions class="actions">
    
             <button mat-stroked-button>GUARDAR</button>
-            <button mat-stroked-button>CERRAR</button>
+            <button mat-stroked-button matDialogClose="true">CERRAR</button>
   
         </mat-card-actions>
     </form>

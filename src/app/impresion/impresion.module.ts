@@ -9,6 +9,7 @@ import { EdicionImpresoraComponent } from './components/edicion-impresora/edicio
 import { AlmacenImpresionComponent } from './pages/almacen-impresion/almacen-impresion.component';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
+import { DetalleImpresoraComponent } from './components/detalle-impresora/detalle-impresora.component';
 
 
 
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     HomeImpresionComponent,
     InventarioImpresionComponent,
     EdicionImpresoraComponent,
-    AlmacenImpresionComponent
+    AlmacenImpresionComponent,
+    DetalleImpresoraComponent
   ],
   imports: [
     CommonModule,

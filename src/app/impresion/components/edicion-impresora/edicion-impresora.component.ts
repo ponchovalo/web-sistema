@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class EdicionImpresoraComponent {
 
+
+  guardarImpresora(f:any){
+    console.log(f)
+  }
+
 }

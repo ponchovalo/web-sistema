@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ImpresionService } from '../../services/impresion.service';
-import { Impresora } from '../../interfaces/impresora.interface';
+import { Impresora, ImpresoraPing } from '../../interfaces/impresora.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { EdicionImpresoraComponent } from '../../components/edicion-impresora/edicion-impresora.component';
+import { DetalleImpresoraComponent } from '../../components/detalle-impresora/detalle-impresora.component';
 
 @Component({
   selector: 'app-inventario-impresion',
@@ -11,30 +12,36 @@ import { EdicionImpresoraComponent } from '../../components/edicion-impresora/ed
 })
 export class InventarioImpresionComponent implements OnInit {
 
-  titleColumns: string[] = ["NOMBRE", "MODELO", "SERIE", "IP", "MAC", "EDIFICIO", "UBICACION", "ACCIONES"]
-
-  displayedColumns = ['nombre', 'modelo', 'serie', 'ip', 'mac', 'edificio', 'ubicacion', 'accion'];
-  dataSource: Impresora[] = [];
+  titleColumns: string[] = ["NOMBRE", "MODELO", "SERIE", "IP", "EDIFICIO", "UBICACION", "PING", "LAST PING", "ACCIONES"];
+  dataSource: ImpresoraPing[] = [];
 
   constructor(private impresionService: ImpresionService, private dialog: MatDialog){}
 
   ngOnInit(): void {
 
-    //this.dataSource =
-    this.listarImpresoras();
+    this.listarImpresorasPing();
 
   }
 
-  listarImpresoras(){
-    this.impresionService.getImpresoras().subscribe(
-      impresoras => { this.dataSource = impresoras}
+  listarImpresorasPing(){
+    this.impresionService.getImpresoraPing().subscribe(
+      impresoras => { 
+        this.dataSource = impresoras
+      }
     );
   }
 
-  openDialog(){
-    const dialogImp = this.dialog.open(EdicionImpresoraComponent,{
+  openDialogAgregar(){
+    this.dialog.open(EdicionImpresoraComponent,{
       width: '550px'
     });
+  }
+
+  openDialogDetalle(impresora: Impresora){
+    this.dialog.open(DetalleImpresoraComponent, {
+      width: '550px',
+      data: {impresora: impresora}
+    })
   }
 
 }
