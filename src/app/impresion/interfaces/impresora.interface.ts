@@ -28,3 +28,14 @@ export interface ImpresoraDetalle {
     fecha?: Date,
     mensaje?: string
 }
+
+export interface RefaccionImpresora {
+    refaccionId: string,
+    noParte: string,
+    nombre: string,
+    descripcion: string,
+    modeloImpresora: string,
+    tipo: string,
+    vidaUtil: number,
+    cantidad: number,
+}

@@ -1,1 +1,35 @@
-<p>almacen-impresion works!</p>
+<div class="contenedor">
+    
+    <div class="header">
+        <div class="title">
+            <h2>Almacen de Refacciones</h2>
+        </div>
+
+        <div class="campo">
+            <input placeholder="Buscar">
+        </div>
+        <button class="botonMenu" mat-stroked-button>ENTRADAS</button>
+        <button class="botonMenu" mat-stroked-button>SALIDAS</button>
+
+    </div>
+    
+    <div class="content">
+        <table class="contenidotabla">
+            <thead>
+                <tr>
+                    <th *ngFor="let titulo of encabezado">{{titulo}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let refaccion of listaRefacciones">
+                    <td>{{refaccion.nombre}}</td>
+                    <td>{{refaccion.noParte}}</td>
+                    <td>{{refaccion.modeloImpresora}}</td>
+                    <td>{{refaccion.tipo}}</td>
+                    <td>{{refaccion.cantidad}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

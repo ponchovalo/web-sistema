@@ -1,0 +1,91 @@
+.contenedor{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 95%;
+    width: 100%;
+}
+
+.header{
+    height: 100px;
+    display: flex;
+    width: 95%;
+    color: #1F4D57;
+    background-color: white;
+    border: 2px solid #4dbed4;
+    align-items:center;
+    justify-content:space-between;
+}
+input{
+    width: 80%;
+    height: 30px;
+    outline: 0 none;
+    border-radius: 10px;
+    border: 1px solid #1F4D57;
+}
+.campo {
+    font-size: 16px;
+    width: 350px;
+}
+    
+input:focus {
+    border-color: #4dbed4;
+    outline: 0 none;
+}
+
+.botonMenu{
+    margin-right: 10px;
+    border-color: #1F4D57;
+    color: #1F4D57;
+}
+.botonMenu:hover{
+    color: white;
+    background-color: #1F4D57;
+}
+
+.title {
+    padding-left: 10px;
+    height: 40px;
+    width: 40%;
+}
+
+.content{
+    width: 95%;
+    height: 75%;
+}
+table{
+    text-align: left;
+}
+.contenidotabla {
+    width: 100%;
+    justify-content: center;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 11px;
+    font-family: sans-serif;
+    min-width: 450px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.contenidotabla thead tr {
+    background-color: #4dbed4;
+    color: #ffffff;
+    text-align: middle;
+    }
+
+th td{
+    padding: 5px 15px;
+    border: 1px solid #4dbed4;
+}
+
+tbody tr {
+    border-bottom: 1px solid #4dbed4;
+}
+
+tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid #4dbed4;
+}
