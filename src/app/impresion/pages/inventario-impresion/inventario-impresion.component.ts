@@ -39,7 +39,7 @@ export class InventarioImpresionComponent implements OnInit {
 
   openDialogDetalle(impresora: Impresora){
     this.dialog.open(DetalleImpresoraComponent, {
-      width: '550px',
+      width: '700px',
       data: {impresora: impresora}
     })
   }
