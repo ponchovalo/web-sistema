@@ -4,6 +4,7 @@ import { Impresora, ImpresoraPing } from '../../interfaces/impresora.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { EdicionImpresoraComponent } from '../../components/edicion-impresora/edicion-impresora.component';
 import { DetalleImpresoraComponent } from '../../components/detalle-impresora/detalle-impresora.component';
+import { timer } from 'rxjs'
 
 @Component({
   selector: 'app-inventario-impresion',
@@ -15,13 +16,30 @@ export class InventarioImpresionComponent implements OnInit {
   titleColumns: string[] = ["NOMBRE", "MODELO", "SERIE", "IP", "EDIFICIO", "UBICACION", "PING", "LAST PING", "ACCIONES"];
   dataSource: ImpresoraPing[] = [];
 
+  TIME_INTERVAL: number = 10000;
+
+  busca: string = "";
+
   constructor(private impresionService: ImpresionService, private dialog: MatDialog){}
 
   ngOnInit(): void {
 
-    this.listarImpresorasPing();
+    //this.listarImpresorasPing();
+    this.getPeriodical();
 
   }
+
+  busqueda(){
+    let data = this.dataSource.filter( dato => 
+      (dato.impresora.nombre.toLowerCase().indexOf(this.busca.toLowerCase()) >= 0) ||
+      (dato.impresora.modelo.toLowerCase().indexOf(this.busca.toLowerCase()) >= 0)
+      
+    );
+    this.dataSource = data
+    
+    console.log(data)
+  }
+
 
   listarImpresorasPing(){
     this.impresionService.getImpresoraPing().subscribe(
@@ -44,4 +62,8 @@ export class InventarioImpresionComponent implements OnInit {
     })
   }
 
+  getPeriodical(){
+    timer(0, this.TIME_INTERVAL).subscribe(res => this.listarImpresorasPing())
+  }
+ 
 }

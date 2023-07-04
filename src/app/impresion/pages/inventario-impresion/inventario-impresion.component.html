@@ -7,7 +7,7 @@
 
     <div class="elemento">
       <div class="button-container">
-        <input type="text" placeholder="Buscar">
+        <input type="text" placeholder="Buscar" [(ngModel)]="busca"  (keyup)="busqueda()">
         <button class="buscar" mat-mini-fab>
             <mat-icon>search</mat-icon>
         </button>
@@ -45,16 +45,17 @@
               <td *ngIf="!impresora.statusImpresoraPing">---</td>
 
               <td class="containerCell">
-                    <mat-icon class="botonAccion" (click)="openDialogDetalle(impresora.impresora)">info</mat-icon>
-                    <mat-icon class="botonAccion">add_circle</mat-icon>
+                    <mat-icon class="botonInfo" id="botones"  (click)="openDialogDetalle(impresora.impresora)">info_outline</mat-icon>
+                    <mat-icon class="botonAdd" id="botones">edit</mat-icon>
+                    <mat-icon class="botonDelete" id="botones">delete</mat-icon>
               </td>
           </tr>
       </tbody>
     </table>
 
-    <button mat-fab id="boton-agregar" (click)="openDialogAgregar()">
+    <!--<button mat-fab id="boton-agregar" (click)="openDialogAgregar()">
       <mat-icon>add</mat-icon>
-    </button>
+    </button> --->
   </div>
 
 

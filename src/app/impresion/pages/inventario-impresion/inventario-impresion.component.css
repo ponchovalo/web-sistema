@@ -11,7 +11,7 @@
 .header{
   height: 50px;
   display: flex;
-  width: 90%;
+  width: 95%;
   color: #ffffff;
   background-color: #4dbed4;
   align-items:center;
@@ -62,7 +62,7 @@
 }
 
 .content{
-  width: 90%;
+  width: 95%;
   height: 75%;
 }
 
@@ -107,15 +107,18 @@ tbody tr:last-of-type {
   background-color: #4dbed4;
 }
 
-.botonAccion{
-  font-variation-settings: 
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48
+.botonInfo{
+  color: #4dbed4;
 }
 
-.botonAccion:hover{
-  cursor: pointer;
-  fill: 0;
+.botonAdd{
+  font-size: 20px;
+  color: rgb(76, 145, 107);
 }
+.botonDelete{
+  font-size: 20px;
+  color: rgb(157, 60, 60)
+}
+ #botones:hover{
+  cursor: pointer;
+ }

@@ -65,16 +65,54 @@
                 <h3>Nivel de Toner:</h3>   
                 <hr> 
                 <div class="contenedorGrafico">
-                    <div class="grafico">
-                        <strong class="barra" style="width: 24%;">{{printDetalles?.blackLevel}}</strong>
+
+                    <div class="elementoToner">
+                        <div>
+                            <h3>Toner Negro: </h3>
+                        </div>
+                        <div class="grafico">
+                            <strong class="barraBlack" [style.width] ="nivelNegro">{{printDetalles?.blackLevel}}%</strong>
+                        </div>
                     </div>
-                    <h3>Black Toner</h3>
+
+                    <div class="elementoToner" *ngIf="color">
+                        <div>
+                            <h3>Toner Cyan: </h3>
+                        </div>
+                        <div class="grafico">
+                            <strong class="barraCyan" [style.width] ="nivelCyan">{{printDetalles?.cyanLevel}}%</strong>
+                        </div>
+                    </div>
+
+                    <div class="elementoToner" *ngIf="color">
+                        <div>
+                            <h3>Toner Magenta: </h3>
+                        </div>
+                        <div class="grafico">
+                            <strong class="barraMagenta" [style.width] ="nivelMagenta">{{printDetalles?.magentaLevel}}%</strong>
+                        </div>
+                    </div>
+
+                    <div class="elementoToner" *ngIf="color">
+                        <div>
+                            <h3>Toner Amarillo: </h3>
+                        </div>
+                        <div class="grafico">
+                            <strong class="barraYellow" [style.width] ="nivelAmarillo">{{printDetalles?.yellowLevel}}%</strong>
+                        </div>
+                    </div>
+                    
                 </div>
-                
+
             </div>
         </div>
     </div>
     <div class="footer">
+        <div>
 
+        </div>
+        <div>
+            <button mat-stroked-button (click)="cerrarDialog()">CERRAR</button>
+        </div>
     </div>
 </div>

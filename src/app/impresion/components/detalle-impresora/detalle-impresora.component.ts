@@ -16,22 +16,46 @@ export class DetalleImpresoraComponent implements OnInit {
 
   print?: Impresora;
   printDetalles?: ImpresoraDetalle;
-
+  nivelNegro: string = "100%";
+  color: boolean = false;
+  nivelCyan: string = "100%";
+  nivelMagenta: string = "100%";
+  nivelAmarillo: string = "100%";
+  
   ngOnInit(): void {
     this.print = this.dialogRef._containerInstance._config.data.impresora;
     
     this.getDetalleImpresora(this.print?.impresoraId!);
+
+    //this.nivel = this.getNivel(this.dialogRef._containerInstance._config.data);
   }
 
   getDetalleImpresora(id: string){
       this.impresoraService.getImpresoraDetalle(id).subscribe(impresora => {
         this.printDetalles = impresora;
-        console.log(this.printDetalles);
+        console.log(this.printDetalles.blackLevel)
+
+        this.nivelNegro = this.getNivel(this.printDetalles.blackLevel);
+        this.nivelCyan = this.getNivel(this.printDetalles.cyanLevel);
+        this.nivelMagenta = this.getNivel(this.printDetalles.magentaLevel);
+        this.nivelAmarillo = this.getNivel(this.printDetalles.yellowLevel);
+        if(this.printDetalles.impresora.modelo == "C356IF"){
+          this.color = true;
+        }
+ 
     })
   }
 
   getImpresoraDialog(): Impresora{
     return this.dialogRef._containerInstance._config.data.impresora;
+  }
+
+  getNivel(nivel: number): string{
+    let lev : string = nivel.toString();
+    return `${lev}%`
+  }
+  cerrarDialog(){
+    this.dialogRef.close(true)
   }
 
 }
