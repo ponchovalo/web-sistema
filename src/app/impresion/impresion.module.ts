@@ -10,6 +10,7 @@ import { AlmacenImpresionComponent } from './pages/almacen-impresion/almacen-imp
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
 import { DetalleImpresoraComponent } from './components/detalle-impresora/detalle-impresora.component';
+import { RegistrarCambioComponent } from './components/registrar-cambio/registrar-cambio.component';
 
 
 
@@ -19,7 +20,8 @@ import { DetalleImpresoraComponent } from './components/detalle-impresora/detall
     InventarioImpresionComponent,
     EdicionImpresoraComponent,
     AlmacenImpresionComponent,
-    DetalleImpresoraComponent
+    DetalleImpresoraComponent,
+    RegistrarCambioComponent
   ],
   imports: [
     CommonModule,

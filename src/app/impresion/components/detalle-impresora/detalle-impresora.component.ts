@@ -1,9 +1,8 @@
-import { Dialog } from '@angular/cdk/dialog';
-import { identifierName } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, } from '@angular/material/dialog';
 import { Impresora, ImpresoraDetalle } from '../../interfaces/impresora.interface';
 import { ImpresionService } from '../../services/impresion.service';
+import { RegistrarCambioComponent } from '../registrar-cambio/registrar-cambio.component';
 
 @Component({
   selector: 'app-detalle-impresora',
@@ -12,7 +11,7 @@ import { ImpresionService } from '../../services/impresion.service';
 })
 export class DetalleImpresoraComponent implements OnInit {
 
-  constructor( private dialogRef: MatDialogRef<DetalleImpresoraComponent>, private impresoraService: ImpresionService) {}
+  constructor( private dialogRef: MatDialogRef<DetalleImpresoraComponent>, private impresoraService: ImpresionService, private dialog: MatDialog) {}
 
   print?: Impresora;
   printDetalles?: ImpresoraDetalle;
@@ -56,6 +55,13 @@ export class DetalleImpresoraComponent implements OnInit {
   }
   cerrarDialog(){
     this.dialogRef.close(true)
+  }
+
+  dialogRegistrar(detalles?: ImpresoraDetalle){
+    this.dialog.open(RegistrarCambioComponent, {
+      width: '500px',
+      data:{detalles: detalles}
+    });
   }
 
 }
