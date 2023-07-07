@@ -39,3 +39,19 @@ export interface RefaccionImpresora {
     vidaUtil: number,
     cantidad: number,
 }
+
+export interface RegCambioRefaImp {
+    regCambioRefaId?: number,
+    cantidad: number,
+    fecha?: Date,
+    idRefaccion: number,
+    idImpresora: number,
+    cont102: number,
+    cont109: number,
+    cont124: number
+}
+
+export interface FiltroRefa {
+    modelo: string;
+    tipo: string
+}

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeImpresionComponent } from './pages/home-impresion/home-impresion.component';
 import { InventarioImpresionComponent } from './pages/inventario-impresion/inventario-impresion.component';
 import { AlmacenImpresionComponent } from './pages/almacen-impresion/almacen-impresion.component';
+import { ControlTonerComponent } from './pages/control-toner/control-toner.component';
 
 const routes: Routes = [
     {
@@ -18,14 +19,18 @@ const routes: Routes = [
           component: AlmacenImpresionComponent
         },
         {
+          path: 'controltoner',
+          component: ControlTonerComponent
+        },
+        {
           path: '**',
           redirectTo: 'inventario'
         }
-        
+
       ]
     }
   ]
-  
+
   @NgModule({
     imports: [
       RouterModule.forChild(routes)

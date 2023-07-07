@@ -11,6 +11,7 @@ import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
 import { DetalleImpresoraComponent } from './components/detalle-impresora/detalle-impresora.component';
 import { RegistrarCambioComponent } from './components/registrar-cambio/registrar-cambio.component';
+import { ControlTonerComponent } from './pages/control-toner/control-toner.component';
 
 
 
@@ -21,7 +22,8 @@ import { RegistrarCambioComponent } from './components/registrar-cambio/registra
     EdicionImpresoraComponent,
     AlmacenImpresionComponent,
     DetalleImpresoraComponent,
-    RegistrarCambioComponent
+    RegistrarCambioComponent,
+    ControlTonerComponent
   ],
   imports: [
     CommonModule,

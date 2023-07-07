@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Impresora, ImpresoraDetalle, ImpresoraPing, RefaccionImpresora } from '../interfaces/impresora.interface';
+import { FiltroRefa, Impresora, ImpresoraDetalle, ImpresoraPing, RefaccionImpresora } from '../interfaces/impresora.interface';
 import { environment } from 'src/environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -17,8 +17,8 @@ export class ImpresionService {
 
   getImpresoras(): Observable<Impresora[]>{
     return this.http.get<Impresora[]>(`${this.urlBase}/impresoras`);
-  }  
-  
+  }
+
   getImpresoraPing(): Observable<ImpresoraPing[]>{
     return this.http.get<ImpresoraPing[]>(`${this.urlBase}/impresoras/Ping`)
   }
@@ -29,6 +29,10 @@ export class ImpresionService {
 
   getAlmacen(): Observable<RefaccionImpresora[]>{
     return this.http.get<RefaccionImpresora[]>(`${this.urlBase}/almacen`)
+  }
+
+  getRefaFiltro(filtro: FiltroRefa): Observable<RefaccionImpresora[]>{
+    return this.http.post<RefaccionImpresora[]>(`${this.urlBase}/almacen/filtro`, filtro);
   }
 
 

@@ -1,1 +1,80 @@
-<p>registrar-cambio works!</p>
+
+<div class="container">
+  <div class="header">
+      <h2 *ngIf="datos">Registrar para {{titulo}}</h2>
+      <h2 *ngIf="!datos">Nuevo Registro</h2>
+  </div>
+  <div class="body">
+    <div class="element">
+
+      <div class="subtitle">
+        <h3>DATOS REFACCION</h3>
+      </div>
+
+      <div class="fila">
+        <div class="campo" *ngIf="datos">
+          <label for="">Modelo Impresora</label>
+          <input [(ngModel)]="filtro.modelo" type="text" disabled="true">
+        </div>
+        <div class="campo" *ngIf="!datos">
+          <label for="">Modelo</label>
+          <select name="modelo">
+            <!--Se pude usar ngValue para enlazar elementos coplejos-->
+            <option [value]="item" *ngFor="let item of modelos">{{item}}</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="">Tipo</label>
+          <select name="tipo" [(ngModel)]="filtro.tipo" (ngModelChange)="getRefaccion()" >
+            <!--Se pude usar ngValue para enlazar elementos coplejos-->
+            <option [value]="item" *ngFor="let item of opcionTipo">{{item}}</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="">Refaccion o Consumible</label>
+          <select name="refacciones" [(ngModel)]="idRefa" (ngModelChange)="getIdRefaccion()">
+            <option  [value]="refa.refaccionId" *ngFor="let refa of refacciones">{{refa.nombre}}</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="element">
+
+      <div class="subtitle">
+        <h3>CONTADORES</h3>
+      </div>
+
+      <div class="fila">
+        <div class="campo">
+          <label for="">Contador 102</label>
+          <input [(ngModel)]="registro.cont102" type="number">
+        </div>
+
+        <div class="campo">
+          <label for="">Contador 109</label>
+          <input [(ngModel)]="registro.cont109" type="number">
+        </div>
+
+        <div class="campo">
+          <label for="">Contador 124</label>
+          <input [(ngModel)]="registro.cont124" type="number">
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+  <div class="footer">
+      <div>
+          <button mat-stroked-button (click)="printData()">GUARDAR</button>
+          <button mat-stroked-button (click)="cerrarDialog()">CANCELAR</button>
+      </div>
+  </div>
+</div>
+

@@ -26,12 +26,12 @@ export class SidebarComponent implements OnInit {
     },
     {
       seccion: 'Impresion',
-      enlace: '/impresion/inventario',
+      enlace: '/impresion/controltoner',
       icono: 'app_registration',
       titulo: 'Control de Toner'
     },
     {
-      seccion: 'Impresion',  
+      seccion: 'Impresion',
       enlace: '/impresion/almacen',
       icono: 'calendar_month',
       titulo: 'Reporte Mensual'
@@ -65,5 +65,5 @@ export class SidebarComponent implements OnInit {
     console.log(this.seccion)
   }
 
-  
+
 }

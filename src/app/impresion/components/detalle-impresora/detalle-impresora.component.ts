@@ -20,10 +20,10 @@ export class DetalleImpresoraComponent implements OnInit {
   nivelCyan: string = "100%";
   nivelMagenta: string = "100%";
   nivelAmarillo: string = "100%";
-  
+
   ngOnInit(): void {
     this.print = this.dialogRef._containerInstance._config.data.impresora;
-    
+
     this.getDetalleImpresora(this.print?.impresoraId!);
 
     //this.nivel = this.getNivel(this.dialogRef._containerInstance._config.data);
@@ -41,7 +41,7 @@ export class DetalleImpresoraComponent implements OnInit {
         if(this.printDetalles.impresora.modelo == "C356IF"){
           this.color = true;
         }
- 
+
     })
   }
 
@@ -59,7 +59,7 @@ export class DetalleImpresoraComponent implements OnInit {
 
   dialogRegistrar(detalles?: ImpresoraDetalle){
     this.dialog.open(RegistrarCambioComponent, {
-      width: '500px',
+      width: '700px',
       data:{detalles: detalles}
     });
   }
