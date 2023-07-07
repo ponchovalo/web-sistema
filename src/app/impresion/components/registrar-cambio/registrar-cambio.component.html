@@ -5,6 +5,41 @@
       <h2 *ngIf="!datos">Nuevo Registro</h2>
   </div>
   <div class="body">
+
+    <div class="element" *ngIf="!datos">
+
+      <div class="subtitle">
+        <h3>DATOS IMPRESORA</h3>
+      </div>
+
+      <div class="fila">
+
+        <div class="campo">
+          <label for="">Edificio</label>
+          <select name="edificio" [(ngModel)]="filtroImpresora.Edificio" (ngModelChange)="getUbicaciones()">
+            <option [value]="item" *ngFor="let item of edificios">{{item}}</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="">Ubicacion</label>
+          <select id="selectUbic" name="ubicacion" [(ngModel)]="filtroImpresora.Ubicacion" (ngModelChange)="getImpresoras()">
+            <option [value]="item" *ngFor="let item of ubicaciones">{{item}}</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="">Impresora</label>
+          <select name="impresora" [(ngModel)]="impresora" (ngModelChange)="getFiltro()">
+            <option [ngValue]="item" *ngFor="let item of impresoras">{{item.nombre}}</option>
+          </select>
+        </div>
+
+      </div>
+
+    </div>
+
+
     <div class="element">
 
       <div class="subtitle">
@@ -12,16 +47,10 @@
       </div>
 
       <div class="fila">
-        <div class="campo" *ngIf="datos">
+
+        <div class="campo">
           <label for="">Modelo Impresora</label>
           <input [(ngModel)]="filtro.modelo" type="text" disabled="true">
-        </div>
-        <div class="campo" *ngIf="!datos">
-          <label for="">Modelo</label>
-          <select name="modelo">
-            <!--Se pude usar ngValue para enlazar elementos coplejos-->
-            <option [value]="item" *ngFor="let item of modelos">{{item}}</option>
-          </select>
         </div>
 
         <div class="campo">

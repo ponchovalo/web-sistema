@@ -55,3 +55,7 @@ export interface FiltroRefa {
     modelo: string;
     tipo: string
 }
+export interface FiltroImpresora {
+    Edificio: string;
+    Ubicacion: string
+}
