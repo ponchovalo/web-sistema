@@ -30,7 +30,7 @@
 
         <div class="campo">
           <label for="">Impresora</label>
-          <select name="impresora" [(ngModel)]="impresora" (ngModelChange)="getFiltro()">
+          <select name="impresora" [(ngModel)]="impresora" (ngModelChange)="getModelo()">
             <option [ngValue]="item" *ngFor="let item of impresoras">{{item.nombre}}</option>
           </select>
         </div>
@@ -101,7 +101,7 @@
   </div>
   <div class="footer">
       <div>
-          <button mat-stroked-button (click)="printData()">GUARDAR</button>
+          <button mat-stroked-button (click)="guardarRegistro()">GUARDAR</button>
           <button mat-stroked-button (click)="cerrarDialog()">CANCELAR</button>
       </div>
   </div>

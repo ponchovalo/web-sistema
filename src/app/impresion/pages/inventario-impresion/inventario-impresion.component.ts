@@ -65,5 +65,7 @@ export class InventarioImpresionComponent implements OnInit {
   getPeriodical(){
     timer(0, this.TIME_INTERVAL).subscribe(res => this.listarImpresorasPing())
   }
+
+  
  
 }

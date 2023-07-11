@@ -80,8 +80,11 @@ export class RegistrarCambioComponent implements OnInit{
     this.filtro.modelo = info.impresora.modelo;
   }
 
-  printData(){
+  guardarRegistro(){
     console.log(this.registro)
+    this.impresionService.setRegistroConsumible(this.registro).subscribe(data => {
+      console.log(data)
+    })
     this.cerrarDialog();
   }
   getRefaccion(){
@@ -111,7 +114,14 @@ export class RegistrarCambioComponent implements OnInit{
       if(this.ubicaciones.length == 1){
         this.filtroImpresora.Ubicacion = this.ubicaciones[0]
         this.getImpresoras();
+      }else{
+        this.filtroImpresora.Ubicacion = "";
+        this.impresoras = [];
+        this.impresora!.modelo = "";
+        this.filtro.tipo = "";
+        this.refacciones = [];
       }
+
     })
   }
 
@@ -122,14 +132,23 @@ export class RegistrarCambioComponent implements OnInit{
         this.impresora = this.impresoras[0];
         this.filtro.modelo = this.impresoras[0].modelo;
         this.registro.idImpresora = parseInt(this.impresoras[0].impresoraId);
+        this.getContadores(this.impresoras[0].impresoraId);
       }
     })
   }
 
-  getFiltro(){
-    this.filtro.modelo = this.impresora.modelo;
-    this.registro.idImpresora = parseInt(this.impresora.impresoraId);
-    console.log(this.impresora);
+  getModelo(){
+    this.filtro.modelo = this.impresora!.modelo!;
+    this.registro.idImpresora = parseInt(this.impresora!.impresoraId);
+    this.getContadores(this.impresora.impresoraId)
+  }
+
+  getContadores(id: string){
+    this.impresionService.getImpresoraDetalle(id).subscribe(data => {
+      this.registro.cont102 = data.cont102;
+      this.registro.cont109 = data.cont109;
+      this.registro.cont124 = data.cont124;
+    })
   }
 
 }

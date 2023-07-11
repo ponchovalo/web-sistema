@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="header">
+        <h2>Datos Refaccion</h2>
+    </div>
+    <div class="body">
+
+        <div class="element">
+    
+            <div class="fila">
+
+                <div class="campo">
+                    <label for="">Numero de Parte</label>
+                    <input type="text" [(ngModel)]="refaccion.noParte">
+                </div>
+    
+                <div class="campo">
+                    <label for="">Nombre</label>
+                    <input type="text" [(ngModel)]="refaccion.nombre">
+                </div>
+
+                <div class="campo">
+                    <label for="">Descripcion</label>
+                    <input type="text" [(ngModel)]="refaccion.descripcion">
+                </div>
+
+            </div>
+
+            <div class="fila">
+
+                <div class="campo">
+                    <label for="">Modelo Impresora</label>
+                    <select name="modelo" [(ngModel)]="refaccion.modeloImpresora">
+                        <option [value]="modelo"  *ngFor="let modelo of modelos">{{modelo}}</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="">Tipo</label>
+                    <select name="tipo" [(ngModel)]="refaccion.tipo" >
+                        <option [value]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>
+                    </select>
+                </div> 
+
+                <div class="campo">
+                    <label for="">Vida Util</label>
+                    <input type="number" [(ngModel)]="refaccion.vidaUtil">
+                </div>
+
+            </div>
+    
+        </div>
+    
+    </div>
+    <div class="footer">
+        <div>
+            <button mat-stroked-button (click)="addRefaccion()" >GUARDAR</button>
+            <button mat-stroked-button (click)="cerrarDialog()">CANCELAR</button>
+        </div>
+    </div>
+    
+
+</div>

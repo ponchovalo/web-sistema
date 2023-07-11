@@ -30,7 +30,7 @@ export interface ImpresoraDetalle {
 }
 
 export interface RefaccionImpresora {
-    refaccionId: string,
+    refaccionId?: string,
     noParte: string,
     nombre: string,
     descripcion: string,

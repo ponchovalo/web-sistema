@@ -10,7 +10,7 @@
         </div>
         <button class="botonMenu" mat-stroked-button>ENTRADAS</button>
         <button class="botonMenu" mat-stroked-button>SALIDAS</button>
-        <button class="botonMenu" mat-stroked-button>AGREGAR</button>
+        <button class="botonMenu" mat-stroked-button (click)="agregarNueva()">AGREGAR</button>
 
     </div>
 
@@ -28,6 +28,12 @@
                     <td>{{refaccion.modeloImpresora}}</td>
                     <td>{{refaccion.tipo}}</td>
                     <td>{{refaccion.cantidad}}</td>
+                    <td>
+                        <div class="containerCell">
+                            <mat-icon class="botonAdd" id="botones" (click)="editarRefaccion(refaccion)" >edit</mat-icon>
+                            <mat-icon class="botonDelete" id="botones" (click)="eliminarRefaccion(refaccion)" >delete</mat-icon>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

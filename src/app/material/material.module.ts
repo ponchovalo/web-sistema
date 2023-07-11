@@ -11,7 +11,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -29,7 +29,9 @@ import {MatInputModule} from '@angular/material/input';
     MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
+    
   ],
   exports: [
     MatToolbarModule,
@@ -42,7 +44,8 @@ import {MatInputModule} from '@angular/material/input';
     MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialModule { }

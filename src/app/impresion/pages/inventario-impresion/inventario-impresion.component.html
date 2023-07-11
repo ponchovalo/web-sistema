@@ -14,7 +14,7 @@
 
   <div class="content">
 
-    <table class="contenidotabla">
+    <table  class="contenidotabla" >
       <thead>
           <tr>
               <th *ngFor="let title of titleColumns">{{title}}</th>
@@ -49,6 +49,7 @@
           </tr>
       </tbody>
     </table>
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions] ="[10,15,20,50]" aria-label="Select Page" ></mat-paginator>
 
     <!--<button mat-fab id="boton-agregar" (click)="openDialogAgregar()">
       <mat-icon>add</mat-icon>

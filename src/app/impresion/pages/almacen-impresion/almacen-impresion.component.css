@@ -89,3 +89,16 @@ tbody tr:nth-of-type(even){
 tbody tr:last-of-type {
     border-bottom: 2px solid #4dbed4;
 }
+
+
+.botonAdd{
+    font-size: 20px;
+    color: rgb(76, 145, 107);
+}
+.botonDelete{
+    font-size: 20px;
+    color: rgb(157, 60, 60)
+}
+#botones:hover{
+    cursor: pointer;
+}

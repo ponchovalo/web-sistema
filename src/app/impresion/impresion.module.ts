@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { DetalleImpresoraComponent } from './components/detalle-impresora/detalle-impresora.component';
 import { RegistrarCambioComponent } from './components/registrar-cambio/registrar-cambio.component';
 import { ControlTonerComponent } from './pages/control-toner/control-toner.component';
+import { EdicionRefaccionComponent } from './components/edicion-refaccion/edicion-refaccion.component';
 
 
 
@@ -23,7 +24,8 @@ import { ControlTonerComponent } from './pages/control-toner/control-toner.compo
     AlmacenImpresionComponent,
     DetalleImpresoraComponent,
     RegistrarCambioComponent,
-    ControlTonerComponent
+    ControlTonerComponent,
+    EdicionRefaccionComponent
   ],
   imports: [
     CommonModule,
