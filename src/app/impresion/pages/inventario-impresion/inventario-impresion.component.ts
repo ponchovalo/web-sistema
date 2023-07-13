@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImpresionService } from '../../services/impresion.service';
-import { Impresora, ImpresoraPing } from '../../interfaces/impresora.interface';
+import { Impresora, ImpresoraPing, PaginacionImpresoraReq, PaginacionImpresoraRes } from '../../interfaces/impresora.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { EdicionImpresoraComponent } from '../../components/edicion-impresora/edicion-impresora.component';
 import { DetalleImpresoraComponent } from '../../components/detalle-impresora/detalle-impresora.component';
@@ -14,7 +14,7 @@ import { timer } from 'rxjs'
 export class InventarioImpresionComponent implements OnInit {
 
   titleColumns: string[] = ["NOMBRE", "MODELO", "SERIE", "IP", "EDIFICIO", "UBICACION", "PING", "LAST PING", "ACCIONES"];
-  dataSource: ImpresoraPing[] = [];
+  dataSource: Impresora[] = [];
 
   TIME_INTERVAL: number = 10000;
 
@@ -22,32 +22,53 @@ export class InventarioImpresionComponent implements OnInit {
 
   constructor(private impresionService: ImpresionService, private dialog: MatDialog){}
 
+  paginacionRes: PaginacionImpresoraRes = {
+    pageSize: 0,
+    page: 0,
+    pageQuantity: 0,
+    totalRows: 0,
+    data: []
+  }
+
+  paginacionReq: PaginacionImpresoraReq = {
+    pageSize: 10,
+    page: 1,
+    sort: 'serie',
+    sortDirection: 'asc',
+    filter: ''
+  }
+
   ngOnInit(): void {
 
     //this.listarImpresorasPing();
     this.getPeriodical();
+    //this.listarImpresoras();
 
   }
 
+  listarImpresoras(){
+    this.impresionService.getImpresoraPaginacion(this.paginacionReq).subscribe(data => {
+      this.paginacionRes = data;
+    })
+  }
   busqueda(){
-    let data = this.dataSource.filter( dato => 
-      (dato.impresora.nombre.toLowerCase().indexOf(this.busca.toLowerCase()) >= 0) ||
-      (dato.impresora.modelo.toLowerCase().indexOf(this.busca.toLowerCase()) >= 0)
-      
-    );
-    this.dataSource = data
-    
-    console.log(data)
+  }
+
+  pagina(event:any){
+    this.paginacionReq.pageSize = event.pageSize;
+    this.paginacionReq.page = event.pageIndex + 1;
+    this.listarImpresoras();
+    console.log(event);
   }
 
 
-  listarImpresorasPing(){
-    this.impresionService.getImpresoraPing().subscribe(
-      impresoras => { 
-        this.dataSource = impresoras
-      }
-    );
-  }
+  //listarImpresorasPing(){
+  //  this.impresionService.getImpresoraPing().subscribe(
+  //    impresoras => {
+  //      this.dataSource = impresoras
+  //    }
+  //  );
+  //}
 
   openDialogAgregar(){
     this.dialog.open(EdicionImpresoraComponent,{
@@ -63,9 +84,9 @@ export class InventarioImpresionComponent implements OnInit {
   }
 
   getPeriodical(){
-    timer(0, this.TIME_INTERVAL).subscribe(res => this.listarImpresorasPing())
+    timer(0, this.TIME_INTERVAL).subscribe(res => this.listarImpresoras())
   }
 
-  
- 
+
+
 }

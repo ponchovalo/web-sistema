@@ -21,14 +21,14 @@
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let impresora of dataSource">
-              <td>{{impresora.impresora.nombre}}</td>
-              <td>{{impresora.impresora.modelo}}</td>
-              <td>{{impresora.impresora.serie}}</td>
-              <td>{{impresora.impresora.ip}}</td>
-              <td>{{impresora.impresora.edificio}}</td>
-              <td>{{impresora.impresora.ubicacion}}</td>
-              <td *ngIf="impresora.statusImpresoraPing">
+          <tr *ngFor="let impresora of paginacionRes.data">
+              <td>{{impresora.nombre}}</td>
+              <td>{{impresora.modelo}}</td>
+              <td>{{impresora.serie}}</td>
+              <td>{{impresora.ip}}</td>
+              <td>{{impresora.edificio}}</td>
+              <td>{{impresora.ubicacion}}</td>
+              <!--<td *ngIf="impresora.statusImpresoraPing">
                 <div style="display: flex; justify-content: center; align-items: center;">
                   <mat-icon fontIcon="check_circle" style="font-size: 14px; color: green;"></mat-icon>
                 </div>
@@ -39,17 +39,23 @@
                 </div>
               </td>
               <td *ngIf="impresora.statusImpresoraPing">{{ impresora.fecha | date: 'mediumTime' }}</td>
-              <td *ngIf="!impresora.statusImpresoraPing">---</td>
+              <td *ngIf="!impresora.statusImpresoraPing">---</td> -->
 
               <td class="containerCell">
-                    <mat-icon class="botonInfo" id="botones"  (click)="openDialogDetalle(impresora.impresora)">info_outline</mat-icon>
+                    <mat-icon class="botonInfo" id="botones"  (click)="openDialogDetalle(impresora)">info_outline</mat-icon>
                     <mat-icon class="botonAdd" id="botones">edit</mat-icon>
                     <mat-icon class="botonDelete" id="botones">delete</mat-icon>
               </td>
           </tr>
       </tbody>
     </table>
-    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions] ="[10,15,20,50]" aria-label="Select Page" ></mat-paginator>
+    <mat-paginator  [length]="paginacionRes.totalRows"
+                    [pageSize]="paginacionRes.pageSize"
+                    [pageSizeOptions] ="[10,15,20,50]"
+                    aria-label="Select Page"
+                    (page)="pagina($event)">
+
+                  </mat-paginator>
 
     <!--<button mat-fab id="boton-agregar" (click)="openDialogAgregar()">
       <mat-icon>add</mat-icon>

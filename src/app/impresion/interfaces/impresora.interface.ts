@@ -59,3 +59,19 @@ export interface FiltroImpresora {
     Edificio: string;
     Ubicacion: string
 }
+
+export interface PaginacionImpresoraReq{
+  pageSize: number,
+  page: number,
+  sort: string,
+  sortDirection: string,
+  filter: string
+}
+
+export interface PaginacionImpresoraRes{
+  pageSize: number,
+  page: number,
+  pageQuantity: number,
+  totalRows: number,
+  data: Impresora[]
+}
