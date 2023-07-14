@@ -2,54 +2,46 @@
     <div class="header">
         <h2>Datos Refaccion</h2>
     </div>
-    <div class="body">
+    <div class="contenido">
 
-        <div class="element">
-    
-            <div class="fila">
+        <div class="fila">
 
-                <div class="campo">
-                    <label for="">Numero de Parte</label>
-                    <input type="text" [(ngModel)]="refaccion.noParte">
-                </div>
-    
-                <div class="campo">
-                    <label for="">Nombre</label>
-                    <input type="text" [(ngModel)]="refaccion.nombre">
-                </div>
+            <span class="elementos">
+                <label htmlFor="noParte">Numero de Parte</label>
+                <input pInputText id="noParte" class="p-inputtext-sm" [(ngModel)]="refaccion.noParte" />
+            </span>
 
-                <div class="campo">
-                    <label for="">Descripcion</label>
-                    <input type="text" [(ngModel)]="refaccion.descripcion">
-                </div>
+            <span class="elementos">
+                <label htmlFor="nombre">Nombre</label>
+                <input pInputText id="nombre" class="p-inputtext-sm" [(ngModel)]="refaccion.nombre" />
+            </span>
 
-            </div>
+            <span class="elementos">
+                <label htmlFor="descripcion">Descripcion</label>
+                <input pInputText id="descripcion" class="p-inputtext-sm" [(ngModel)]="refaccion.descripcion" />
+            </span>
 
-            <div class="fila">
-
-                <div class="campo">
-                    <label for="">Modelo Impresora</label>
-                    <select name="modelo" [(ngModel)]="refaccion.modeloImpresora">
-                        <option [value]="modelo"  *ngFor="let modelo of modelos">{{modelo}}</option>
-                    </select>
-                </div>
-
-                <div class="campo">
-                    <label for="">Tipo</label>
-                    <select name="tipo" [(ngModel)]="refaccion.tipo" >
-                        <option [value]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>
-                    </select>
-                </div> 
-
-                <div class="campo">
-                    <label for="">Vida Util</label>
-                    <input type="number" [(ngModel)]="refaccion.vidaUtil">
-                </div>
-
-            </div>
-    
         </div>
-    
+
+        <div class="fila">
+
+            <span class="elementos">
+                <label htmlFor="descripcion">Modelo Impresora</label>
+                <p-dropdown class="p-inputtext-sm" [options]="modelos" [(ngModel)]="refaccion.modeloImpresora"></p-dropdown>
+            </span>
+
+            <span class="elementos">
+                <label htmlFor="tipo">Tipo</label>
+                <p-dropdown class="p-inputtext-sm" [options]="tipos" [(ngModel)]="refaccion.tipo"></p-dropdown>
+            </span>
+
+            <span class="elementos">
+                <label htmlFor="descripcion">Vida Util</label>
+                <input pInputText id="descripcion" class="p-inputtext-sm" [(ngModel)]="refaccion.vidaUtil" />
+            </span>
+            
+        </div>
+
     </div>
     <div class="footer">
         <div>

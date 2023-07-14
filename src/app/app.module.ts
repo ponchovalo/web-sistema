@@ -9,6 +9,7 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
+import { PrimeNgModule } from './prime-ng/prime-ng.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    PrimeNgModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,

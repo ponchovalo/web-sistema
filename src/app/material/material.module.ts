@@ -28,8 +28,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatButtonModule,
     MatDialogModule,
     MatDividerModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatPaginatorModule
     
   ],
@@ -43,8 +41,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatButtonModule,
     MatDialogModule,
     MatDividerModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatPaginatorModule
   ]
 })

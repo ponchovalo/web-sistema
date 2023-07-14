@@ -1,3 +1,9 @@
+.p-menubar{
+    background-color: rgb(95, 103, 103);
+}
+.p-menu-list{
+    background-color: rgb(170, 211, 211);
+}
 .header {
     display: flex;
     flex-direction: column;

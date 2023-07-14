@@ -14,6 +14,9 @@ import { RegistrarCambioComponent } from './components/registrar-cambio/registra
 import { ControlTonerComponent } from './pages/control-toner/control-toner.component';
 import { EdicionRefaccionComponent } from './components/edicion-refaccion/edicion-refaccion.component';
 import { PaginacionComponent } from './components/paginacion/paginacion.component';
+import { PrimeNgModule } from '../prime-ng/prime-ng.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -33,8 +36,9 @@ import { PaginacionComponent } from './components/paginacion/paginacion.componen
     CommonModule,
     SharedModule,
     ImpresionRoutingModule,
+    PrimeNgModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class ImpresionModule { }

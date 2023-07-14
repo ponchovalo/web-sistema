@@ -8,6 +8,7 @@ import { WyseRoutingModule } from '../wyse/wyse-routing.module';
 import { ImpresionModule } from '../impresion/impresion.module';
 import { HomeImpresionComponent } from '../impresion/pages/home-impresion/home-impresion.component';
 import { JammerRoutingModule } from '../jammer/jammer-routing.module';
+import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 
 
 
@@ -22,6 +23,7 @@ import { JammerRoutingModule } from '../jammer/jammer-routing.module';
   ],
   imports: [
     CommonModule,
+    PrimeNgModule,
     MaterialModule,
     ImpresionRoutingModule,
     WyseRoutingModule,

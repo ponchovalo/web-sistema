@@ -1,25 +1,27 @@
-<mat-toolbar color="primary" class="header">
-    <mat-toolbar-row class="row">
-        <span class="titulo">INVENTARIO INFOREDES</span>
-        <span class="spacer"></span>
-        <span class="nameUser">Bienvenido: &nbsp; Ildefonso Valenzuela</span>
-        <div class="logo">
-            <img src="assets/logo.png" height="35px">
+<p-menubar  [model]="items">
+    <ng-template pTemplate="start" >
+        <div class="flex flex-row align-content-center">
+            <img src="assets/logo.png" height="40" class="mr-6">
+            <h4 class="ml-2 mr-7">INVENTARIO INFOREDES</h4>
         </div>
-    </mat-toolbar-row>
-    <mat-toolbar-row class="row_nav">
-        <button mat-mini-fab class="button-menu" (click)="onMenuToggle()">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <span class="spacer"></span>
-        <nav>
-            <button class="button-menu" mat-stroked-button routerLink="/impresion">IMPRESION</button>
-        
-            <button class="button-menu" mat-stroked-button routerLink="/wyse">WYSE</button>
-        
-            <button class="button-menu" mat-stroked-button>TELEVISITAS</button>
-        
-            <button class="button-menu" mat-stroked-button routerLink="/jammer">JAMMER</button>
-        </nav>
-    </mat-toolbar-row>
-</mat-toolbar>
+    </ng-template>
+
+    <ng-template pTemplate="end">
+        <button pButton 
+            label="Ildefonso Valenzuela"
+            type="button" 
+            icon="pi pi-user" 
+            iconPos="left"
+            class="p-button-text p-button-primary p-d-inline mx-1 h-2rem"></button>
+
+        <button pButton 
+            label="Cerrar Sesion"
+            type="button" 
+            icon="pi pi-sign-out" 
+            iconPos="left"
+            class="p-button-text p-button-secondary p-d-inline mx-1 h-2rem"
+            ></button>        
+    </ng-template>
+</p-menubar>
+
+

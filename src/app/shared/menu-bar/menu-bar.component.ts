@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-menu-bar',
@@ -9,8 +10,32 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class MenuBarComponent {
   @Output() menuToggle = new EventEmitter<void>();
 
+  items: MenuItem[] = [
+    {
+      label: 'IMPRESION',
+      routerLink: '/impresion'
+    },
+    {
+      label: 'WYSE',
+      routerLink: '/wyse'
+    },
+    {
+      label: 'TELEVISITAS',
+      routerLink: '/televisitas'
+    },
+    {
+      label: 'JAMMER',
+      routerLink: '/jammer'
+    }
+  ]
+
   onMenuToggle(){
     this.menuToggle.emit();
   }
+
+
+
+
+
 
 }
