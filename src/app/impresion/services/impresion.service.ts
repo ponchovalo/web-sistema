@@ -29,7 +29,7 @@ export class ImpresionService {
   }
   //Listado Impresoras Paginacion
   getImpresoraPaginacion(paginacion: PaginacionImpresoraReq): Observable<PaginacionImpresoraRes>{
-    return this.http.post<PaginacionImpresoraRes>(`${this.urlBase}/impresoras/paginacion/`, paginacion)
+    return this.http.post<PaginacionImpresoraRes>(`${this.urlBase}/impresoras/paginacionping/`, paginacion)
   }
 
 

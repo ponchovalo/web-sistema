@@ -73,5 +73,5 @@ export interface PaginacionImpresoraRes{
   page: number,
   pageQuantity: number,
   totalRows: number,
-  data: Impresora[]
+  data: ImpresoraPing[]
 }

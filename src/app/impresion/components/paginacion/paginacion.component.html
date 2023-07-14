@@ -1,0 +1,30 @@
+
+<div class="contenedor">
+  <div class="field">
+    <div>
+      <span>Impresoras por Pagina:</span>
+    </div>
+    <div>
+      <select name="edificio" [(ngModel)]="pagina.pageSize" (ngModelChange)="cambioTam()">
+        <option [ngValue]="item" *ngFor="let item of opcionesPagina">{{item}}</option>
+      </select>
+    </div>
+  </div>
+  <div>
+    <!--aqui van las paginas-->
+    <span *ngIf="contador > 1">{{primero + 1}} - {{segundo}}  de {{longitud}}</span>
+    <span *ngIf="contador == 1">1 - {{tamPagina}} de {{longitud}}</span>
+  </div>
+
+  <div class="acciones">
+    <div>
+      <!--aqui va una flecha-->
+      <button (click)="atras()" [disabled]="deshabilitades">atras</button>
+    </div>
+    <div>
+      <!--aqui va la otra flecha-->
+      <button (click)="adelante()" [disabled]="deshabilitaasc">adelante</button>
+    </div>
+  </div>
+
+</div>

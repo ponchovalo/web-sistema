@@ -14,11 +14,13 @@ import { timer } from 'rxjs'
 export class InventarioImpresionComponent implements OnInit {
 
   titleColumns: string[] = ["NOMBRE", "MODELO", "SERIE", "IP", "EDIFICIO", "UBICACION", "PING", "LAST PING", "ACCIONES"];
-  dataSource: Impresora[] = [];
+  dataSource: ImpresoraPing[] = [];
 
   TIME_INTERVAL: number = 10000;
 
   busca: string = "";
+
+  cargando: boolean = true;
 
   constructor(private impresionService: ImpresionService, private dialog: MatDialog){}
 
@@ -49,26 +51,19 @@ export class InventarioImpresionComponent implements OnInit {
   listarImpresoras(){
     this.impresionService.getImpresoraPaginacion(this.paginacionReq).subscribe(data => {
       this.paginacionRes = data;
+      this.cargando = true;
+      console.log(this.paginacionRes)
     })
   }
   busqueda(){
   }
 
   pagina(event:any){
+    this.cargando = false;
     this.paginacionReq.pageSize = event.pageSize;
     this.paginacionReq.page = event.pageIndex + 1;
     this.listarImpresoras();
-    console.log(event);
   }
-
-
-  //listarImpresorasPing(){
-  //  this.impresionService.getImpresoraPing().subscribe(
-  //    impresoras => {
-  //      this.dataSource = impresoras
-  //    }
-  //  );
-  //}
 
   openDialogAgregar(){
     this.dialog.open(EdicionImpresoraComponent,{

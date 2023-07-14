@@ -13,6 +13,7 @@ import { DetalleImpresoraComponent } from './components/detalle-impresora/detall
 import { RegistrarCambioComponent } from './components/registrar-cambio/registrar-cambio.component';
 import { ControlTonerComponent } from './pages/control-toner/control-toner.component';
 import { EdicionRefaccionComponent } from './components/edicion-refaccion/edicion-refaccion.component';
+import { PaginacionComponent } from './components/paginacion/paginacion.component';
 
 
 
@@ -25,7 +26,8 @@ import { EdicionRefaccionComponent } from './components/edicion-refaccion/edicio
     DetalleImpresoraComponent,
     RegistrarCambioComponent,
     ControlTonerComponent,
-    EdicionRefaccionComponent
+    EdicionRefaccionComponent,
+    PaginacionComponent
   ],
   imports: [
     CommonModule,

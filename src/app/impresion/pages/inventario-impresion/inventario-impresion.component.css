@@ -107,7 +107,7 @@ input:focus {
 .contenidotabla thead tr {
   background-color: #4dbed4;
   color: #ffffff;
-  text-align: middle;
+  text-align: left;
 }
 
 th td{
