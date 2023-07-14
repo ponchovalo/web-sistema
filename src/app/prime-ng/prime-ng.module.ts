@@ -4,6 +4,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
+import { CardModule } from 'primeng/card';
+import { ListboxModule } from 'primeng/listbox';
 
 
 
@@ -14,13 +16,17 @@ import { MenubarModule } from 'primeng/menubar';
     InputTextModule,
     ButtonModule,
     DropdownModule,
-    MenubarModule
+    MenubarModule,
+    CardModule,
+    ListboxModule
   ],
   exports:[
     InputTextModule,
-    ButtonModule,
+    ButtonModule, 
     DropdownModule,
-    MenubarModule
+    MenubarModule,
+    CardModule,
+    ListboxModule
   ]
 })
 export class PrimeNgModule { }

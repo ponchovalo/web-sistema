@@ -1,3 +1,7 @@
+<p-card header="titulo" [style]="{'height': '400px', 'margin-bottom': '2em'}">
+  <p-listbox></p-listbox>
+</p-card>
+
 <mat-nav-list class="sidenav">
     <a *ngFor="let item of listItems" mat-list-item  [routerLink]="item.enlace"  >
       <mat-icon class="alingIcon">{{item.icono}}</mat-icon>

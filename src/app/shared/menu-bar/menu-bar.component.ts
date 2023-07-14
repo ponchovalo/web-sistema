@@ -8,7 +8,6 @@ import { MenuItem } from 'primeng/api';
   ]
 })
 export class MenuBarComponent {
-  @Output() menuToggle = new EventEmitter<void>();
 
   items: MenuItem[] = [
     {
@@ -29,9 +28,6 @@ export class MenuBarComponent {
     }
   ]
 
-  onMenuToggle(){
-    this.menuToggle.emit();
-  }
 
 
 
