@@ -8,8 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PrimeNgModule } from './prime-ng/prime-ng.module';
+import { HttpErrorInterceptor } from './error-handler/http-error.interceptor';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { PrimeNgModule } from './prime-ng/prime-ng.module';
     HttpClientModule,
     FormsModule
   ],
-  providers: [  ],
+  providers: [ MessageService
+    //{ provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

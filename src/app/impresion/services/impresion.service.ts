@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FiltroImpresora, FiltroRefa, Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraReq, PaginacionImpresoraRes,  RefaccionImpresora, RegCambioRefaImp } from '../interfaces/impresora.interface';
 import { environment } from 'src/environments/environments';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,8 @@ export class ImpresionService {
   impresoras?: Impresora[] = [];
 
   constructor(private http: HttpClient) { }
+  
+  
 
   //Endpoints Impresoras
   //Listado de Impresoras
@@ -31,6 +33,15 @@ export class ImpresionService {
   getImpresoraPaginacion(paginacion: PaginacionImpresoraReq): Observable<PaginacionImpresoraRes>{
     return this.http.post<PaginacionImpresoraRes>(`${this.urlBase}/impresoras/paginacionping/`, paginacion)
   }
+  //Agregar Nueva Impresora
+  setNuevaImpresora(impresora: Impresora): Observable<string>{
+    return this.http.post<string>(`${this.urlBase}/impresoras`, impresora)
+  }
+  //Editar Nueva Impresora
+  setEdicionImpresora(impresora: Impresora): Observable<string>{
+    return this.http.put<string>(`${this.urlBase}/impresoras/${impresora.impresoraId}`, impresora)
+  }
+
 
 
 

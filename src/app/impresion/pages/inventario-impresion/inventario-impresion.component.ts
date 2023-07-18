@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ImpresionService } from '../../services/impresion.service';
 import { Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraReq, PaginacionImpresoraRes } from '../../interfaces/impresora.interface';
-import { timer } from 'rxjs'
+import { Observable, catchError, of, timer } from 'rxjs'
 import { TableLazyLoadEvent } from 'primeng/table';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-inventario-impresion',
@@ -38,13 +39,24 @@ export class InventarioImpresionComponent implements OnInit {
     magentaLevel: 0,
     yellowLevel: 0
   }
-
   dataGrafico: any;
   options: any;
-
   termino: string = '';
 
-  constructor(private impresionService: ImpresionService){}
+  impresoraEditar: Impresora = {
+    impresoraId: '',
+    nombre: '',
+    modelo: '',
+    serie: '',
+    ip: '',
+    mac: '',
+    edificio: '',
+    ubicacion: ''
+  }
+
+  tituloEditar: string = '';
+
+  constructor(private impresionService: ImpresionService, private messageService: MessageService){}
 
   paginacionRes: PaginacionImpresoraRes = {
     pageSize: 0,
@@ -65,6 +77,19 @@ export class InventarioImpresionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPeriodical();
+  }
+  handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      if(error.error.errors){
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.title });
+        for(const [key, value] of Object.entries(error.error.errors)){
+          const detalle: any = value;
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: detalle });
+        }
+      }
+
+      return of(result as T);
+    };
   }
 
   listarImpresoras(){
@@ -192,12 +217,49 @@ export class InventarioImpresionComponent implements OnInit {
     })
   }
 
-
-  openDialogEditar(impresora: Impresora){
-    console.log(impresora.nombre)
-
+  //Funciones Editar y Agregar Impresora
+  openDialogEditar(impresora: Impresora | null){
+    this.impresoraEditar = {
+      impresoraId: '',
+      nombre:'',
+      modelo:'',
+      serie:'',
+      ip:'',
+      mac:'',
+      edificio:'',
+      ubicacion:''
+    }
+    if(impresora != null){
+      this.impresoraEditar = impresora;
+      this.tituloEditar = `Editar Impresora ${this.impresoraEditar.nombre}`
+    }else{
+      this.impresoraEditar = {
+        impresoraId: '',
+        nombre:'',
+        modelo:'',
+        serie:'',
+        ip:'',
+        mac:'',
+        edificio:'',
+        ubicacion:''
+      };
+      this.tituloEditar = `Impresora Nueva`;
+    }
     this.editar = true;
   }
 
-
+  guardarCambios(){
+    if(this.impresoraEditar.impresoraId == ''){
+      this.impresionService.setNuevaImpresora(this.impresoraEditar).pipe(
+        catchError(this.handleError<string>('Nueva Impresora'))
+      ).subscribe(data =>{
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: `${this.impresoraEditar.nombre} Creada Correctamente` });
+      })
+    }else{
+      this.impresionService.setEdicionImpresora(this.impresoraEditar).subscribe(data => {
+        console.log(data)
+        this.listarImpresoras();
+      })
+    }
+  }
 }

@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="contenedor">
   <p-table  #dt
             styleClass="p-datatable-sm"
@@ -15,6 +16,7 @@
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
           <h2 class="m-0">Inventario Impresoras</h2>
+          <p-button icon="pi pi-times" (click)="openDialogEditar(null)" label="Nuevo" styleClass="p-button-text p-button-secondary mt-2"></p-button>
           <span class="p-input-icon-left">
               <i class="pi pi-search"></i>
               <input  [(ngModel)]="termino" pInputText type="text" placeholder="Buscar..."  (change)="buscar()" />
@@ -63,7 +65,7 @@
 
 
 
-<p-dialog [(visible)]="detalles" [style]="{width:'850px', height:'580px'}">
+<p-dialog [(visible)]="detalles" [style]="{width:'850px', height:'550px'}">
   <ng-template pTemplate="header">
     <span class="text-xl font-bold">Detalles Impresora {{impresoraSelected.impresora.nombre | titlecase}} </span>
   </ng-template>
@@ -122,8 +124,52 @@
 </p-dialog>
 
 
-<p-dialog [(visible)]="editar">
+<p-dialog [(visible)]="editar" [style]="{width:'600px', height:'420px'}">
+  <ng-template pTemplate="header">
+    <span class="text-xl font-bold">{{tituloEditar | titlecase}} </span>
+  </ng-template>
+  <div class="container">
+    <div class="col">
+      <div class="inputText">
+        <div class="etiq"><label htmlFor="nombre">Nombre</label></div>
+        <input pInputText id="nombre" [(ngModel)]="impresoraEditar.nombre" />
+      </div>
+      <div class="inputText">
+        <div class="etiq"><label htmlFor="modelo">Modelo</label></div>
+        <input pInputText id="modelo" [(ngModel)]="impresoraEditar.modelo" />
+      </div>
+      <div class="inputText">
+        <div class="etiq"><label htmlFor="ip">Ip</label></div>
+        <input pInputText id="ip" [(ngModel)]="impresoraEditar.ip" />
+      </div>
+      <div class="inputText">
+        <div class="etiq"><label htmlFor="edificio">Edificio</label></div>
+        <input pInputText id="edificio" [(ngModel)]="impresoraEditar.edificio" />
+      </div>
+    </div>
+    <div class="col">
+      <span>
+        <div [style]="{'height':'60px'}"></div>
+      </span>
+      <div class="inputText">
+        <div class="etiq"><label htmlFor="serie">Serie</label></div>
+        <input pInputText id="serie" [(ngModel)]="impresoraEditar.serie" />
+      </div>
+      <div class="inputText">
+        <div class="etiq"><label htmlFor="mac">Mac</label></div>
+        <input pInputText id="mac" [(ngModel)]="impresoraEditar.mac" />
+      </div>
+      <div class="inputText">
+        <div class="etiq"><label htmlFor="ubicacion">Ubicacion</label></div>
+        <input pInputText id="ubicacion" [(ngModel)]="impresoraEditar.ubicacion" />
+      </div>
 
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-times" (click)="editar = false" (onClick)="guardarCambios()"  label="Guardar" styleClass="p-button-text p-button-secondary mt-2"></p-button>
+    <p-button icon="pi pi-times" (click)="editar = false" label="Cancelar" styleClass="p-button-text p-button-danger mt-2"></p-button>
+  </ng-template>
 </p-dialog>
 
 

@@ -63,3 +63,22 @@ a:link, a:visited, a:active{
 a:hover{
   cursor: pointer;
 }
+
+.col{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  width: 48%;
+  height: 100%;
+}
+.inputText{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+.etiq{
+  width: 80%;
+  text-align: left;
+}

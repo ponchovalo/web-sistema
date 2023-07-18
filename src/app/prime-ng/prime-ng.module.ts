@@ -12,6 +12,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { ChartModule } from 'primeng/chart';
 import { TreeTableModule } from 'primeng/treetable';
 import { TagModule } from 'primeng/tag';
+import { ToastModule } from 'primeng/toast';
 
 
 
@@ -31,7 +32,8 @@ import { TagModule } from 'primeng/tag';
     FieldsetModule,
     ChartModule,
     TreeTableModule,
-    TagModule
+    TagModule,
+    ToastModule
   ],
   exports:[
     InputTextModule,
@@ -45,7 +47,8 @@ import { TagModule } from 'primeng/tag';
     FieldsetModule,
     ChartModule,
     TreeTableModule,
-    TagModule
+    TagModule,
+    ToastModule
   ]
 })
 export class PrimeNgModule { }
