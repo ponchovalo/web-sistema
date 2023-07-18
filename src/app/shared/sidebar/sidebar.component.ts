@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PrimeIcons } from 'primeng/api';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,30 +11,36 @@ export class SidebarComponent implements OnInit {
 
   @Input() seccion?:string;
 
+  titulo = "";
 
-  listItems = [
+  elementoSelect = {
+    titulo: "",
+    enlace: ""
+  }
+
+  elementosSidebar = [
     {
       seccion: 'Impresion',
       enlace: '/impresion/inventario',
-      icono: 'print',
+      icono: PrimeIcons.PRINT,
       titulo: 'Inventario Impresoras'
     },
     {
       seccion: 'Impresion',
       enlace: '/impresion/almacen',
-      icono: 'inventory',
+      icono: PrimeIcons.DATABASE,
       titulo: 'Almacen Refacciones'
     },
     {
       seccion: 'Impresion',
       enlace: '/impresion/controltoner',
-      icono: 'app_registration',
+      icono: PrimeIcons.FILE_EDIT,
       titulo: 'Control de Toner'
     },
     {
       seccion: 'Impresion',
       enlace: '/impresion/almacen',
-      icono: 'calendar_month',
+      icono: PrimeIcons.CHART_LINE,
       titulo: 'Reporte Mensual'
     },
     {
@@ -59,10 +66,17 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let filtroItems = this.listItems.filter(item => item.seccion === this.seccion)
-    this.listItems = filtroItems;
+    let filtroItems = this.elementosSidebar.filter(item => item.seccion === this.seccion)
+    this.elementosSidebar = filtroItems;
 
     console.log(this.seccion)
+
+    this.titulo = `Inventario ${this.seccion}`
+  }
+
+  enlazar(elemento: any){
+    this.router.navigate([elemento.enlace])
+    console.log("enlazar")
   }
 
 

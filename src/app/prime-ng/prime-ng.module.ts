@@ -6,6 +6,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
 import { CardModule } from 'primeng/card';
 import { ListboxModule } from 'primeng/listbox';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { FieldsetModule } from 'primeng/fieldset';
+import { ChartModule } from 'primeng/chart';
+import { TreeTableModule } from 'primeng/treetable';
+import { TagModule } from 'primeng/tag';
+
 
 
 
@@ -18,15 +25,27 @@ import { ListboxModule } from 'primeng/listbox';
     DropdownModule,
     MenubarModule,
     CardModule,
-    ListboxModule
+    ListboxModule,
+    TableModule,
+    DialogModule,
+    FieldsetModule,
+    ChartModule,
+    TreeTableModule,
+    TagModule
   ],
   exports:[
     InputTextModule,
-    ButtonModule, 
+    ButtonModule,
     DropdownModule,
     MenubarModule,
     CardModule,
-    ListboxModule
+    ListboxModule,
+    TableModule,
+    DialogModule,
+    FieldsetModule,
+    ChartModule,
+    TreeTableModule,
+    TagModule
   ]
 })
 export class PrimeNgModule { }

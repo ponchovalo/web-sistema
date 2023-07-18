@@ -65,7 +65,8 @@ export interface PaginacionImpresoraReq{
   page: number,
   sort: string,
   sortDirection: string,
-  filter: string
+  filter: string,
+  skip: number
 }
 
 export interface PaginacionImpresoraRes{

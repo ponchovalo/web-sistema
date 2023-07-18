@@ -1,10 +1,14 @@
-<p-card header="titulo" [style]="{'height': '400px', 'margin-bottom': '2em'}">
-  <p-listbox></p-listbox>
+<p-card [header]="titulo" [style]="{'height': '100%', 'margin-bottom': '2em', 'background-color': '#e4f8f0', 'border-radius':'0', 'border':'1px solid #4dbed4'}">
+  <p-listbox [options]="elementosSidebar"
+              optionLabel="titulo"
+              [(ngModel)]="elementoSelect"
+              (click)="enlazar(elementoSelect)"
+              [style]="{'background-color': '#e4f8f0', 'color':'white'}">
+    <ng-template let-elemento pTemplate="item">
+      <div class="flex align-items-center gap-2">
+        <i [ngClass]="elemento.icono"></i>
+        <div>{{ elemento.titulo }}</div>
+      </div>
+    </ng-template>
+  </p-listbox>
 </p-card>
-
-<mat-nav-list class="sidenav">
-    <a *ngFor="let item of listItems" mat-list-item  [routerLink]="item.enlace"  >
-      <mat-icon class="alingIcon">{{item.icono}}</mat-icon>
-      <span class="navegacion-list-lebel" >{{item.titulo}}</span>
-    </a>
-</mat-nav-list>

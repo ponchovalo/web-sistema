@@ -5,10 +5,9 @@ import { MaterialModule } from '../material/material.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ImpresionRoutingModule } from '../impresion/impresion-routing-module';
 import { WyseRoutingModule } from '../wyse/wyse-routing.module';
-import { ImpresionModule } from '../impresion/impresion.module';
-import { HomeImpresionComponent } from '../impresion/pages/home-impresion/home-impresion.component';
 import { JammerRoutingModule } from '../jammer/jammer-routing.module';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +18,8 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
   ],
   exports:[
     MenuBarComponent,
-    SidebarComponent
+    SidebarComponent,
+    FormsModule
   ],
   imports: [
     CommonModule,
@@ -27,7 +27,8 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
     MaterialModule,
     ImpresionRoutingModule,
     WyseRoutingModule,
-    JammerRoutingModule
+    JammerRoutingModule,
+    FormsModule
 
 
   ]

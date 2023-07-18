@@ -9,7 +9,6 @@ import { EdicionImpresoraComponent } from './components/edicion-impresora/edicio
 import { AlmacenImpresionComponent } from './pages/almacen-impresion/almacen-impresion.component';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
-import { DetalleImpresoraComponent } from './components/detalle-impresora/detalle-impresora.component';
 import { RegistrarCambioComponent } from './components/registrar-cambio/registrar-cambio.component';
 import { ControlTonerComponent } from './pages/control-toner/control-toner.component';
 import { EdicionRefaccionComponent } from './components/edicion-refaccion/edicion-refaccion.component';
@@ -26,7 +25,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     InventarioImpresionComponent,
     EdicionImpresoraComponent,
     AlmacenImpresionComponent,
-    DetalleImpresoraComponent,
     RegistrarCambioComponent,
     ControlTonerComponent,
     EdicionRefaccionComponent,
