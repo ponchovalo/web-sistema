@@ -17,6 +17,8 @@ export class InventarioImpresionComponent implements OnInit {
 
   detalles: boolean = false;
 
+  editar: boolean = false;
+
   impresoraSelected: ImpresoraDetalle = {
     impresora: {
       impresoraId: '',
@@ -68,7 +70,6 @@ export class InventarioImpresionComponent implements OnInit {
   listarImpresoras(){
     this.impresionService.getImpresoraPaginacion(this.paginacionReq).subscribe(data => {
       this.paginacionRes = data;
-      console.log('periodico')
     })
   }
   getPeriodical(){
@@ -116,14 +117,12 @@ export class InventarioImpresionComponent implements OnInit {
   buscar(){
     this.paginacionReq.filter = this.termino;
     this.listarImpresoras();
-    console.log(this.termino)
   }
 
 
   //Funciones Dialogo Detalles
   openDialogDetalle(impresora: Impresora){
     this.impresionService.getImpresoraDetalle(impresora.impresoraId).subscribe(res => {
-      console.log(res);
       this.impresoraSelected = res;
 
       if(res.impresora.modelo == 'C356IF'){
@@ -132,7 +131,7 @@ export class InventarioImpresionComponent implements OnInit {
           datasets: [
             {
               label: 'Toner Level',
-              data: [80, 50, 20, 60, 100],
+              data: [res.blackLevel, res.cyanLevel, res.magentaLevel, res.yellowLevel, 100],
               backgroundColor: ['rgba(0, 0, 0, 0.2)', 'rgba(0, 255, 255, 0.2)', 'rgba(255, 0, 255, 0.2)', 'rgba(255, 255, 0, 0.2)'],
               borderColor: ['rgb(0, 0, 0)', 'rgb(0, 255, 255)', 'rgb(255, 0, 255)', 'rgb(255, 255, 0)'],
               borderWidth: 1,
@@ -146,7 +145,7 @@ export class InventarioImpresionComponent implements OnInit {
           datasets: [
             {
               label: 'Toner Level',
-              data: [0,80,0,100],
+              data: [0,res.blackLevel,0,100],
               backgroundColor: ['rgba(0, 0, 0, 0.2)'],
               borderColor: ['rgb(0, 0, 0)'],
               borderWidth: 1,
@@ -194,13 +193,11 @@ export class InventarioImpresionComponent implements OnInit {
   }
 
 
-  openDialogAgregar(){
+  openDialogEditar(impresora: Impresora){
+    console.log(impresora.nombre)
 
+    this.editar = true;
   }
-
-
-
-
 
 
 }

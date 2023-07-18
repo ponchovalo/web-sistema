@@ -5403,9 +5403,9 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 
 .p-dialog .p-dialog-header {
     border-bottom: 0 none;
-    background: #e4f8f0;
+    background: #4dbed4;
     color: #233985;
-    padding: 1.5rem;
+    padding: 1rem;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px
 }
@@ -5455,9 +5455,9 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 
 .p-dialog .p-dialog-footer {
     border-top: 0 none;
-    background: #e4f8f0;
+    background: #4dbed4;
     color: #233985;
-    padding: .5rem 1.5rem .5rem 1.5rem;
+    padding: .3rem 1.5rem .3rem 1.5rem;
     text-align: right;
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px

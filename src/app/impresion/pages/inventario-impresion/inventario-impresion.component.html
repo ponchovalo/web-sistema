@@ -9,6 +9,7 @@
             [rowsPerPageOptions]="[10, 25, 50]"
             [totalRecords]="paginacionRes.totalRows"
             [loading]="cargando"
+            [rowHover]="true"
             >
 
     <ng-template pTemplate="caption">
@@ -51,7 +52,7 @@
                       (click)="openDialogDetalle(impresora.impresora)" ></button>
               <button pButton pRipple icon="pi pi-pencil"
                       class="p-button-sm p-button-rounded p-button-primary p-button-text"
-                      (click)="openDialogAgregar()" ></button>
+                      (click)="openDialogEditar(impresora.impresora)" ></button>
               <button pButton pRipple icon="pi pi-trash"
                       class="p-button-sm p-button-rounded p-button-danger p-button-text" ></button>
           </td>
@@ -120,6 +121,10 @@
   </ng-template>
 </p-dialog>
 
+
+<p-dialog [(visible)]="editar">
+
+</p-dialog>
 
 
 
