@@ -47,7 +47,7 @@
           <td>{{ impresora.impresora.ip }}</td>
           <td>{{ impresora.impresora.edificio }}</td>
           <td>{{ impresora.impresora.ubicacion }}</td>
-          <td><p-tag [value]="impresora.mensajeImpresoraPing" [severity]="getSeverity(impresora.statusImpresoraPing)"></p-tag></td>
+          <td><p-tag [value]="impresora.mensajeImpresoraPing" [severity]="getSeverity(impresora)"></p-tag></td>
           <td>
             <button pButton pRipple icon="pi pi-info-circle"
                       class="p-button-sm p-button-rounded p-button-secondary p-button-text"
@@ -87,7 +87,12 @@
           </div>
         </p-fieldset>
       </div>
-      <div class="columna2">
+      <div class="columna2 " *ngIf="impresoraSelected.mensaje != 'Success'">
+        <div class="card">
+          <p-messages [(value)]="mensajeModelo" [enableService]="false" [closable]="false"></p-messages>
+        </div>
+      </div>
+      <div class="columna2" *ngIf="impresoraSelected.mensaje == 'Success'">
         <p-fieldset legend="Contadores" styleClass="mb-1">
           <div class="contentTable">
             <table id="contadores">

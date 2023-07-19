@@ -3,7 +3,7 @@ import { ImpresionService } from '../../services/impresion.service';
 import { Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraReq, PaginacionImpresoraRes } from '../../interfaces/impresora.interface';
 import { Observable, catchError, of, timer } from 'rxjs'
 import { TableLazyLoadEvent } from 'primeng/table';
-import { MessageService } from 'primeng/api';
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-inventario-impresion',
@@ -11,6 +11,8 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./inventario-impresion.component.css']
 })
 export class InventarioImpresionComponent implements OnInit {
+
+  mensajeModelo: Message[] = []
 
   TIME_INTERVAL: number = 10000;
 
@@ -37,7 +39,8 @@ export class InventarioImpresionComponent implements OnInit {
     blackLevel: 0,
     cyanLevel: 0,
     magentaLevel: 0,
-    yellowLevel: 0
+    yellowLevel: 0,
+    mensaje: 'Success'
   }
   dataGrafico: any;
   options: any;
@@ -131,11 +134,13 @@ export class InventarioImpresionComponent implements OnInit {
       }
     }
   }
-  getSeverity(estado: boolean):string{
-    if(estado){
+  getSeverity(impresora: ImpresoraPing):string{
+    if(impresora.statusImpresoraPing){
       return 'success'
-    }else{
+    }else if(impresora.mensajeImpresoraPing == "TimedOut"){
       return 'danger'
+    }else{
+      return 'warning'
     }
   }
 
@@ -149,6 +154,16 @@ export class InventarioImpresionComponent implements OnInit {
   openDialogDetalle(impresora: Impresora){
     this.impresionService.getImpresoraDetalle(impresora.impresoraId).subscribe(res => {
       this.impresoraSelected = res;
+      if(res.mensaje == 'ErrorModelo'){
+        this.mensajeModelo =
+        [{severity: 'error', summary: 'Error', detail: 'Los OIDs para este modelo de impresora no estan especificados, compruebe el modelo de impresora'}]
+      }else if(res.mensaje == 'TimeOut'){
+        this.mensajeModelo =
+        [{severity: 'warn', summary: 'Timed Out', detail: 'No se recibieron datos en el servidor intente nuevamente'}]
+      }else if(res.mensaje == 'NotOnline'){
+        this.mensajeModelo =
+        [{severity: 'info', summary: 'Not Online', detail: 'Esta Impresora no esta en red'}]
+      }
 
       if(res.impresora.modelo == 'C356IF'){
         this.dataGrafico = {
@@ -254,10 +269,11 @@ export class InventarioImpresionComponent implements OnInit {
         catchError(this.handleError<string>('Nueva Impresora'))
       ).subscribe(data =>{
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `${this.impresoraEditar.nombre} Creada Correctamente` });
+        this.listarImpresoras();
       })
     }else{
       this.impresionService.setEdicionImpresora(this.impresoraEditar).subscribe(data => {
-        console.log(data)
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: `${this.impresoraEditar.nombre} Editada Correctamente` })
         this.listarImpresoras();
       })
     }

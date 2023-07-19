@@ -13,6 +13,7 @@ import { ChartModule } from 'primeng/chart';
 import { TreeTableModule } from 'primeng/treetable';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
 
 
 
@@ -33,7 +34,8 @@ import { ToastModule } from 'primeng/toast';
     ChartModule,
     TreeTableModule,
     TagModule,
-    ToastModule
+    ToastModule,
+    MessagesModule
   ],
   exports:[
     InputTextModule,
@@ -48,7 +50,8 @@ import { ToastModule } from 'primeng/toast';
     ChartModule,
     TreeTableModule,
     TagModule,
-    ToastModule
+    ToastModule,
+    MessagesModule
   ]
 })
 export class PrimeNgModule { }
