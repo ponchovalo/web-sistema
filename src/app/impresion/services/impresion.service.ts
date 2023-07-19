@@ -48,7 +48,6 @@ export class ImpresionService {
 
 
 
-
   //Endpoints para Almacen de Refacciones
   //Listado de Almacen
   getAlmacen(): Observable<RefaccionImpresora[]>{
@@ -73,6 +72,7 @@ export class ImpresionService {
   getRefaFiltro(filtro: FiltroRefa): Observable<RefaccionImpresora[]>{
     return this.http.post<RefaccionImpresora[]>(`${this.urlBase}/almacen/filtro`, filtro);
   }
+  
   getEdificios(): Observable<string[]>{
     return this.http.get<string[]>(`${this.urlBase}/impresoras/edificios`);
   }

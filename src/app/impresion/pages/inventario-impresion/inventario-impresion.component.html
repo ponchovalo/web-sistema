@@ -125,6 +125,7 @@
       </div>
     </div>
   <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="openRegCambioDialog()" label="Ok" styleClass="p-button-text p-button-secondary mt-2"></p-button>
     <p-button icon="pi pi-check" (click)="detallesDialog = false" label="Ok" styleClass="p-button-text p-button-secondary mt-2"></p-button>
   </ng-template>
 </p-dialog>
@@ -193,5 +194,7 @@
   </ng-template>
 </p-dialog>
 
+<p-dialog [(visible)]="regCambioDialog" [style]="{width:'600px', height:'420px'}" [modal]="true">
 
+</p-dialog>
 

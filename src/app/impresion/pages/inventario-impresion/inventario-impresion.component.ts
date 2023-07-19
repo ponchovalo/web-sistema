@@ -24,6 +24,8 @@ export class InventarioImpresionComponent implements OnInit {
   editarDialog: boolean = false;
   //propiedad para el dialogo de confirmacion de eliminacion
   confirmarDialog: boolean = false;
+  //propiedad para el dialogo de agregar cambio de refaccion
+  regCambioDialog: boolean = false;
   //propiedad que maneja el estado de errores en las funciones
   errorEditar: boolean = false;
   //propiedad con el titulo del dialogo de editar o nueva impresora
@@ -343,6 +345,11 @@ export class InventarioImpresionComponent implements OnInit {
       this.listarImpresoras();
     })
     
+  }
+
+  //AGREGAR CAMBIO DE REFACCION
+  openRegCambioDialog(){
+    this.regCambioDialog = true;
   }
 
 }
