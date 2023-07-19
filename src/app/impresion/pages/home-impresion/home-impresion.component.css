@@ -1,5 +1,9 @@
+header{
+  height: 10%;
+}
 .container{
   display: flex;
+  height: 85%;
 }
 
 .sidebar{

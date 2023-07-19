@@ -41,6 +41,10 @@ export class ImpresionService {
   setEdicionImpresora(impresora: Impresora): Observable<string>{
     return this.http.put<string>(`${this.urlBase}/impresoras/${impresora.impresoraId}`, impresora)
   }
+  //Eliminar Impresora por Id
+  deleteImpresora(id: string):Observable<string>{
+    return this.http.delete<string>(`${this.urlBase}/impresoras/${id}`)
+  }
 
 
 

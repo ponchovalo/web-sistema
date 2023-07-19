@@ -11,17 +11,24 @@ import { Message, MessageService } from 'primeng/api';
   styleUrls: ['./inventario-impresion.component.css']
 })
 export class InventarioImpresionComponent implements OnInit {
-
+  //Mensaje de la validacion de modelos e IP en el Dialog para ver detalles
   mensajeModelo: Message[] = []
-
+  mensajeElim: Message[] = []
+  //Intervalo de la funcion periodica
   TIME_INTERVAL: number = 10000;
-
+  //propiedad para la mascara de carga
   cargando: boolean = true;
-
-  detalles: boolean = false;
-
-  editar: boolean = false;
-
+  //propiedad para el dialogo de detalles de impresora
+  detallesDialog: boolean = false;
+  //propiedad para el dialogo de edicion de impresora
+  editarDialog: boolean = false;
+  //propiedad para el dialogo de confirmacion de eliminacion
+  confirmarDialog: boolean = false;
+  //propiedad que maneja el estado de errores en las funciones
+  errorEditar: boolean = false;
+  //propiedad con el titulo del dialogo de editar o nueva impresora
+  tituloEditar: string = '';
+  //instancia vacia de objeto impresora con detalles
   impresoraSelected: ImpresoraDetalle = {
     impresora: {
       impresoraId: '',
@@ -45,7 +52,7 @@ export class InventarioImpresionComponent implements OnInit {
   dataGrafico: any;
   options: any;
   termino: string = '';
-
+  //instancia vacia de objeto impresora para edicion y nueva
   impresoraEditar: Impresora = {
     impresoraId: '',
     nombre: '',
@@ -56,11 +63,7 @@ export class InventarioImpresionComponent implements OnInit {
     edificio: '',
     ubicacion: ''
   }
-
-  tituloEditar: string = '';
-
-  constructor(private impresionService: ImpresionService, private messageService: MessageService){}
-
+  //incializacion de instancia de respuesta de paginacion
   paginacionRes: PaginacionImpresoraRes = {
     pageSize: 0,
     page: 0,
@@ -68,7 +71,7 @@ export class InventarioImpresionComponent implements OnInit {
     totalRows: 0,
     data: []
   }
-
+  //incializacion de instancia de peticion de paginacion
   paginacionReq: PaginacionImpresoraReq = {
     pageSize: 10,
     page: 1,
@@ -78,18 +81,41 @@ export class InventarioImpresionComponent implements OnInit {
     skip: 0
   }
 
+  constructor(private impresionService: ImpresionService, private messageService: MessageService){}
+
   ngOnInit(): void {
     this.getPeriodical();
   }
-  handleError<T>(operation = 'operation', result?: T) {
+  //Manejador de Erores en las funciones
+  handleError<T>(operation: string, result?: T) {
     return (error: any): Observable<T> => {
-      if(error.error.errors){
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.title });
-        for(const [key, value] of Object.entries(error.error.errors)){
-          const detalle: any = value;
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: detalle });
+      //ERROR EDITAR IMPRESORA
+      if(operation == "editarImpresora"){
+        if(error.status == 404){
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.errores.mensaje });
+          this.errorEditar = true;
         }
       }
+      //ERROR NUEVA IMPRESORA
+      if(operation == "nuevaImpresora"){
+        if(error.status == 400){
+          var mensajeErroresArray: string[] = [];
+
+          for(const [key, value] of Object.entries(error.error.errors)){
+            const detalle: any = value;
+            mensajeErroresArray.push(detalle)
+          }
+
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.title });
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: mensajeErroresArray.toString() });
+          this.errorEditar = true;
+        }else if(error.status == 404){
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.errores.mensaje });
+          this.errorEditar = true;
+        }
+        
+      }
+
 
       return of(result as T);
     };
@@ -149,22 +175,26 @@ export class InventarioImpresionComponent implements OnInit {
     this.listarImpresoras();
   }
 
-
   //Funciones Dialogo Detalles
   openDialogDetalle(impresora: Impresora){
+    //FUNCION QUE OBTIENE LOS DATOS
     this.impresionService.getImpresoraDetalle(impresora.impresoraId).subscribe(res => {
       this.impresoraSelected = res;
+      //VALIDACION DE MODELOS QUE NO TIENEN OID
       if(res.mensaje == 'ErrorModelo'){
         this.mensajeModelo =
         [{severity: 'error', summary: 'Error', detail: 'Los OIDs para este modelo de impresora no estan especificados, compruebe el modelo de impresora'}]
+      //VALIDACION EN IMPRESORAS QUE NO RESPONDEN LA SOLICITUD DE OID
       }else if(res.mensaje == 'TimeOut'){
         this.mensajeModelo =
         [{severity: 'warn', summary: 'Timed Out', detail: 'No se recibieron datos en el servidor intente nuevamente'}]
+      //VALIDACION CON IMPRESORAS QUE NO ESTAN EN RED
       }else if(res.mensaje == 'NotOnline'){
         this.mensajeModelo =
         [{severity: 'info', summary: 'Not Online', detail: 'Esta Impresora no esta en red'}]
       }
 
+      //GRAFICO PARA LAS IMPRESORAS A COLOR
       if(res.impresora.modelo == 'C356IF'){
         this.dataGrafico = {
           labels: ['Black Level', 'Cyan Level', 'Magenta Level', 'Yellow Level'],
@@ -180,6 +210,7 @@ export class InventarioImpresionComponent implements OnInit {
           ]
         }
       }else{
+        //GRAFICO PARA IMPRESORA BLANCO Y NEGRO
         this.dataGrafico = {
           labels: ['','Black Level',''],
           datasets: [
@@ -194,7 +225,7 @@ export class InventarioImpresionComponent implements OnInit {
           ]
         }
       }
-
+      //OPCIONES PARA DIBUJAR GRAFICA
       this.options = {
         indexAxis: 'y',
         maintainAspectRatio: false,
@@ -227,12 +258,12 @@ export class InventarioImpresionComponent implements OnInit {
           }
         }
       }
-
-      this.detalles = true;
+      //DIBUJA EL CUADRO DE DIALOGO
+      this.detallesDialog = true;
     })
   }
 
-  //Funciones Editar y Agregar Impresora
+  //DATOS EN EL DIALOGO PARA NUEVO Y EDICION DE IMPRESORA
   openDialogEditar(impresora: Impresora | null){
     this.impresoraEditar = {
       impresoraId: '',
@@ -260,22 +291,58 @@ export class InventarioImpresionComponent implements OnInit {
       };
       this.tituloEditar = `Impresora Nueva`;
     }
-    this.editar = true;
+    this.editarDialog = true;
   }
-
+  //FUNCIONES PARA GUARDAR LAS IMPRESORAS
   guardarCambios(){
     if(this.impresoraEditar.impresoraId == ''){
       this.impresionService.setNuevaImpresora(this.impresoraEditar).pipe(
-        catchError(this.handleError<string>('Nueva Impresora'))
+        //CAPTURADOR DEL ERROR 
+        catchError(this.handleError<string>('nuevaImpresora'))
       ).subscribe(data =>{
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: `${this.impresoraEditar.nombre} Creada Correctamente` });
-        this.listarImpresoras();
+        if(this.errorEditar){
+          this.errorEditar = false;
+        }else{
+          //RESPUESTAS SIN ERRORES
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: `${this.impresoraEditar.nombre} Creada Correctamente` });
+          this.editarDialog = false;
+          this.listarImpresoras();
+        }
       })
     }else{
-      this.impresionService.setEdicionImpresora(this.impresoraEditar).subscribe(data => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: `${this.impresoraEditar.nombre} Editada Correctamente` })
-        this.listarImpresoras();
+      this.impresionService.setEdicionImpresora(this.impresoraEditar).pipe(
+        //CAPTURADOR DEL ERROR
+        catchError(this.handleError<string>('editarImpresora'))
+      ).subscribe(data => {
+        if(this.errorEditar){
+          this.errorEditar = false;
+        }else{
+          //RESPUESTAS SIN ERRORES
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: `${this.impresoraEditar.nombre} Editada Correctamente` });
+          this.editarDialog = false;
+          this.listarImpresoras();
+        }
+        
       })
     }
   }
+
+  //CONFIRMACION DE ELIMINACION
+  openDialogConfirmacion(impresora: Impresora){
+    this.impresoraEditar = impresora;
+    this.tituloEditar = `Eliminar ${this.impresoraEditar.nombre}`
+    this.mensajeElim = 
+    [{severity: 'warn', summary: 'Precaución', detail: `Esta seguro de eliminar la impresora ${this.impresoraEditar.nombre}`}]
+    this.confirmarDialog = true;
+  }
+  //ELIMINACION DE IMPRESORA
+  eliminarImp(){
+    this.impresionService.deleteImpresora(this.impresoraEditar.impresoraId).subscribe(data => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${this.impresoraEditar.nombre} Eliminada` });
+      this.confirmarDialog = false;
+      this.listarImpresoras();
+    })
+    
+  }
+
 }
