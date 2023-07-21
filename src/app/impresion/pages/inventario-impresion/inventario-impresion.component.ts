@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ImpresionService } from '../../services/impresion.service';
-import { Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraReq, PaginacionImpresoraRes, FiltroRefa, RegCambioRefaImp } from '../../interfaces/impresora.interface';
+import { Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraReq, PaginacionImpresoraRes, FiltroRefa, RegCambioRefaImp, RefaccionImpresora } from '../../interfaces/impresora.interface';
 import { Observable, catchError, of, timer } from 'rxjs'
 import { TableLazyLoadEvent } from 'primeng/table';
 import { Message, MessageService } from 'primeng/api';
+
+//Propiedad tipo
+interface Tipo{
+  tipo: string
+}
 
 @Component({
   selector: 'app-inventario-impresion',
@@ -82,11 +87,19 @@ export class InventarioImpresionComponent implements OnInit {
     filter: '',
     skip: 0
   }
+
+
   //FILTRO PARA REFACCIONES
   filtrorefa: FiltroRefa = {
     modelo: '',
     tipo: ''
   }
+  //propiedad tipo
+  tipo: Tipo = {
+    tipo: ''
+  }
+  //TIPOS DE REFACCIONES
+  tipos: Tipo[] = [{tipo: "CONSUMIBLE"}, {tipo: "REFACCION"}];
   //REGISTRO CAMBIO DE REFACCION O CONSUMOBLE
   regCambio: RegCambioRefaImp = {
     cantidad: 0,
@@ -96,6 +109,22 @@ export class InventarioImpresionComponent implements OnInit {
     cont109: 0,
     cont124: 0
   }
+
+  //PROPIEDAD REFACCION
+  refaccion: RefaccionImpresora = {
+    noParte: '',
+    nombre: '',
+    descripcion: '',
+    modeloImpresora: '',
+    tipo: '',
+    vidaUtil: 0,
+    cantidad: 0
+  }
+  //LISTADO DE REFACCIONES
+  refacciones: RefaccionImpresora[] = [];
+
+  scroll: string = "100px";
+
 
   constructor(private impresionService: ImpresionService, private messageService: MessageService){}
 
@@ -368,18 +397,34 @@ export class InventarioImpresionComponent implements OnInit {
 
     this.impresionService.getRefaFiltro(this.filtrorefa).subscribe(data => {
 
-      console.log(data);
-      console.log(data.length);
+      this.refacciones = data;
+      
+      this.regCambio.cantidad = 1,
+      this.regCambio.idImpresora = Number(this.impresoraSelected.impresora.impresoraId);
+      this.regCambio.cont102 = this.impresoraSelected.cont102;
+      this.regCambio.cont109 = this.impresoraSelected.cont109;
+      this.regCambio.cont124 = this.impresoraSelected.cont124;
+      
+
 
     })
 
-
-
-
     this.regCambioDialog = true;
 
-
-
+  }
+  //FUNCION FILTRAR REFACCIONES
+  filtroRefacciones(){
+    this.filtrorefa.tipo = this.tipo.tipo;
+    this.impresionService.getRefaFiltro(this.filtrorefa).subscribe(data => {
+      this.regCambio.idRefaccion = Number(data[0].refaccionId);
+      this.refacciones = data;
+    })
+  }
+  
+  guardarRegistro(){
+    console.log(this.impresoraSelected)
+    console.log(this.regCambio);
+ 
   }
 
 }

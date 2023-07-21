@@ -44,7 +44,7 @@ export interface RegCambioRefaImp {
     regCambioRefaId?: number,
     cantidad: number,
     fecha?: Date,
-    idRefaccion: number,
+    idRefaccion?: number,
     idImpresora: number,
     cont102: number,
     cont109: number,
