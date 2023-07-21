@@ -131,7 +131,7 @@
 </p-dialog>
 
 
-<p-dialog [(visible)]="editarDialog" [style]="{width:'600px', height:'420px'}" [modal]="true">
+<p-dialog [(visible)]="editarDialog" [style]="{width:'600px', height:'460px'}" [modal]="true">
   <ng-template pTemplate="header">
     <span class="text-xl font-bold">{{tituloEditar | titlecase}} </span>
   </ng-template>
@@ -139,19 +139,23 @@
     <div class="col">
       <div class="inputText">
         <div class="etiq"><label htmlFor="nombre">Nombre</label></div>
-        <input pInputText id="nombre" [(ngModel)]="impresoraEditar.nombre" />
+        <input pInputText id="nombre" name="nombre" [(ngModel)]="impresoraEditar.nombre" #nombre="ngModel" required/>
+        <small *ngIf="impresoraEditar.nombre == '' && nombre.touched " id="username-help" class="p-error">Este Campo no puede estar vacio</small>
       </div>
       <div class="inputText">
         <div class="etiq"><label htmlFor="modelo">Modelo</label></div>
-        <input pInputText id="modelo" [(ngModel)]="impresoraEditar.modelo" />
+        <input pInputText id="modelo" [(ngModel)]="impresoraEditar.modelo" #modelo="ngModel"/>
+        <small *ngIf="impresoraEditar.modelo == '' && modelo.touched " id="username-help" class="p-error">Este Campo no puede estar vacio</small>
       </div>
       <div class="inputText">
         <div class="etiq"><label htmlFor="ip">Ip</label></div>
-        <input pInputText id="ip" [(ngModel)]="impresoraEditar.ip" />
+        <input pInputText id="ip" [(ngModel)]="impresoraEditar.ip" #ip="ngModel"/>
+        <small *ngIf="impresoraEditar.ip == '' && ip.touched " id="username-help" class="p-error">Este Campo no puede estar vacio</small>
       </div>
       <div class="inputText">
         <div class="etiq"><label htmlFor="edificio">Edificio</label></div>
-        <input pInputText id="edificio" [(ngModel)]="impresoraEditar.edificio" />
+        <input pInputText id="edificio" [(ngModel)]="impresoraEditar.edificio" #edificio="ngModel" />
+        <small *ngIf="impresoraEditar.edificio == '' && edificio.touched " id="username-help" class="p-error">Este Campo no puede estar vacio</small>
       </div>
     </div>
     <div class="col">
@@ -206,21 +210,21 @@
       </div>
       <div class="inputSelect">
         <div class="etiq"><label htmlFor="modelo">Refaccion</label></div>
-        <p-dropdown [options]="refacciones" [(ngModel)]="refaccion" optionLabel="nombre" scrollHeight="110px"></p-dropdown>
+        <p-dropdown [options]="refacciones" [(ngModel)]="refaccion" optionLabel="nombre" scrollHeight="110px" (onChange)="cambioRefaccion()"></p-dropdown>
       </div>
     </div>
     <div class="fila">
       <div class="inputText">
         <div class="etiq"><label htmlFor="nombre">102</label></div>
-        <input pInputText id="102" [(ngModel)]="regCambio.cont102" />
+        <input type="number" pInputText id="102" [(ngModel)]="regCambio.cont102" />
       </div>
       <div class="inputText">
         <div class="etiq"><label htmlFor="modelo">109</label></div>
-        <input pInputText id="109" [(ngModel)]="regCambio.cont109" />
+        <input type="number" pInputText id="109" [(ngModel)]="regCambio.cont109" />
       </div>
       <div class="inputText">
         <div class="etiq"><label htmlFor="modelo">124</label></div>
-        <input pInputText id="124" [(ngModel)]="regCambio.cont124" />
+        <input type="number" pInputText id="124" [(ngModel)]="regCambio.cont124" />
       </div>
     </div>
   </div>

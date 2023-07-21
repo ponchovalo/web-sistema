@@ -158,10 +158,13 @@ export class InventarioImpresionComponent implements OnInit {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.errores.mensaje });
           this.errorEditar = true;
         }
-
       }
-
-
+      if(operation == "nuevoRegistro"){
+        if(error.status == 404){
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.errores.mensaje });
+          this.errorEditar = true;
+        }
+      }
       return of(result as T);
     };
   }
@@ -338,6 +341,10 @@ export class InventarioImpresionComponent implements OnInit {
     }
     this.editarDialog = true;
   }
+  //VALIDAR CAMPOS
+
+
+
   //FUNCIONES PARA GUARDAR LAS IMPRESORAS
   guardarCambios(){
     if(this.impresoraEditar.impresoraId == ''){
@@ -404,9 +411,8 @@ export class InventarioImpresionComponent implements OnInit {
       this.regCambio.cont102 = this.impresoraSelected.cont102;
       this.regCambio.cont109 = this.impresoraSelected.cont109;
       this.regCambio.cont124 = this.impresoraSelected.cont124;
+      this.regCambio.idRefaccion = Number(data[0].refaccionId);
       
-
-
     })
 
     this.regCambioDialog = true;
@@ -416,14 +422,41 @@ export class InventarioImpresionComponent implements OnInit {
   filtroRefacciones(){
     this.filtrorefa.tipo = this.tipo.tipo;
     this.impresionService.getRefaFiltro(this.filtrorefa).subscribe(data => {
-      this.regCambio.idRefaccion = Number(data[0].refaccionId);
-      this.refacciones = data;
+      if(data.length == 0){
+        this.refacciones = []
+      }else{
+        this.regCambio.idRefaccion = Number(data[0].refaccionId);
+        this.refacciones = data;
+      }
     })
+  }
+
+  cambioRefaccion(){
+    this.regCambio.idRefaccion = Number(this.refaccion.refaccionId);
   }
   
   guardarRegistro(){
-    console.log(this.impresoraSelected)
-    console.log(this.regCambio);
+    if(this.regCambio.cont102 > 0 && this.regCambio.cont109 > 0){
+      if(this.impresoraSelected.impresora.modelo == "C356IF" && this.regCambio.cont124 <= 0){
+        console.log("No puden estar en cero")
+      }else{
+        this.impresionService.setRegistroConsumible(this.regCambio).pipe(
+          //MANEJADOR DE ERROR
+          catchError(this.handleError<string>('nuevoRegistro'))
+        ).subscribe(data => {
+          if(this.errorEditar){
+            this.errorEditar = false;
+          }else{
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: `Se agregó un nuevo registro para ${this.impresoraSelected.impresora.nombre}` });
+            this.regCambioDialog = false;
+          }
+        })
+        console.log(this.regCambio);
+      }
+    }else{
+      console.log("No puden estar en cero")
+    }
+    
  
   }
 
