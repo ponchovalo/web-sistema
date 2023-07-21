@@ -1,4 +1,4 @@
-<p-menubar  [model]="items">
+<p-menubar  [model]="items" [style]="{'height': '100%'}">
     <ng-template pTemplate="start" >
         <div class="flex flex-row align-content-center">
             <img src="assets/logo.png" height="40" class="ml-4 mr-6 mt-2">
@@ -7,20 +7,20 @@
     </ng-template>
 
     <ng-template pTemplate="end">
-        <button pButton 
+        <button pButton
             label="Ildefonso Valenzuela"
-            type="button" 
-            icon="pi pi-user" 
+            type="button"
+            icon="pi pi-user"
             iconPos="left"
             class="p-button-text p-button-primary p-d-inline mx-1 h-2rem"></button>
 
-        <button pButton 
+        <button pButton
             label="Cerrar Sesion"
-            type="button" 
-            icon="pi pi-sign-out" 
+            type="button"
+            icon="pi pi-sign-out"
             iconPos="left"
             class="p-button-text p-button-secondary p-d-inline mx-1 h-2rem"
-            ></button>        
+            ></button>
     </ng-template>
 </p-menubar>
 

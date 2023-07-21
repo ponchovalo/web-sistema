@@ -1,8 +1,15 @@
-.sidenav{
-    background-color: #8e9b9b;
-    width: 250px;
+header{
+  height: 10%;
+}
+.container{
+  display: flex;
+  height: 85%;
 }
 
-.container{
-    height: 86%;
+.sidebar{
+    width: 20%;
+}
+
+.seccion{
+  width: 80%;
 }

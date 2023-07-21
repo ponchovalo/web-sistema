@@ -60,7 +60,7 @@ export interface FiltroImpresora {
     Ubicacion: string
 }
 
-export interface PaginacionImpresoraReq{
+export interface PaginacionReq{
   pageSize: number,
   page: number,
   sort: string,
@@ -75,4 +75,12 @@ export interface PaginacionImpresoraRes{
   pageQuantity: number,
   totalRows: number,
   data: ImpresoraPing[]
+}
+
+export interface PaginacionRefaccionRes{
+  pageSize: number,
+  page: number,
+  pageQuantity: number,
+  totalRows: number,
+  data: RefaccionImpresora[]
 }

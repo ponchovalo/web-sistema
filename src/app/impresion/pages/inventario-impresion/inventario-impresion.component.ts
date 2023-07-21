@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImpresionService } from '../../services/impresion.service';
-import { Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraReq, PaginacionImpresoraRes, FiltroRefa, RegCambioRefaImp, RefaccionImpresora } from '../../interfaces/impresora.interface';
+import { Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionReq, PaginacionImpresoraRes, FiltroRefa, RegCambioRefaImp, RefaccionImpresora } from '../../interfaces/impresora.interface';
 import { Observable, catchError, of, timer } from 'rxjs'
 import { TableLazyLoadEvent } from 'primeng/table';
 import { Message, MessageService } from 'primeng/api';
@@ -79,7 +79,7 @@ export class InventarioImpresionComponent implements OnInit {
     data: []
   }
   //incializacion de instancia de peticion de paginacion
-  paginacionReq: PaginacionImpresoraReq = {
+  paginacionReq: PaginacionReq = {
     pageSize: 10,
     page: 1,
     sort: 'serie',
@@ -405,14 +405,14 @@ export class InventarioImpresionComponent implements OnInit {
     this.impresionService.getRefaFiltro(this.filtrorefa).subscribe(data => {
 
       this.refacciones = data;
-      
+
       this.regCambio.cantidad = 1,
       this.regCambio.idImpresora = Number(this.impresoraSelected.impresora.impresoraId);
       this.regCambio.cont102 = this.impresoraSelected.cont102;
       this.regCambio.cont109 = this.impresoraSelected.cont109;
       this.regCambio.cont124 = this.impresoraSelected.cont124;
       this.regCambio.idRefaccion = Number(data[0].refaccionId);
-      
+
     })
 
     this.regCambioDialog = true;
@@ -434,11 +434,11 @@ export class InventarioImpresionComponent implements OnInit {
   cambioRefaccion(){
     this.regCambio.idRefaccion = Number(this.refaccion.refaccionId);
   }
-  
+
   guardarRegistro(){
     if(this.regCambio.cont102 > 0 && this.regCambio.cont109 > 0){
       if(this.impresoraSelected.impresora.modelo == "C356IF" && this.regCambio.cont124 <= 0){
-        console.log("No puden estar en cero")
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `Los contadores no pueden estar en cero` });
       }else{
         this.impresionService.setRegistroConsumible(this.regCambio).pipe(
           //MANEJADOR DE ERROR
@@ -454,10 +454,10 @@ export class InventarioImpresionComponent implements OnInit {
         console.log(this.regCambio);
       }
     }else{
-      console.log("No puden estar en cero")
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `Los contadores no pueden estar en cero` });
     }
-    
- 
+
+
   }
 
 }

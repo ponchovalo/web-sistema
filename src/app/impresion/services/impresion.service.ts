@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FiltroImpresora, FiltroRefa, Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraReq, PaginacionImpresoraRes,  RefaccionImpresora, RegCambioRefaImp } from '../interfaces/impresora.interface';
+import { FiltroImpresora, FiltroRefa, Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraRes,  PaginacionRefaccionRes,  PaginacionReq,  RefaccionImpresora, RegCambioRefaImp } from '../interfaces/impresora.interface';
 import { environment } from 'src/environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
@@ -13,8 +13,8 @@ export class ImpresionService {
   impresoras?: Impresora[] = [];
 
   constructor(private http: HttpClient) { }
-  
-  
+
+
 
   //Endpoints Impresoras
   //Listado de Impresoras
@@ -30,7 +30,7 @@ export class ImpresionService {
     return this.http.get<ImpresoraDetalle>(`${this.urlBase}/impresoras/Detalle/${id}`)
   }
   //Listado Impresoras Paginacion
-  getImpresoraPaginacion(paginacion: PaginacionImpresoraReq): Observable<PaginacionImpresoraRes>{
+  getImpresoraPaginacion(paginacion: PaginacionReq): Observable<PaginacionImpresoraRes>{
     return this.http.post<PaginacionImpresoraRes>(`${this.urlBase}/impresoras/paginacionping/`, paginacion)
   }
   //Agregar Nueva Impresora
@@ -53,6 +53,10 @@ export class ImpresionService {
   getAlmacen(): Observable<RefaccionImpresora[]>{
     return this.http.get<RefaccionImpresora[]>(`${this.urlBase}/almacen`)
   }
+  //Listado de Paginacion Almacen
+  getPaginacionAlmacen(paginacion: PaginacionReq):Observable<PaginacionRefaccionRes>{
+    return this.http.post<PaginacionRefaccionRes>(`${this.urlBase}/almacen/paginacion`, paginacion)
+  }
   //Agregar Refacciones Nuevas
   setRefaccion(refaccion: RefaccionImpresora): Observable<string>{
     return this.http.post<string>(`${this.urlBase}/almacen/refaccion`, refaccion)
@@ -72,7 +76,7 @@ export class ImpresionService {
   getRefaFiltro(filtro: FiltroRefa): Observable<RefaccionImpresora[]>{
     return this.http.post<RefaccionImpresora[]>(`${this.urlBase}/almacen/filtro`, filtro);
   }
-  
+
   getEdificios(): Observable<string[]>{
     return this.http.get<string[]>(`${this.urlBase}/impresoras/edificios`);
   }

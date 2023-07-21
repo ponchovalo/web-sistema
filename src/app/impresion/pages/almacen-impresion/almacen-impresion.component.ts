@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImpresionService } from '../../services/impresion.service';
-import { RefaccionImpresora } from '../../interfaces/impresora.interface';
-import { MatDialog } from '@angular/material/dialog';
-import { EdicionRefaccionComponent } from '../../components/edicion-refaccion/edicion-refaccion.component';
-import { DialogRef } from '@angular/cdk/dialog';
+import { PaginacionRefaccionRes, PaginacionReq, RefaccionImpresora } from '../../interfaces/impresora.interface';
+import { TableLazyLoadEvent } from 'primeng/table';
 
 
 @Component({
@@ -13,48 +11,92 @@ import { DialogRef } from '@angular/cdk/dialog';
 })
 export class AlmacenImpresionComponent implements OnInit{
 
-  constructor(private impresionService: ImpresionService, private dialog: MatDialog ){}
+  cargando:boolean = false;
 
-  encabezado: string[] = ["NOMBRE", "NO PARTE", "MODELO IMPRESORA", "TIPO", "CANTIDAD", "ACCIONES"];
-  listaRefacciones?: RefaccionImpresora[];
+  termino: string = "";
+
+  paginacionReq: PaginacionReq = {
+    pageSize: 10,
+    page: 1,
+    sort: 'noParte',
+    sortDirection: 'asc',
+    filter: '',
+    skip: 0
+  }
+
+  paginacionRes: PaginacionRefaccionRes = {
+    pageSize: 0,
+    page: 0,
+    pageQuantity: 0,
+    totalRows: 0,
+    data: []
+  }
+
+  constructor(private impresionService: ImpresionService){}
+
+
+
 
   ngOnInit(): void {
-    this.getListadoRefacciones();
-
+    this.listarRefacciones();
   }
 
-  getListadoRefacciones(){
-    this.impresionService.getAlmacen().subscribe(data => {
-      this.listaRefacciones = data;
+  listarRefacciones(){
+    this.impresionService.getPaginacionAlmacen(this.paginacionReq).subscribe(data => {
+      this.paginacionRes = data;
     })
   }
 
-  agregarNueva(){
-    var dialogRef = this.dialog.open(EdicionRefaccionComponent, {
-      width: "700px"
-    })
-    dialogRef.afterClosed().subscribe(()=>{
-      this.getListadoRefacciones();
-    })
+  loadData(event: TableLazyLoadEvent){
+    this.cargando = true;
+
+    this.paginacionReq.pageSize = event.rows!;
+    this.paginacionReq.skip = event.first!;
+
+    if(event.sortField == undefined){
+      this.paginacionReq.sort = 'noParte';
+      this.impresionService.getPaginacionAlmacen(this.paginacionReq).subscribe(data =>{
+        this.cargando = false;
+        this.paginacionRes = data;
+      })
+    }else{
+      if(event.sortOrder == 1){
+        this.paginacionReq.sortDirection = 'desc'
+        this.paginacionReq.sort = event.sortField.toString();
+        this.impresionService.getPaginacionAlmacen(this.paginacionReq).subscribe(data =>{
+          this.cargando = false;
+          this.paginacionRes = data;
+        })
+      }else{
+        this.paginacionReq.sortDirection = 'asc'
+        this.paginacionReq.sort = event.sortField.toString();
+        this.impresionService.getPaginacionAlmacen(this.paginacionReq).subscribe(data =>{
+          this.cargando = false;
+          this.paginacionRes = data;
+        })
+      }
+    }
+
+
   }
 
-  editarRefaccion(refa: RefaccionImpresora): void{
-    var dialogRef = this.dialog.open(EdicionRefaccionComponent, {
-      width: "700px",
-      data: {refaccion: refa}
-    })
-    dialogRef.afterClosed().subscribe(()=>{
-      this.getListadoRefacciones();
-    })
+  buscar(){
+    this.paginacionReq.filter = this.termino;
+    this.listarRefacciones();
   }
 
-  eliminarRefaccion(refa: RefaccionImpresora):void{
-    let id: number = parseInt(refa.refaccionId!);
-    this.impresionService.deleteRefaccion(id).subscribe(() => {
-      this.getListadoRefacciones();
-    });
-    
+  openDialogEditar(){
+
   }
-  
+
+  getSeverity(){
+    return "success"
+  }
+
+  openDialogConfirmacion(){
+
+  }
+
+
 
 }

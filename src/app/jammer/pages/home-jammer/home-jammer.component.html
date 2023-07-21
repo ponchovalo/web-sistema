@@ -1,12 +1,13 @@
-
-<app-menu-bar (menuToggle)="menu.toggle()" ></app-menu-bar>
-<mat-drawer-container class="container">
-    <mat-drawer class="sidenav" #menu mode="side" opened>
-        <app-sidebar [seccion]="seccion"></app-sidebar>
-    </mat-drawer>
-
-    <mat-drawer-content>
-        <router-outlet>
-        </router-outlet>
-    </mat-drawer-content>
-</mat-drawer-container>
+<div class="grid" style="height: 13%; margin: 0;">
+  <div class="col" style="padding: 0;">
+    <app-menu-bar></app-menu-bar>
+  </div>
+</div>
+<div class="grid" style="height: 87%; margin: 0;">
+  <div class="col-fixed" style="padding: 0rem; width: 280px;">
+    <app-sidebar [seccion]="seccion"></app-sidebar>
+  </div>
+  <div class="col" style="padding: 0rem; ">
+    <router-outlet></router-outlet>
+  </div>
+</div>

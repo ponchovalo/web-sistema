@@ -1,43 +1,60 @@
-<div class="contenedor">
 
-    <div class="header">
-        <div class="title">
-            <h2>Almacen de Refacciones</h2>
-        </div>
+<div class="contenedor" style="margin: 1rem; border: 1px solid #4dbed4;">
+  <p-table  #dt
+            styleClass="p-datatable-sm"
+            [value]="paginacionRes.data"
+            [lazy]="true"
+            (onLazyLoad)="loadData($event)"
+            [paginator]="true"
+            [rows]="10"
+            [rowsPerPageOptions]="[10, 25, 50]"
+            [totalRecords]="paginacionRes.totalRows"
+            [loading]="cargando"
+            [rowHover]="true"
+            >
 
-        <div class="campo">
-            <input placeholder="Buscar">
-        </div>
-        <button class="botonMenu" mat-stroked-button>ENTRADAS</button>
-        <button class="botonMenu" mat-stroked-button>SALIDAS</button>
-        <button class="botonMenu" mat-stroked-button (click)="agregarNueva()">AGREGAR</button>
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+          <h2 class="m-0">Almacen de Refacciones</h2>
+          <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input  [(ngModel)]="termino" pInputText type="text" placeholder="Buscar..."  (change)="buscar()" />
+          </span>
+          <p-button icon="pi pi-plus-circle" (click)="openDialogEditar()" label="Nuevo" styleClass="p-button-text p-button-secondary mt-2"></p-button>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header" style="background-color: 'red'">
+      <tr>
+          <th pSortableColumn="noParte" style="min-width:5rem">NO PARTE<p-sortIcon field="noPate"></p-sortIcon></th>
+          <th pSortableColumn="nombre" style="min-width:5rem">NOMBRE <p-sortIcon field="nombre"></p-sortIcon></th>
+          <th pSortableColumn="modeloImpresora" style="min-width:5rem">MODELO IMPRESORA <p-sortIcon field="modeloImpresora"></p-sortIcon></th>
+          <th pSortableColumn="tipo" style="min-width:5rem">TIPO <p-sortIcon field="tipo"></p-sortIcon></th>
+          <th pSortableColumn="cantidad" style="min-width:5rem">STOCK <p-sortIcon field="cantidad"></p-sortIcon></th>
+          <th>ALERTA</th>
+          <th>ACCIONES</th>
+      </tr>
+    </ng-template>
 
 
-    </div>
+    <ng-template pTemplate="body" let-refaccion>
 
-    <div class="content">
-        <table class="contenidotabla">
-            <thead>
-                <tr>
-                    <th *ngFor="let titulo of encabezado">{{titulo}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let refaccion of listaRefacciones">
-                    <td>{{refaccion.nombre}}</td>
-                    <td>{{refaccion.noParte}}</td>
-                    <td>{{refaccion.modeloImpresora}}</td>
-                    <td>{{refaccion.tipo}}</td>
-                    <td>{{refaccion.cantidad}}</td>
-                    <td>
-                        <div class="containerCell">
-                            <mat-icon class="botonAdd" id="botones" (click)="editarRefaccion(refaccion)" >edit</mat-icon>
-                            <mat-icon class="botonDelete" id="botones" (click)="eliminarRefaccion(refaccion)" >delete</mat-icon>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+      <tr>
+          <td>{{refaccion.noParte}}</td>
+          <td>{{refaccion.nombre}}</td>
+          <td>{{refaccion.modeloImpresora}}</td>
+          <td>{{refaccion.tipo}}</td>
+          <td>{{refaccion.cantidad}}</td>
+          <td><p-tag [value]="" [severity]="getSeverity()"></p-tag></td>
+          <td>
+              <button pButton pRipple icon="pi pi-pencil"
+                      class="p-button-sm p-button-rounded p-button-primary p-button-text"
+                      (click)="openDialogEditar()" ></button>
+              <button pButton pRipple icon="pi pi-trash"
+                      class="p-button-sm p-button-rounded p-button-danger p-button-text"
+                      (click)="openDialogConfirmacion()" ></button>
+          </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>
-

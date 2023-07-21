@@ -1,17 +1,17 @@
-<div class="header">
-  <app-menu-bar></app-menu-bar>
+
+<div class="grid" style="height: 13%; margin: 0;">
+  <div class="col" style="padding: 0;">
+    <app-menu-bar></app-menu-bar>
+  </div>
 </div>
-<div class="container">
-  <div class="sidebar">
+<div class="grid" style="height: 87%; margin: 0;">
+  <div class="col-fixed" style="padding: 0rem; width: 280px;">
     <app-sidebar [seccion]="seccion"></app-sidebar>
   </div>
-  <div class="seccion">
+  <div class="col" style="padding: 0rem; ">
     <router-outlet></router-outlet>
   </div>
 </div>
-
-
-
 
 
 
