@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImpresionService } from '../../services/impresion.service';
-import { Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraReq, PaginacionImpresoraRes } from '../../interfaces/impresora.interface';
+import { Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraReq, PaginacionImpresoraRes, FiltroRefa, RegCambioRefaImp } from '../../interfaces/impresora.interface';
 import { Observable, catchError, of, timer } from 'rxjs'
 import { TableLazyLoadEvent } from 'primeng/table';
 import { Message, MessageService } from 'primeng/api';
@@ -82,6 +82,20 @@ export class InventarioImpresionComponent implements OnInit {
     filter: '',
     skip: 0
   }
+  //FILTRO PARA REFACCIONES
+  filtrorefa: FiltroRefa = {
+    modelo: '',
+    tipo: ''
+  }
+  //REGISTRO CAMBIO DE REFACCION O CONSUMOBLE
+  regCambio: RegCambioRefaImp = {
+    cantidad: 0,
+    idRefaccion: 0,
+    idImpresora: 0,
+    cont102: 0,
+    cont109: 0,
+    cont124: 0
+  }
 
   constructor(private impresionService: ImpresionService, private messageService: MessageService){}
 
@@ -115,7 +129,7 @@ export class InventarioImpresionComponent implements OnInit {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.errores.mensaje });
           this.errorEditar = true;
         }
-        
+
       }
 
 
@@ -299,7 +313,7 @@ export class InventarioImpresionComponent implements OnInit {
   guardarCambios(){
     if(this.impresoraEditar.impresoraId == ''){
       this.impresionService.setNuevaImpresora(this.impresoraEditar).pipe(
-        //CAPTURADOR DEL ERROR 
+        //CAPTURADOR DEL ERROR
         catchError(this.handleError<string>('nuevaImpresora'))
       ).subscribe(data =>{
         if(this.errorEditar){
@@ -324,7 +338,7 @@ export class InventarioImpresionComponent implements OnInit {
           this.editarDialog = false;
           this.listarImpresoras();
         }
-        
+
       })
     }
   }
@@ -333,7 +347,7 @@ export class InventarioImpresionComponent implements OnInit {
   openDialogConfirmacion(impresora: Impresora){
     this.impresoraEditar = impresora;
     this.tituloEditar = `Eliminar ${this.impresoraEditar.nombre}`
-    this.mensajeElim = 
+    this.mensajeElim =
     [{severity: 'warn', summary: 'Precaución', detail: `Esta seguro de eliminar la impresora ${this.impresoraEditar.nombre}`}]
     this.confirmarDialog = true;
   }
@@ -344,12 +358,28 @@ export class InventarioImpresionComponent implements OnInit {
       this.confirmarDialog = false;
       this.listarImpresoras();
     })
-    
+
   }
 
   //AGREGAR CAMBIO DE REFACCION
   openRegCambioDialog(){
+    this.filtrorefa.modelo = this.impresoraSelected.impresora.modelo;
+    this.filtrorefa.tipo = "CONSUMIBLE";
+
+    this.impresionService.getRefaFiltro(this.filtrorefa).subscribe(data => {
+
+      console.log(data);
+      console.log(data.length);
+
+    })
+
+
+
+
     this.regCambioDialog = true;
+
+
+
   }
 
 }
