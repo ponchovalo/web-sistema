@@ -84,3 +84,9 @@ export interface PaginacionRefaccionRes{
   totalRows: number,
   data: RefaccionImpresora[]
 }
+export interface EntradaRefaccion{
+    idRefaccion: number;
+    noParte?: string;
+    nombre?: string;
+    cantidad: number;
+}

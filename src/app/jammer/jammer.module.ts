@@ -5,7 +5,6 @@ import { JammerRoutingModule } from './jammer-routing.module';
 import { HomeJammerComponent } from './pages/home-jammer/home-jammer.component';
 import { InventarioJammerComponent } from './pages/inventario-jammer/inventario-jammer.component';
 import { SharedModule } from '../shared/shared.module';
-import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
@@ -15,7 +14,6 @@ import { MaterialModule } from '../material/material.module';
   ],
   imports: [
     CommonModule,
-    MaterialModule,
     JammerRoutingModule,
     SharedModule
   ]

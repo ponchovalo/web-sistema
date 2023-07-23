@@ -5,7 +5,6 @@ import { WyseRoutingModule } from './wyse-routing.module';
 import { InventarioWyseComponent } from './pages/inventario-wyse/inventario-wyse.component';
 import { HomeWyseComponent } from './pages/home-wyse/home-wyse.component';
 import { SharedModule } from '../shared/shared.module';
-import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
@@ -16,8 +15,7 @@ import { MaterialModule } from '../material/material.module';
   imports: [
     CommonModule,
     WyseRoutingModule,
-    SharedModule,
-    MaterialModule
+    SharedModule
   ]
 })
 export class WyseModule { }

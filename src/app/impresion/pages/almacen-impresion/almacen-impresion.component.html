@@ -1,5 +1,6 @@
 
-<div class="contenedor" style="margin: 1rem; border: 1px solid #4dbed4;">
+<p-toast></p-toast>
+<div style="margin: 1rem; border: 1px solid #4dbed4;">
   <p-table  #dt
             styleClass="p-datatable-sm"
             [value]="paginacionRes.data"
@@ -10,17 +11,18 @@
             [rowsPerPageOptions]="[10, 25, 50]"
             [totalRecords]="paginacionRes.totalRows"
             [loading]="cargando"
-            [rowHover]="true"
-            >
+            [rowHover]="true">
 
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
           <h2 class="m-0">Almacen de Refacciones</h2>
+          
           <span class="p-input-icon-left">
               <i class="pi pi-search"></i>
               <input  [(ngModel)]="termino" pInputText type="text" placeholder="Buscar..."  (change)="buscar()" />
           </span>
-          <p-button icon="pi pi-plus-circle" (click)="openDialogEditar()" label="Nuevo" styleClass="p-button-text p-button-secondary mt-2"></p-button>
+          <p-button icon="pi pi-check-circle" (click)="openDialogEntrada()" label="Entrada de Refacciones" styleClass="p-button-text p-button-secondary mt-2"></p-button>
+          <p-button icon="pi pi-plus-circle" (click)="openDialogEditar(null)" label="Nuevo" styleClass="p-button-text p-button-secondary mt-2"></p-button>
       </div>
     </ng-template>
 
@@ -45,16 +47,186 @@
           <td>{{refaccion.modeloImpresora}}</td>
           <td>{{refaccion.tipo}}</td>
           <td>{{refaccion.cantidad}}</td>
-          <td><p-tag [value]="" [severity]="getSeverity()"></p-tag></td>
+          <td><p-tag [value]="" [severity]="getSeverity(refaccion.cantidad)">{{etiqueta}}</p-tag></td>
           <td>
               <button pButton pRipple icon="pi pi-pencil"
                       class="p-button-sm p-button-rounded p-button-primary p-button-text"
-                      (click)="openDialogEditar()" ></button>
+                      (click)="openDialogEditar(refaccion)" ></button>
               <button pButton pRipple icon="pi pi-trash"
                       class="p-button-sm p-button-rounded p-button-danger p-button-text"
-                      (click)="openDialogConfirmacion()" ></button>
+                      (click)="openDialogConfirmacion(refaccion)" ></button>
           </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
+
+
+<p-dialog [(visible)]="entradaDialog" [style]="{width:'900px', height:'500px'}" [modal]="true">
+  <ng-template pTemplate="header">
+    <span class="text-xl font-bold">{{tituloDialog | titlecase}} </span>
+  </ng-template>
+  <div class="containerEntrada">
+    <div class="filaEntrada">
+      <div style="width: 100%;  margin: 0; border: 1px solid #4dbed4;">
+        <p-table  #dt
+                  styleClass="p-datatable-sm"
+                  [value]="entradas"
+                  [rowHover]="true"
+                  [scrollable]="true" 
+                  scrollHeight="220px">
+      
+          <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <div class="inputSelect">
+                  <div class="etiq"><label htmlFor="tipo">Tipo</label></div>
+                  <p-dropdown [options]="tipos" 
+                              optionValue="nombre"
+                              [(ngModel)]="filtro.tipo" 
+                              optionLabel="nombre" 
+                              scrollHeight="110px"
+                              (onChange)="filtrarRefacciones()" 
+                              [style]="{ 'width': '170px', 'height':'40px' }"></p-dropdown>
+                </div>
+                <div class="inputSelect">
+                  <div class="etiq"><label htmlFor="modelo">Modelo</label></div>
+                  <p-dropdown [options]="modelos" 
+                              optionValue="nombre"
+                              [(ngModel)]="filtro.modelo"
+                              optionLabel="nombre" 
+                              scrollHeight="110px"
+                              (onChange)="filtrarRefacciones()" 
+                              [style]="{ 'width': '170px', 'height':'40px' }"></p-dropdown>
+                </div>
+                <div class="inputSelect">
+                  <div class="etiq"><label htmlFor="modelo">Refaccion</label></div>
+                  <p-dropdown [options]="refaccionesFiltro" 
+                              optionLabel="nombre" 
+                              [(ngModel)]="selectEntrdaRefa"
+                              scrollHeight="110px" 
+                              [style]="{ 'width': '170px', 'height':'40px' }"></p-dropdown>
+                </div>
+                <div class="inputText">
+                  <div class="etiq"><label htmlFor="cantidad">Cantidad</label></div>
+                  <input type="number" id="cantidad" name="cantidad" pInputText [(ngModel)]="selectEntrdaRefa.cantidad"/>
+                </div>
+          
+                <div class="inputText">
+                  <p-button icon="pi pi-plus-circle" (onClick)="agregarEntrada()" label="Agregar" styleClass="p-button-text p-button-secondary mt-2"></p-button>
+                </div>
+            </div>
+          </ng-template>
+      
+          <ng-template pTemplate="header" style="background-color: 'red'">
+            <tr>
+                <th style="min-width:5rem">NO PARTE</th>
+                <th style="min-width:5rem">NOMBRE</th>
+                <th style="min-width:5rem">CANTIDAD</th>
+                <th>ACCIONES</th>
+            </tr>
+          </ng-template>
+      
+      
+          <ng-template pTemplate="body" let-entrada>
+      
+            <tr>
+                <td>{{entrada.noParte}}</td>
+                <td>{{entrada.nombre}}</td>
+                <td>{{entrada.cantidad}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil"
+                            class="p-button-sm p-button-rounded p-button-primary p-button-text"
+                            ></button>
+                    <button pButton pRipple icon="pi pi-trash"
+                            class="p-button-sm p-button-rounded p-button-danger p-button-text"
+                            ></button>
+                </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-times"  label="Guardar" styleClass="p-button-text p-button-secondary mt-2"></p-button>
+    <p-button icon="pi pi-times" (click)="cancelarEntrada()" label="Cancelar" styleClass="p-button-text p-button-danger mt-2"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="editarDialog" [style]="{width:'500px', height:'450px'}" [modal]="true">
+  <ng-template pTemplate="header">
+    <span class="text-xl font-bold">{{tituloDialog}} </span>
+  </ng-template>
+
+  <div class="container">
+    <div class="fila">
+      <div class="inputSelect">
+        <div class="etiq"><label htmlFor="modelo">Modelo</label></div>
+        <p-dropdown [options]="modelos" 
+                    optionValue="nombre"
+                    [(ngModel)]="refaccionSelected.modeloImpresora"
+                    optionLabel="nombre" 
+                    scrollHeight="110px" #modelo="ngModel"
+                    [style]="{ 'width': '170px', 'height':'40px' }"></p-dropdown>
+                    <small *ngIf="refaccionSelected.modeloImpresora == '' && modelo.touched " id="username-help" class="p-error">Este Campo no puede estar vacio</small>
+      </div>
+      <div class="inputSelect">
+        <div class="etiq"><label htmlFor="tipo">Tipo</label></div>
+        <p-dropdown [options]="tipos" 
+                    optionValue="nombre"
+                    [(ngModel)]="refaccionSelected.tipo" 
+                    optionLabel="nombre" 
+                    scrollHeight="110px" #tipo = "ngModel"
+                    [style]="{ 'width': '170px', 'height':'40px' }"></p-dropdown>
+                    <small *ngIf="refaccionSelected.tipo == '' && tipo.touched " id="username-help" class="p-error">Este Campo no puede estar vacio</small>
+      </div>
+    </div>
+    <div class="fila">
+      <div class="inputText"> 
+        <div class="etiq"><label htmlFor="noParte">No. Parte</label></div>
+        <input type="text" pInputText [(ngModel)]="refaccionSelected.noParte" #noParte = "ngModel"/>
+        <small *ngIf="refaccionSelected.noParte == '' && noParte.touched " id="username-help" class="p-error">Este Campo no puede estar vacio</small>
+      </div>
+      <div class="inputText">
+        <div class="etiq"><label htmlFor="nombre">Nombre</label></div>
+        <input type="text" name="nombre" pInputText [(ngModel)]="refaccionSelected.nombre" #nombre="ngModel"/>
+        <small *ngIf="refaccionSelected.nombre == '' && nombre.touched " id="username-help" class="p-error">Este Campo no puede estar vacio</small>
+      </div>
+
+    </div>
+    <div class="fila">
+      <div class="inputText" >
+        <div class="etiq"><label for="descripcion">Descripcion</label></div>
+        <input type="text" name="descripcion" pInputText [(ngModel)]="refaccionSelected.descripcion" #descripcion="ngModel"/>
+        <small *ngIf="refaccionSelected.descripcion == '' && descripcion.touched " id="username-help" class="p-error">Este Campo no puede estar vacio</small>
+      </div>
+      <div class="inputText">
+        <div class="etiq"><label htmlFor="vidaUtil">Vida Util</label></div>
+        <input type="number" id="vidaUtil" name="vidaUtil" pInputText [(ngModel)]="refaccionSelected.vidaUtil" #vidaUtil="ngModel"/>
+      </div>
+    </div>
+  </div>
+
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-times" (onClick)="guardarRefaccion()"  label="Guardar" styleClass="p-button-text p-button-secondary mt-2"></p-button>
+    <p-button icon="pi pi-times" (onClick)="cerrarDialogEditar()"  label="Cancelar" styleClass="p-button-text p-button-danger mt-2"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="confirmarDialog" [style]="{width:'600px', height:'250px'}" [modal]="true">
+  <ng-template pTemplate="header">
+    <span class="text-xl font-bold">{{tituloDialog}} </span>
+  </ng-template>
+
+  <div class="card">
+    <p-messages [(value)]="mensajeElim" [enableService]="false" [closable]="false"></p-messages>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-times"  (onClick)="eliminarRefaccion()"  label="Confirmar" styleClass="p-button-text p-button-secondary mt-2"></p-button>
+    <p-button icon="pi pi-times" (click)="confirmarDialog = false" label="Cancelar" styleClass="p-button-text p-button-danger mt-2"></p-button>
+  </ng-template>
+</p-dialog>

@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { RegistrarCambioComponent } from '../../components/registrar-cambio/registrar-cambio.component';
 
 @Component({
   selector: 'app-control-toner',
@@ -9,12 +7,8 @@ import { RegistrarCambioComponent } from '../../components/registrar-cambio/regi
 })
 export class ControlTonerComponent {
 
-  constructor (private dialog: MatDialog){}
+  constructor (){}
 
-  dialogReg(){
-    this.dialog.open(RegistrarCambioComponent, {
-      width: '700px'
-    })
-  }
+ 
 
 }
