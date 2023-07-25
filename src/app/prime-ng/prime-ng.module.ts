@@ -14,6 +14,7 @@ import { TreeTableModule } from 'primeng/treetable';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
+import { PanelModule } from 'primeng/panel';
 
 
 
@@ -35,7 +36,8 @@ import { MessagesModule } from 'primeng/messages';
     TreeTableModule,
     TagModule,
     ToastModule,
-    MessagesModule
+    MessagesModule,
+    PanelModule
   ],
   exports:[
     InputTextModule,
@@ -51,7 +53,8 @@ import { MessagesModule } from 'primeng/messages';
     TreeTableModule,
     TagModule,
     ToastModule,
-    MessagesModule
+    MessagesModule,
+    PanelModule
   ]
 })
 export class PrimeNgModule { }

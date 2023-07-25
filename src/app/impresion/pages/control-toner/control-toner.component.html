@@ -1,1 +1,67 @@
-<div>Control de Toner</div>
+<div class="container">
+    <div class="elemento1">
+        <p-panel>
+            <ng-template pTemplate="header"> <span class="text-secondary font-semibold text-x2">Agregar Registro de Toner</span>
+            </ng-template>
+            
+                <div class="body1">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="edificios"
+                                    [style]="{'width':'200px','height':'40px'}"
+                                    optionValue="edificio"
+                                    (onChange)="listarUbicaciones($event.value)"
+                                    [(ngModel)]="filtro.Edificio" 
+                                    placeholder="Edificio" 
+                                    optionLabel="edificio" 
+                                    inputId="float-label"></p-dropdown>
+                        <label for="float-label">Edificio</label>
+                    </span>
+                    <span class="p-float-label">
+                        <p-dropdown [options]="ubicaciones"
+                                    [style]="{'width':'200px','height':'40px'}"
+                                    [(ngModel)]="filtro.Ubicacion" 
+                                    optionValue="ubicacion"
+                                    (onChange)="listarImpresoras()"
+                                    placeholder="Ubicacion" 
+                                    optionLabel="ubicacion" 
+                                    inputId="float-label"></p-dropdown>
+                        <label for="float-label">Ubicacion</label>
+                    </span>
+                    <span class="p-float-label">
+                        <p-dropdown [options]="impresoras"
+                                    [style]="{'width':'200px','height':'40px'}"
+                                    optionValue="nombre"
+                                    [(ngModel)]="impresoraSelect"
+                                    placeholder="Impresora" 
+                                    optionLabel="nombre" 
+                                    inputId="float-label"></p-dropdown>
+                        <label for="float-label">Impresora</label>
+                    </span>
+
+                </div>
+
+            <ng-template pTemplate="footer">
+
+            </ng-template>
+        </p-panel>
+    </div>
+    <div class="elemento2">
+        <p-panel>
+            <ng-template pTemplate="header"> <span class="text-secondary font-semibold text-x2">Reportes Filtro</span>
+            </ng-template>
+            
+                <div class="body">
+
+                </div>
+
+            <ng-template pTemplate="footer"> 
+                
+            </ng-template>
+        </p-panel>
+    </div>
+  
+</div>
+
+
+
+

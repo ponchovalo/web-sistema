@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .elemento1{
+    width: 80%;
+    height: 25%;
+  }
+  .elemento2{
+    width: 80%;
+    height: 65%;
+  }
+
+  .body1{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1.5rem;
+    height: 100%;
+  }
+

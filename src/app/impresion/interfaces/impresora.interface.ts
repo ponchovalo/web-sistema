@@ -51,6 +51,25 @@ export interface RegCambioRefaImp {
     cont124: number
 }
 
+export interface RegCambioRefaImpFull {
+    regCambioRefaId?: number,
+    cantidad: number,
+    fecha?: Date,
+    refaccion: RefaccionImpresora,
+    impresora: Impresora,
+    cont102: number,
+    cont109: number,
+    cont124: number
+}
+
+export interface PaginacionControTonerRes{
+    pageSize: number,
+    page: number,
+    pageQuantity: number,
+    totalRows: number,
+    data: RegCambioRefaImpFull[]
+  }
+
 export interface FiltroRefa {
     modelo: string;
     tipo: string

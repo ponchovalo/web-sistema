@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Entrada, EntradaRefaccion, FiltroImpresora, FiltroRefa, Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraRes,  PaginacionRefaccionRes,  PaginacionReq,  RefaccionImpresora, RegCambioRefaImp } from '../interfaces/impresora.interface';
+import { Entrada, PaginacionControTonerRes, EntradaRefaccion, FiltroImpresora, FiltroRefa, Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraRes,  PaginacionRefaccionRes,  PaginacionReq,  RefaccionImpresora, RegCambioRefaImp } from '../interfaces/impresora.interface';
 import { environment } from 'src/environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
@@ -85,27 +85,23 @@ export class ImpresionService {
 
 
   //Endpoints para Control de Toner
+  //Paginacion de Registros Totales de Cambio de Consumible y Refaccion
+  getPagRegConsumible(paginacion: PaginacionReq):Observable<PaginacionControTonerRes>{
+    return this.http.post<PaginacionControTonerRes>(`${this.urlBase}/ControlToner/paginacion`, paginacion)
+  }
   //Registro de Consumible o Refacciones
   setRegistroConsumible(registro: RegCambioRefaImp):  Observable<string>{
     return this.http.post<string>(`${this.urlBase}/ControlToner/Registro`, registro);
   }
-
-
-
-
-
-
-
-
-
+  //Listar los Edificios para el filtro
   getEdificios(): Observable<string[]>{
     return this.http.get<string[]>(`${this.urlBase}/impresoras/edificios`);
   }
-
+  //Listar Ubicaciones por Edificio
   getUbicaciones(consulta: object): Observable<string[]>{
-    return this.http.post<string[]>(`${this.urlBase}/impresoras/Ubicaciones`, consulta);
+    return this.http.post<string[]>(`${this.urlBase}/impresoras/ubicaciones`, consulta);
   }
-
+  //Listar Impresoras por Filtro
   getImpresorasFiltro(filtroImpresora: FiltroImpresora): Observable<Impresora[]>{
     return this.http.post<Impresora[]>(`${this.urlBase}/impresoras/Filtro`, filtroImpresora);
   }

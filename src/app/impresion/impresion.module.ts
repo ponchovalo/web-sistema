@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AlmacenImpresionComponent } from './pages/almacen-impresion/almacen-impresion.component';
 import { FormsModule } from '@angular/forms';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
+import { ControlTonerComponent } from './pages/control-toner/control-toner.component';
 
 
 
@@ -15,6 +16,7 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
     HomeImpresionComponent,
     InventarioImpresionComponent,
     AlmacenImpresionComponent,
+    ControlTonerComponent
   ],
   imports: [
     CommonModule,
