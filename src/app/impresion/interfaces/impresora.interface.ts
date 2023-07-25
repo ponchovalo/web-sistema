@@ -90,3 +90,6 @@ export interface EntradaRefaccion{
     nombre?: string;
     cantidad: number;
 }
+export interface Entrada{
+    entradas: EntradaRefaccion[]
+}

@@ -41,7 +41,7 @@ export class SidebarComponent implements OnInit {
       seccion: 'Impresion',
       enlace: '/impresion/almacen',
       icono: PrimeIcons.CHART_LINE,
-      titulo: 'Reporte Mensual'
+      titulo: 'Reportes'
     },
     {
       seccion: 'Wyse',

@@ -20,14 +20,14 @@ input #select{
 }
 
 .columna1{
-  width: 28%;
+  width: 32%;
   height: 95%;
 }
 
 .columna2{
   display: felx;
   flex-direction: column;
-  width: 68%;
+  width: 64%;
   height: 95%;
 }
 
@@ -112,4 +112,11 @@ a:hover{
   align-items: center;
   margin-top: 10px;
   margin-right: 10px;
+}
+
+#tabladetalle td{
+  padding-top: .4rem;
+  padding-bottom: .4rem;
+  padding-right: .2rem;
+  padding-left: .5rem;
 }

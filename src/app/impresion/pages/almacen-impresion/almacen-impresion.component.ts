@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ImpresionService } from '../../services/impresion.service';
-import { EntradaRefaccion, FiltroRefa, PaginacionRefaccionRes, PaginacionReq, RefaccionImpresora } from '../../interfaces/impresora.interface';
-import { TableLazyLoadEvent } from 'primeng/table';
+import { Entrada, EntradaRefaccion, FiltroRefa, PaginacionRefaccionRes, PaginacionReq, RefaccionImpresora } from '../../interfaces/impresora.interface';
+import { InitEditableRow, TableLazyLoadEvent } from 'primeng/table';
 import { Message, MessageService } from 'primeng/api';
 import { Observable, catchError, of } from 'rxjs';
 
@@ -321,13 +321,27 @@ export class AlmacenImpresionComponent implements OnInit{
       this.messageService.add({ severity: 'error', summary: 'Error', detail: `La cantidad no puede ir ser "0"` });
     }else{
       this.entradas.push(this.entradaRefaccion);
-
       this.initEntradas()
-
-      console.log(this.entradas);
     }
+  }
 
+  guardarEntrada(){
+    if(this.entradas.length > 0){
+      let entrada: Entrada = {
+        entradas: this.entradas
+      }
+      this.impresionService.setEntradasAlmacen(entrada).subscribe(data => {
+        this.entradas = [];
+        this.entradaDialog = false;
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: `Se agregó la entrada correctamente` });
+      })
+    }else{
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `No se han agregado refacciones a la entrada` });
+    }
     
   }
 
+  borrarEntrada(ind: number){
+    this.entradas.splice(ind, 1);
+  }
 }

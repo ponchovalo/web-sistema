@@ -119,26 +119,31 @@
       
           <ng-template pTemplate="header" style="background-color: 'red'">
             <tr>
-                <th style="min-width:5rem">NO PARTE</th>
-                <th style="min-width:5rem">NOMBRE</th>
-                <th style="min-width:5rem">CANTIDAD</th>
-                <th>ACCIONES</th>
+                <th style="width:25%">NO PARTE</th>
+                <th style="width:25%">NOMBRE</th>
+                <th style="width:25%">CANTIDAD</th>
+                <th style="width:25%">ACCIONES</th>
             </tr>
           </ng-template>
-      
-      
           <ng-template pTemplate="body" let-entrada>
       
             <tr>
                 <td>{{entrada.noParte}}</td>
                 <td>{{entrada.nombre}}</td>
-                <td>{{entrada.cantidad}}</td>
+                <td [pEditableColumn]="entrada.cantidad" pEditableColumnField="cantidad">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="number" [(ngModel)]="entrada.cantidad" />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ entrada.cantidad | number}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil"
-                            class="p-button-sm p-button-rounded p-button-primary p-button-text"
-                            ></button>
                     <button pButton pRipple icon="pi pi-trash"
                             class="p-button-sm p-button-rounded p-button-danger p-button-text"
+                            (click)="borrarEntrada(entradas.indexOf(entrada))"
                             ></button>
                 </td>
             </tr>
@@ -150,7 +155,7 @@
   </div>
 
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-times"  label="Guardar" styleClass="p-button-text p-button-secondary mt-2"></p-button>
+    <p-button icon="pi pi-times" (onClick)="guardarEntrada()" label="Guardar" styleClass="p-button-text p-button-secondary mt-2"></p-button>
     <p-button icon="pi pi-times" (click)="cancelarEntrada()" label="Cancelar" styleClass="p-button-text p-button-danger mt-2"></p-button>
   </ng-template>
 </p-dialog>

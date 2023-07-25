@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FiltroImpresora, FiltroRefa, Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraRes,  PaginacionRefaccionRes,  PaginacionReq,  RefaccionImpresora, RegCambioRefaImp } from '../interfaces/impresora.interface';
+import { Entrada, EntradaRefaccion, FiltroImpresora, FiltroRefa, Impresora, ImpresoraDetalle, ImpresoraPing, PaginacionImpresoraRes,  PaginacionRefaccionRes,  PaginacionReq,  RefaccionImpresora, RegCambioRefaImp } from '../interfaces/impresora.interface';
 import { environment } from 'src/environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
@@ -69,19 +69,37 @@ export class ImpresionService {
   deleteRefaccion(id: number):Observable<string>{
     return this.http.delete<string>(`${this.urlBase}/almacen/refaccion/${id}`)
   }
-
-
-
-
+  //Obtener Filtro de Refacciones por tipo y modelo
   getRefaFiltro(filtro: FiltroRefa): Observable<RefaccionImpresora[]>{
     return this.http.post<RefaccionImpresora[]>(`${this.urlBase}/almacen/filtro`, filtro);
   }
+  //Obtener Listado de Modelos de impresoras
+  getModelos(): Observable<string[]>{
+    return this.http.get<string[]>(`${this.urlBase}/impresoras/modelos`)
+  }
+  //Registrar entradas de almacen
+  setEntradasAlmacen(entrada: Entrada): Observable<string>{
+    return this.http.post<string>(`${this.urlBase}/almacen/entrada`, entrada)
+  }
+
+
+
+  //Endpoints para Control de Toner
+  //Registro de Consumible o Refacciones
+  setRegistroConsumible(registro: RegCambioRefaImp):  Observable<string>{
+    return this.http.post<string>(`${this.urlBase}/ControlToner/Registro`, registro);
+  }
+
+
+
+
+
+
+
+
 
   getEdificios(): Observable<string[]>{
     return this.http.get<string[]>(`${this.urlBase}/impresoras/edificios`);
-  }
-  getModelos(): Observable<string[]>{
-    return this.http.get<string[]>(`${this.urlBase}/impresoras/modelos`)
   }
 
   getUbicaciones(consulta: object): Observable<string[]>{
@@ -92,9 +110,6 @@ export class ImpresionService {
     return this.http.post<Impresora[]>(`${this.urlBase}/impresoras/Filtro`, filtroImpresora);
   }
 
-  setRegistroConsumible(registro: RegCambioRefaImp):  Observable<string>{
-    return this.http.post<string>(`${this.urlBase}/ControlToner/Registro`, registro);
-  }
 
 
 }
