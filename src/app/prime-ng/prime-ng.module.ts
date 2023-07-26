@@ -15,6 +15,8 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { PanelModule } from 'primeng/panel';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { CalendarModule } from 'primeng/calendar';
 
 
 
@@ -37,7 +39,9 @@ import { PanelModule } from 'primeng/panel';
     TagModule,
     ToastModule,
     MessagesModule,
-    PanelModule
+    PanelModule,
+    RadioButtonModule,
+    CalendarModule
   ],
   exports:[
     InputTextModule,
@@ -54,7 +58,9 @@ import { PanelModule } from 'primeng/panel';
     TagModule,
     ToastModule,
     MessagesModule,
-    PanelModule
+    PanelModule,
+    RadioButtonModule,
+    CalendarModule
   ]
 })
 export class PrimeNgModule { }

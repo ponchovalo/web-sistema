@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FiltroImpresora, Impresora, PaginacionReq } from '../../interfaces/impresora.interface';
+import { FiltroImpresora, FiltroRefa, Impresora, PaginacionReq, RefaccionImpresora } from '../../interfaces/impresora.interface';
 import { ImpresionService } from '../../services/impresion.service';
 
+interface PagReq {
+  pageSize: number;
+  page: number;
+  sort: string;
+  sortDirection: string;
+  filter: string;
+  filterId: number;
+  skip: number;
+  fechaInicial: Date;
+  fechaFinal: Date;
+}
 
-interface Edificio {
-  edificio: string
-}
-interface Ubicacion {
-  ubicacion: string
-}
 
 @Component({
   selector: 'app-control-toner',
@@ -17,23 +22,24 @@ interface Ubicacion {
 })
 export class ControlTonerComponent implements OnInit {
 
-  paginacionReq: PaginacionReq = {
-    pageSize: 10,
-    page: 1,
-    sort: 'fecha',
-    sortDirection: 'asc',
-    filter: '',
-    skip: 0
-  }
-  filtro: FiltroImpresora = {
-    Edificio: '',
-    Ubicacion: ''
-  }
-  edificios: Edificio[] = [];
-  ubicaciones: Ubicacion[] = [];
-  impresoras: Impresora[] = [];
+  reporteTotal: boolean = true;
+
+  tipoFecha: string = 'mes';
+
+  fechaInicial!: Date;
+  fechaFinal!: Date;
+
+  fechaActual!: Date;
+
+  filtroPor = ''
+
+  opciones = [{'nombre':'IMPRESORA'},{'nombre':'REFACCION'},{'nombre':''}]
   
-  impresoraSelect: Impresora = {
+  elementos: Impresora[] | RefaccionImpresora[] = [];
+
+  elementSelected: Impresora | RefaccionImpresora | null = null;
+
+  imp: Impresora = {
     impresoraId: '',
     nombre: '',
     modelo: '',
@@ -44,53 +50,84 @@ export class ControlTonerComponent implements OnInit {
     ubicacion: ''
   }
 
-  
-
   constructor (private impresionService: ImpresionService){}
 
   ngOnInit(): void {
-    this.listarEdificios()
-    this.listarRegistros()
+    this.obtenerFechas();
   }
 
-  listarRegistros(){
-    this.impresionService.getPagRegConsumible(this.paginacionReq).subscribe(data => {
-      console.log(data)
-    })
+  listarElementos(event: any) {
+    this.elementSelected = null;
+    if(event == 'IMPRESORA'){
+      this.impresionService.getImpresoras().subscribe(data => {
+        this.elementos = data;
+        this.elementSelected = this.elementos[0];
+      })
+
+    }else if(event == 'REFACCION'){
+      this.impresionService.getAlmacen().subscribe(data => {
+        this.elementos = data;
+        this.elementSelected = this.elementos[0];
+      })
+    }
   }
 
-  listarEdificios(){
-    this.impresionService.getEdificios().subscribe(data => {
-      for(let item of data){
-        let edificio: Edificio = {
-          edificio: item
-        }
-        this.edificios.push(edificio);
+  borrarFiltro(){
+    this.elementSelected = null;
+    this.elementos = [];
+  }
+
+  obtenerFechas(){
+    const tiempo = Date.now();
+    this.fechaActual = new Date(tiempo);
+
+    const diaSemana = this.fechaActual.getDay()
+    const day = this.fechaActual.getDate();
+    const month = this.fechaActual.getMonth();
+    const year = this.fechaActual.getFullYear();
+
+    if(this.tipoFecha == 'mes'){
+    
+      if(month == 1 || 3 || 5 || 7 || 8 || 10 || 12){
+        this.fechaInicial = new Date(year, month, 1);
+        this.fechaFinal = new Date(year, month, 31)
+      }else{
+        this.fechaInicial = new Date(year, month, 1);
+        this.fechaFinal = new Date(year, month, 30)
       }
-    });
+
+    }else if(this.tipoFecha == 'semana'){
+
+      this.fechaInicial = new Date(year, month, day - diaSemana);
+      this.fechaFinal = new Date(year, month, day + (6-diaSemana));
+
+    }else if(this.tipoFecha == 'hoy'){
+
+      this.fechaInicial = new Date(year, month, day);
+      this.fechaFinal = new Date(year, month, day);
+
+    }else{
+      this.fechaInicial = new Date();
+      this.fechaFinal = new Date();
+    }
+
   }
-  listarUbicaciones(event: any){
-    if(this.ubicaciones.length >= 0){
-      this.ubicaciones = [];
-    }
-    let edificio: Edificio = {
-      edificio: event
-    }
-    this.impresionService.getUbicaciones(edificio).subscribe(data => {
-      for(let item of data){
-        let ubicacion: Ubicacion = {
-          ubicacion: item
-        }
-        this.ubicaciones.push(ubicacion);
+
+  generarReporte(){
+    if(this.reporteTotal){
+      console.log('Total')
+    }else{
+      if(this.filtroPor == 'IMPRESORA'){
+
+      }else if(this.filtroPor == 'REFACCION'){
+
+      }else{
+        console.log('no se elijio')
       }
-    })
+    }
   }
-  listarImpresoras(){
-    this.impresionService.getImpresorasFiltro(this.filtro).subscribe(data => {
-      this.impresoras = data;
-    })
-    console.log(this.impresoras)
-  }
+
+ 
 
  
 

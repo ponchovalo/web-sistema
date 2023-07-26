@@ -5,21 +5,28 @@
     align-items: center;
     width: 100%;
     height: 100%;
-  }
+}
+.fila{
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+}
 
-  .elemento1{
+  .elemento{
     width: 80%;
-    height: 25%;
+    height: 95%;
   }
-  .elemento2{
-    width: 80%;
-    height: 65%;
-  }
-
-  .body1{
+  
+  .body{
     display: flex;
-    justify-content: space-around;
-    margin-top: 1.5rem;
-    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
+
+  .filtros{
+    width: 60%;
+  }
+ 
 

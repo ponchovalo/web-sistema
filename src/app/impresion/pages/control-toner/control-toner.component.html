@@ -1,62 +1,137 @@
 <div class="container">
-    <div class="elemento1">
+    <div class="elemento">
         <p-panel>
-            <ng-template pTemplate="header"> <span class="text-secondary font-semibold text-x2">Agregar Registro de Toner</span>
+            <ng-template pTemplate="header"> <span class="text-secondary font-semibold text-x2">Control de Toner - Reportes</span>
             </ng-template>
-            
-                <div class="body1">
-                    <span class="p-float-label">
-                        <p-dropdown [options]="edificios"
-                                    [style]="{'width':'200px','height':'40px'}"
-                                    optionValue="edificio"
-                                    (onChange)="listarUbicaciones($event.value)"
-                                    [(ngModel)]="filtro.Edificio" 
-                                    placeholder="Edificio" 
-                                    optionLabel="edificio" 
-                                    inputId="float-label"></p-dropdown>
-                        <label for="float-label">Edificio</label>
-                    </span>
-                    <span class="p-float-label">
-                        <p-dropdown [options]="ubicaciones"
-                                    [style]="{'width':'200px','height':'40px'}"
-                                    [(ngModel)]="filtro.Ubicacion" 
-                                    optionValue="ubicacion"
-                                    (onChange)="listarImpresoras()"
-                                    placeholder="Ubicacion" 
-                                    optionLabel="ubicacion" 
-                                    inputId="float-label"></p-dropdown>
-                        <label for="float-label">Ubicacion</label>
-                    </span>
-                    <span class="p-float-label">
-                        <p-dropdown [options]="impresoras"
-                                    [style]="{'width':'200px','height':'40px'}"
-                                    optionValue="nombre"
-                                    [(ngModel)]="impresoraSelect"
-                                    placeholder="Impresora" 
-                                    optionLabel="nombre" 
-                                    inputId="float-label"></p-dropdown>
-                        <label for="float-label">Impresora</label>
-                    </span>
-
-                </div>
-
-            <ng-template pTemplate="footer">
-
-            </ng-template>
-        </p-panel>
-    </div>
-    <div class="elemento2">
-        <p-panel>
-            <ng-template pTemplate="header"> <span class="text-secondary font-semibold text-x2">Reportes Filtro</span>
-            </ng-template>
-            
                 <div class="body">
-
+                    <div class="fila">
+                        <div class="grid">
+                            <div class="col-2">
+                                <span></span>
+                            </div>
+                            <div class="col-2">
+                                <span>Tipo de Reporte:</span>
+                            </div>
+                            <div class="col-3">
+                                <div class="flex align-items-center">
+                                    <p-radioButton name="total" [value]=true [(ngModel)]="reporteTotal" inputId="total" (onClick)="borrarFiltro()"></p-radioButton>
+                                    <label for="total" class="ml-1">Total</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="flex align-items-center">
+                                    <p-radioButton name="porFiltro" [value]=false [(ngModel)]="reporteTotal" inputId="porFiltro" (onClick)="borrarFiltro()"></p-radioButton>
+                                    <label for="porFiltro" class="ml-1">Por Filtro</label>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fila" *ngIf="!reporteTotal">
+                        <div class="grid">
+                            <div class="col-2">
+                                <span></span>
+                            </div>
+                            <div class="col-2">
+                                <span>Filtrar Por:</span>
+                            </div>
+                            <div class="col-3">
+                                <div class="flex align-items-center">
+                                    <p-dropdown [options]="opciones"
+                                                [style]="{'width':'180px'}"
+                                                [(ngModel)]="filtroPor"
+                                                optionValue="nombre"
+                                                (onChange)="listarElementos($event.value)"
+                                                optionLabel="nombre">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="flex align-items-center">
+                                    <p-dropdown [options]="elementos"
+                                                [(ngModel)]="elementSelected"
+                                                [filter]="true"
+                                                filterBy="nombre"
+                                                [style]="{'width':'200px'}"
+                                                optionLabel="nombre"
+                                                placeholder="Seleccione Impresora">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="grid">
+                            <div class="col-2">
+                                <span></span>
+                            </div>
+                            <div class="col-2">
+                                <span>Fecha:</span>
+                            </div>
+                            <div class="col-3">
+                                <div class="flex flex-column gap-2">
+                                    <div class="flex align-items-center">
+                                        <p-radioButton name="hoy" value="hoy" (onClick)="obtenerFechas()"  [(ngModel)]="tipoFecha" inputId="hoy"></p-radioButton>
+                                        <label for="hoy" class="ml-1">Hoy</label>
+                                    </div>
+                                    <div class="flex align-items-center">
+                                        <p-radioButton name="semana" value="semana" (onClick)="obtenerFechas()" [(ngModel)]="tipoFecha" inputId="semana"></p-radioButton>
+                                        <label for="semana" class="ml-1">Semana Actual</label>
+                                    </div>
+                                    <div class="flex align-items-center">
+                                        <p-radioButton name="mes" value="mes" (onClick)="obtenerFechas()" [(ngModel)]="tipoFecha" inputId="mes"></p-radioButton>
+                                        <label for="mes" class="ml-1">Mes Actual</label>
+                                    </div>
+                                    <div class="flex align-items-center">
+                                        <p-radioButton name="especifica" value="espeifica" (onClick)="obtenerFechas()" [(ngModel)]="tipoFecha" inputId="especifica"></p-radioButton>
+                                        <label for="especifica" class="ml-1">Fecha Específica</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <span></span>
+                            </div>
+                            <div class="col-2">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="grid">
+                            <div class="col-2">
+                                <span></span>
+                            </div>
+                            <div class="col-2">
+                                <span>Fecha Específica:</span>
+                            </div>
+                            <div class="col-3">
+                                <p-calendar [(ngModel)]="fechaInicial"></p-calendar>
+                            </div>
+                            <div class="col-3">
+                                <p-calendar [(ngModel)]="fechaFinal"></p-calendar>
+                            </div>
+                            <div class="col-2">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="grid">
+                            <div class="col-4">
+                            </div>
+                            <div class="col-3">
+                                <p-button label="Generar Reporte" icon="pi pi-check" (onClick)="generarReporte()" ></p-button>
+                            </div>
+                            <div class="col-5">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-            <ng-template pTemplate="footer"> 
-                
-            </ng-template>
         </p-panel>
     </div>
   
