@@ -17,6 +17,7 @@ import { MessagesModule } from 'primeng/messages';
 import { PanelModule } from 'primeng/panel';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 
 
@@ -41,7 +42,8 @@ import { CalendarModule } from 'primeng/calendar';
     MessagesModule,
     PanelModule,
     RadioButtonModule,
-    CalendarModule
+    CalendarModule,
+    DynamicDialogModule
   ],
   exports:[
     InputTextModule,
@@ -60,7 +62,8 @@ import { CalendarModule } from 'primeng/calendar';
     MessagesModule,
     PanelModule,
     RadioButtonModule,
-    CalendarModule
+    CalendarModule,
+    DynamicDialogModule
   ]
 })
 export class PrimeNgModule { }

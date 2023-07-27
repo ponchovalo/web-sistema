@@ -8,6 +8,7 @@ import { AlmacenImpresionComponent } from './pages/almacen-impresion/almacen-imp
 import { FormsModule } from '@angular/forms';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { ControlTonerComponent } from './pages/control-toner/control-toner.component';
+import { ControlTonerDialogComponent } from './components/control-toner-dialog/control-toner-dialog.component';
 
 
 
@@ -16,7 +17,8 @@ import { ControlTonerComponent } from './pages/control-toner/control-toner.compo
     HomeImpresionComponent,
     InventarioImpresionComponent,
     AlmacenImpresionComponent,
-    ControlTonerComponent
+    ControlTonerComponent,
+    ControlTonerDialogComponent
   ],
   imports: [
     CommonModule,

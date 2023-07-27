@@ -48,15 +48,27 @@
                                     </p-dropdown>
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-3" *ngIf="filtroPor == 'IMPRESORA'">
                                 <div class="flex align-items-center">
                                     <p-dropdown [options]="elementos"
-                                                [(ngModel)]="elementSelected"
+                                                [(ngModel)]="impresoraSelected"
                                                 [filter]="true"
                                                 filterBy="nombre"
                                                 [style]="{'width':'200px'}"
                                                 optionLabel="nombre"
                                                 placeholder="Seleccione Impresora">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-3" *ngIf="filtroPor == 'REFACCION'">
+                                <div class="flex align-items-center">
+                                    <p-dropdown [options]="elementos"
+                                                [(ngModel)]="refaccionSelected"
+                                                [filter]="true"
+                                                filterBy="nombre"
+                                                [style]="{'width':'200px'}"
+                                                optionLabel="nombre"
+                                                placeholder="Seleccione Refacción">
                                     </p-dropdown>
                                 </div>
                             </div>
@@ -134,7 +146,6 @@
                 </div>
         </p-panel>
     </div>
-  
 </div>
 
 

@@ -86,7 +86,7 @@ export class ImpresionService {
 
   //Endpoints para Control de Toner
   //Paginacion de Registros Totales de Cambio de Consumible y Refaccion
-  getPagRegConsumible(paginacion: PaginacionReq):Observable<PaginacionControTonerRes>{
+  getPagRegConsumible(paginacion: Object):Observable<PaginacionControTonerRes>{
     return this.http.post<PaginacionControTonerRes>(`${this.urlBase}/ControlToner/paginacion`, paginacion)
   }
   //Registro de Consumible o Refacciones
