@@ -4,6 +4,7 @@ import { HomeImpresionComponent } from './pages/home-impresion/home-impresion.co
 import { InventarioImpresionComponent } from './pages/inventario-impresion/inventario-impresion.component';
 import { AlmacenImpresionComponent } from './pages/almacen-impresion/almacen-impresion.component';
 import { ControlTonerComponent } from './pages/control-toner/control-toner.component';
+import { ReportesImpresionComponent } from './pages/reportes-impresion/reportes-impresion.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,10 @@ const routes: Routes = [
         {
           path: 'controltoner',
           component: ControlTonerComponent
+        },
+        {
+          path: 'reportes',
+          component: ReportesImpresionComponent
         },
         {
           path: '**',

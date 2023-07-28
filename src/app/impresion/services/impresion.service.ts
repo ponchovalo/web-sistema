@@ -106,6 +106,12 @@ export class ImpresionService {
     return this.http.post<Impresora[]>(`${this.urlBase}/impresoras/Filtro`, filtroImpresora);
   }
 
+  //Endpoints para Reportes
+  //Listar Impresoras con detalles
+  getReporteMenusal(): Observable<ImpresoraDetalle[]>{
+    return this.http.get<ImpresoraDetalle[]>(`${this.urlBase}/impresoras/detalles`);
+  }
+
 
 
 }

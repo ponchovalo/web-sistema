@@ -195,14 +195,13 @@ export class ControlTonerComponent implements OnInit {
         fechaFinal: this.fechaFinal
       }
       this.ref = this.dialogService.open(ControlTonerDialogComponent, {
-        header: "Dialogo de Listado de Refacciones",
+        header: "Listado de Refacciones en General",
         width: "70%",
+        height: "70%",
         maximizable: true,
         data: {
           paginacionReq: this.paginacionReq
         }
-      })
-      this.impresionService.getPagRegConsumible(this.paginacionReq).subscribe(data => {
       })
     }else{
       if(this.filtroPor == 'IMPRESORA'){
@@ -217,8 +216,13 @@ export class ControlTonerComponent implements OnInit {
           fechaInicial: this.fechaInicial,
           fechaFinal: this.fechaFinal
         }
-
-        this.impresionService.getPagRegConsumible(this.paginacionReq).subscribe(data => {
+        this.ref = this.dialogService.open(ControlTonerDialogComponent, {
+          header: `Historial por Impresora, ${this.impresoraSelected.nombre}`,
+          width: "70%",
+          maximizable: true,
+          data: {
+            paginacionReq: this.paginacionReq
+          }
         })
 
       }else if(this.filtroPor == 'REFACCION'){
@@ -233,9 +237,15 @@ export class ControlTonerComponent implements OnInit {
           fechaInicial: this.fechaInicial,
           fechaFinal: this.fechaFinal
         }
-        this.impresionService.getPagRegConsumible(this.paginacionReq).subscribe(data => {
-
+        this.ref = this.dialogService.open(ControlTonerDialogComponent, {
+          header: `Historial por Refaccion, ${this.refaccionSelected.nombre}`,
+          width: "70%",
+          maximizable: true,
+          data: {
+            paginacionReq: this.paginacionReq
+          }
         })
+   
 
       }else{
         console.log('no se elijio')

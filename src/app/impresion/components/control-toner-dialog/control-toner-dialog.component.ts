@@ -1,5 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService, DynamicDialogRef, DynamicDialogInjector } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogInjector, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { ImpresionService } from '../../services/impresion.service';
+import { PaginacionControTonerRes } from '../../interfaces/impresora.interface';
+import { TableLazyLoadEvent } from 'primeng/table';
+
+interface PagReq {
+  pageSize: number;
+  page: number;
+  sort: string;
+  sortDirection: string;
+  filter: string;
+  filterId: number;
+  skip: number;
+  fechaInicial: Date;
+  fechaFinal: Date;
+}
 
 @Component({
   selector: 'app-control-toner-dialog',
@@ -9,16 +24,44 @@ import { DialogService, DynamicDialogRef, DynamicDialogInjector } from 'primeng/
 export class ControlTonerDialogComponent implements OnInit {
 
   ref: DynamicDialogInjector | undefined;
+  paginacion!: PagReq;
+  
+  paginacionRes: PaginacionControTonerRes = {
+    pageSize: 0,
+    page: 0,
+    pageQuantity: 0,
+    totalRows: 0,
+    data: []
+  }
 
-  constructor(private dialogService: DialogService ){}
+  cargando:boolean = false;
+  termino: string = "";
+
+  constructor(private impresionService: ImpresionService, public dialogService: DialogService, public config: DynamicDialogConfig){}
 
   
 
   ngOnInit(): void {
-    console.log(this.ref?.get("paginacionReq"))
+    this.paginacion = this.config.data.paginacionReq;
+    this.listarRegistros();
   }
 
-  
+  listarRegistros(){
+    this.impresionService.getPagRegConsumible(this.paginacion).subscribe(data => {
+      this.paginacionRes = data;
+      console.log(this.paginacionRes)
+    })
+  }
+
+  loadData(event: TableLazyLoadEvent){
+    console.log(event)
+  }
+
+  buscar(){
+    console.log(this.termino)
+  }
+
+
 
 
 

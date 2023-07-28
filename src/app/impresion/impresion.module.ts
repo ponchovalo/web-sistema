@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { ControlTonerComponent } from './pages/control-toner/control-toner.component';
 import { ControlTonerDialogComponent } from './components/control-toner-dialog/control-toner-dialog.component';
+import { ReportesImpresionComponent } from './pages/reportes-impresion/reportes-impresion.component';
 
 
 
@@ -18,7 +19,8 @@ import { ControlTonerDialogComponent } from './components/control-toner-dialog/c
     InventarioImpresionComponent,
     AlmacenImpresionComponent,
     ControlTonerComponent,
-    ControlTonerDialogComponent
+    ControlTonerDialogComponent,
+    ReportesImpresionComponent
   ],
   imports: [
     CommonModule,
