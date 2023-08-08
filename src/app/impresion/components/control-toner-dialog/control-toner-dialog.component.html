@@ -25,13 +25,13 @@
   
       <ng-template pTemplate="header" style="background-color: 'red'">
         <tr>
-            <th pSortableColumn="impresora" style="min-width:5rem">IMPRESORA<p-sortIcon field="impresora"></p-sortIcon></th>
-            <th pSortableColumn="modelo" style="min-width:5rem">MODELO<p-sortIcon field="modelo"></p-sortIcon></th>
-            <th pSortableColumn="serie" style="min-width:5rem">SERIE<p-sortIcon field="serie"></p-sortIcon></th>
-            <th pSortableColumn="tipo" style="min-width:5rem">TIPO <p-sortIcon field="tipo"></p-sortIcon></th>
-            <th pSortableColumn="noParte" style="min-width:5rem">NOMBRE <p-sortIcon field="noParte"></p-sortIcon></th>
-            <th pSortableColumn="noParte" style="min-width:5rem">NO PARTE <p-sortIcon field="noParte"></p-sortIcon></th>
-            <th pSortableColumn="fecha" style="min-width:5rem">FECHA <p-sortIcon field="fecha"></p-sortIcon></th>
+            <th style="min-width:5rem">IMPRESORA</th>
+            <th style="min-width:5rem">MODELO</th>
+            <th style="min-width:5rem">SERIE</th>
+            <th style="min-width:5rem">TIPO</th>
+            <th style="min-width:5rem">NO PARTE</th>
+            <th style="min-width:5rem">DESCRIPCION</th>
+            <th style="min-width:5rem">FECHA</th>
             <th style="min-width:5rem">CONT 109 </th>
             <th style="min-width:5rem">CONT 124 </th>
             <th style="min-width:5rem">CONT 102 </th>
@@ -46,8 +46,8 @@
             <td>{{item.impresora.modelo}}</td>
             <td>{{item.impresora.serie}}</td>
             <td>{{item.refaccion.tipo}}</td>
-            <td>{{item.refaccion.nombre}}</td>
             <td>{{item.refaccion.noParte}}</td>
+            <td>{{item.refaccion.descripcion}}</td>
             <td>{{item.fecha | date:'dd-MM-yyyy'}}</td>
             <td>{{item.cont109}}</td>
             <td>{{item.cont124}}</td>

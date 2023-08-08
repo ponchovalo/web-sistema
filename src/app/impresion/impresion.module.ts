@@ -10,6 +10,7 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { ControlTonerComponent } from './pages/control-toner/control-toner.component';
 import { ControlTonerDialogComponent } from './components/control-toner-dialog/control-toner-dialog.component';
 import { ReportesImpresionComponent } from './pages/reportes-impresion/reportes-impresion.component';
+import { ReporteMensualComponent } from './components/reporte-mensual/reporte-mensual.component';
 
 
 
@@ -20,7 +21,8 @@ import { ReportesImpresionComponent } from './pages/reportes-impresion/reportes-
     AlmacenImpresionComponent,
     ControlTonerComponent,
     ControlTonerDialogComponent,
-    ReportesImpresionComponent
+    ReportesImpresionComponent,
+    ReporteMensualComponent
   ],
   imports: [
     CommonModule,
