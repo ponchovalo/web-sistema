@@ -55,6 +55,9 @@ export class ControlTonerDialogComponent implements OnInit {
 
   loadData(event: TableLazyLoadEvent){
     console.log(event)
+    this.paginacion.pageSize = Number(event.rows);
+    this.paginacion.skip = Number(event.first);
+    this.listarRegistros();
   }
 
   buscar(){
