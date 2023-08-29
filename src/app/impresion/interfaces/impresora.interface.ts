@@ -29,6 +29,14 @@ export interface ImpresoraDetalle {
     mensaje?: string
 }
 
+export interface RepoMensualImp {
+    impresora: Impresora,
+    cont102: number,
+    cont109: number,
+    cont124: number,
+    fecha?: Date,
+}
+
 export interface RefaccionImpresora {
     refaccionId?: string,
     noParte: string,

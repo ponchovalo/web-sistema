@@ -21,24 +21,21 @@ export class ReportesImpresionComponent implements OnInit{
     
   }
 
-  getReporteMensual(){
+  openDialogMensual(){
     this.impresioService.getReporteMenusal().subscribe(data => {
       this.reporteMensual = data;
+      this.ref = this.dialogService.open(ReporteMensualComponent, {
+        header: "Generar Nuevo Reporte Mensual",
+        width: "90%",
+        height: "70%",
+        maximizable: true,
+        data: {
+          datosReporte: this.reporteMensual
+        }
+      })
     })
   }
 
-  openDialogMensual(){
-    this.getReporteMensual();
-    this.ref = this.dialogService.open(ReporteMensualComponent, {
-      header: "Generar Nuevo Reporte Mensual",
-      width: "90%",
-      height: "70%",
-      maximizable: true,
-      data: {
-        datosReporte: this.reporteMensual
-      }
-    })
-
-  }
+  
 
 }
