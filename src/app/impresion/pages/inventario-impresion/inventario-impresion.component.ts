@@ -227,6 +227,7 @@ export class InventarioImpresionComponent implements OnInit {
   openDialogDetalle(impresora: Impresora){
     //FUNCION QUE OBTIENE LOS DATOS
     this.impresionService.getImpresoraDetalle(impresora.impresoraId).subscribe(res => {
+      console.log(res);
       this.impresoraSelected = res;
       //VALIDACION DE MODELOS QUE NO TIENEN OID
       if(res.mensaje == 'ErrorModelo'){
