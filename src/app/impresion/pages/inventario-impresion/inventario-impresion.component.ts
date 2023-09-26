@@ -225,6 +225,7 @@ export class InventarioImpresionComponent implements OnInit {
 
   //Funciones Dialogo Detalles
   openDialogDetalle(impresora: Impresora){
+    console.log(impresora)
     //FUNCION QUE OBTIENE LOS DATOS
     this.impresionService.getImpresoraDetalle(impresora.impresoraId).subscribe(res => {
       console.log(res);
